@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="80dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/scanpay"
+            android:layout_gravity="center_horizontal">
+
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:text="LOGIN"
+            android:textStyle="bold">
+
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:text="Please login to enjoy all the benefits of MyScanPay"
+            android:textStyle="bold">
+        </TextView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ID (CONTACT NUMBER)"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <EditText
+            android:id="@+id/id"
+            android:layout_width="50dp"
+            android:layout_height="45dp"
+            android:background="@drawable/textinputborder"
+            android:paddingLeft="10dp"
+            android:text="60"
+            android:layout_marginRight="10dp">
+        </EditText>
+            <EditText
+                android:id="@+id/idbox"
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/textinputborder"
+                android:paddingLeft="10dp"
+                android:text=""
+                android:layout_marginLeft="10dp">
+
+
+            </EditText>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="APP LOGIN PASSWORD"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
+
+        <EditText
+            android:id="@+id/passwordbox"
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/textinputborder"
+            android:paddingLeft="10dp"
+            android:text=""
+            android:inputType="textPassword">
+
+
+        </EditText>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="LOGIN"
+            android:textColor="#ffffff"
+            android:textSize="18dp"
+            android:background="@drawable/buttonborder"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp">
+
+        </Button>
+
+        <Button
+            android:id="@+id/signup"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="SIGN UP"
+            android:textColor="#ffffff"
+            android:textSize="18dp"
+            android:background="@drawable/buttonborder"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp">
+
+        </Button>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forgot your password? Click"
+            android:textSize="18dp"
+            android:gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="here"
+                android:textSize="18dp"
+                android:textColor="#26A5DD"
+                android:layout_marginLeft="5dp"/>
+        </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
+
+
+
+</RelativeLayout>
