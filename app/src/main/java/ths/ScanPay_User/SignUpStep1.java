@@ -10,6 +10,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,12 +24,15 @@ public class SignUpStep1 extends AppCompatActivity {
     LinearLayout otplayout,passwordlayout,reconfirmpasswordlayout;
     EditText mobileedittext,otp1,otp2,otp3,otp4,otp5,otp6,passwordedit,confirmpasswordedit;
     boolean verifybool=false;
-    TextView checkotpresult;
+    TextView checkotpresult,password_error;
+    ImageView backbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup_step1);
+
+        backbtn = (ImageView)findViewById(R.id.backbtn);
 
         mobileedittext = (EditText)findViewById(R.id.mobile_edit);
 
@@ -61,6 +65,9 @@ public class SignUpStep1 extends AppCompatActivity {
 
         confirmpasswordedit = (EditText)findViewById(R.id.confirmpassword_edit);
 
+        password_error = (TextView)findViewById(R.id.password_error);
+        password_error.setVisibility(View.INVISIBLE);
+
         nextbtn = (Button)findViewById(R.id.nextbtn);
         nextbtn.setEnabled(false);
         nextbtn.setAlpha(.1f);
@@ -72,6 +79,13 @@ public class SignUpStep1 extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().startsWith("0"))
+                {
+
+
+                    mobileedittext.setText("");
+                }
+
                 if(s.length()==9||s.length()==10)
                 {
                     if(verifybool==false)
@@ -400,12 +414,33 @@ public class SignUpStep1 extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+
                 if(s.length()>=4)
                 {
-                    reconfirmpasswordlayout.setVisibility(View.VISIBLE);
+                    if(s.toString().matches("[a-zA-Z]+"))
+                    {
+                        password_error.setVisibility(View.VISIBLE);
+                        password_error.setText("Should Contain Numbers");
+                        reconfirmpasswordlayout.setVisibility(View.INVISIBLE);
+                    }
+                    else if (s.toString().matches("[0-9]+"))
+                    {
+                        password_error.setVisibility(View.VISIBLE);
+                        password_error.setText("Should Contain Letters");
+                        reconfirmpasswordlayout.setVisibility(View.INVISIBLE);
+                    }
+                    else
+                    {
+                        password_error.setVisibility(View.INVISIBLE);
+                        reconfirmpasswordlayout.setVisibility(View.VISIBLE);
+                    }
+
                 }
                 else
                 {
+                    password_error.setVisibility(View.INVISIBLE);
                     reconfirmpasswordlayout.setVisibility(View.INVISIBLE);
                 }
             }
@@ -448,6 +483,13 @@ public class SignUpStep1 extends AppCompatActivity {
             public void onClick(View v) {
                 Intent next = new Intent(getApplicationContext(),SignUpStep2.class);
                 startActivity(next);
+            }
+        });
+
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

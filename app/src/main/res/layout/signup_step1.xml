@@ -5,6 +5,18 @@
     android:layout_height="match_parent"
     android:background="#ffffff">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+            <ImageView
+                android:id="@+id/backbtn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:layout_gravity="left"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_back3"></ImageView>
+    </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -278,6 +290,15 @@
                     android:hint="at least 4 characters and alphanumeric">
 
                 </EditText>
+
+                <TextView
+                    android:id="@+id/password_error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="error"
+                    android:textColor="#D81B60">
+
+                </TextView>
 
 
             </LinearLayout>
