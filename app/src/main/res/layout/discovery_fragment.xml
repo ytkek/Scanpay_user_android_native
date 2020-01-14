@@ -3,9 +3,35 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="discovery"></TextView>
+    <Spinner
+        android:id="@+id/discovery_menu_list"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/lightblue_round_border"
+        android:layout_marginTop="10dp">
+
+    </Spinner>
+    <Button
+        android:id="@+id/viewallbtn"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@drawable/round_border"
+        android:text="View All"
+        android:textColor="#ffffff"
+        android:layout_marginTop="10dp">
+
+    </Button>
+
+    <View
+        android:layout_height="3dp"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_border"></View>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/discovery_menu_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        ></androidx.recyclerview.widget.RecyclerView>
 
 </LinearLayout>
