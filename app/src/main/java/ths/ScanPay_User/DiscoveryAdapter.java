@@ -70,6 +70,13 @@ public class DiscoveryAdapter  extends RecyclerView.Adapter<DiscoveryAdapter.MyV
             discovery_img = (ImageView) view.findViewById(R.id.discovery_img);
             discovery_title = (TextView) view.findViewById(R.id.discovery_title);
             discovery_content = (TextView) view.findViewById(R.id.discovery_content);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(context, String.valueOf(getLayoutPosition()),Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }

@@ -35,6 +35,19 @@
         <activity android:name=".ViewAgreementWebview"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".AboutUsActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".LocationActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".MessageCentreActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".SystemInfoActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>
