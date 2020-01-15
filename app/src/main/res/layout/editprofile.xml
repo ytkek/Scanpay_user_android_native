@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="MESSAGE CENTER"
+        android:text="EDIT USER PROFILE"
         android:textStyle="bold"
         android:textSize="18dp">
 
@@ -28,18 +28,49 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="Your message listing."
+        android:text="Edit your profile information."
         ></TextView>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="#000000"></View>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/messagecentre_listview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    </androidx.recyclerview.widget.RecyclerView>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:background="@drawable/editprofilebackground">
+
+        <ImageView
+            android:id="@+id/profile_img"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp">
+
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LIEW"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:layout_gravity="center">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="strew8911@gmail.com"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:layout_gravity="center">
+
+        </TextView>
+
+    </LinearLayout>
 </LinearLayout>

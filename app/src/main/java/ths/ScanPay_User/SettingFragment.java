@@ -35,6 +35,13 @@ public class SettingFragment extends Fragment {
         systeminfo = (ImageView)view.findViewById(R.id.systeminfo);
 
 
+        qr_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent lol = new Intent(getActivity(),EditProfileActivity.class);
+                startActivity(lol);
+            }
+        });
         aboutus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -48,6 +48,9 @@
         <activity android:name=".SystemInfoActivity"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".EditProfileActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>
