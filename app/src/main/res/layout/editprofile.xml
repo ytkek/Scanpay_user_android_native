@@ -78,6 +78,17 @@
 
         </TextView>
 
+        <Button
+            android:id="@+id/save"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="@drawable/lightblue_round_border"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="Save">
+
+        </Button>
+
     </LinearLayout>
 
     <LinearLayout
@@ -191,15 +202,7 @@
             android:orientation="vertical"
             android:layout_gravity="center_vertical"
             android:layout_weight="3">
-            <TextView
-                android:id="@+id/changeidbtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Change"
-                android:textColor="#0000FF"
-                android:layout_gravity="center_vertical">
 
-            </TextView>
         </LinearLayout>
     </LinearLayout>
 
@@ -246,6 +249,13 @@
                 >
 
             </EditText>
+            <TextView
+                android:id="@+id/password_error_message_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#D81B60"
+                android:text="error message"
+                android:layout_marginLeft="0dp"></TextView>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -308,6 +318,7 @@
                     >
 
                 </EditText>
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -315,15 +326,7 @@
                 android:orientation="vertical"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="3">
-                <TextView
-                    android:id="@+id/changeemailbtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Change"
-                    android:textColor="#0000FF"
-                    android:layout_gravity="center_vertical">
 
-                </TextView>
             </LinearLayout>
         </LinearLayout>
 
@@ -364,12 +367,21 @@
                     android:id="@+id/handphoneedit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="60+1121829875"
-
+                    android:text="601121829875"
+                    android:inputType="phone"
+                    android:digits="1234567890"
+                    android:maxLength="10"
                     android:layout_marginTop="00dp"
                     >
 
                 </EditText>
+                <TextView
+                    android:id="@+id/mobile_error_message_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#D81B60"
+                    android:text="error message"
+                    android:layout_marginLeft="0dp"></TextView>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -432,6 +444,13 @@
                     >
 
                 </EditText>
+                <TextView
+                    android:id="@+id/gender_error_message_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#D81B60"
+                    android:text="error message"
+                    android:layout_marginLeft="0dp"></TextView>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -675,12 +694,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="282890"
-                    android:inputType="textPassword"
-
-                    android:layout_marginTop="00dp"
-                    >
-
+                    android:maxLength="6"
+                    android:digits="1234567890"
+                    android:layout_marginTop="00dp">
                 </EditText>
+                <TextView
+                    android:id="@+id/pin_error_message_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#D81B60"
+                    android:text="error message"
+                    android:layout_marginLeft="0dp"></TextView>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
