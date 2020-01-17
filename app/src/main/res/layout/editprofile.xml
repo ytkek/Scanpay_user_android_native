@@ -234,7 +234,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Password"
+                android:text="App Password"
                 android:textColor="#000000"
                 android:textStyle="bold">
 
@@ -326,7 +326,15 @@
                 android:orientation="vertical"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="3">
+                <TextView
+                    android:id="@+id/changeemailbtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Option"
+                    android:textColor="#0000FF"
+                    android:layout_gravity="center_vertical">
 
+                </TextView>
             </LinearLayout>
         </LinearLayout>
 
@@ -363,18 +371,39 @@
                     android:textStyle="bold">
 
                 </TextView>
-                <EditText
-                    android:id="@+id/handphoneedit"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="601121829875"
-                    android:inputType="phone"
-                    android:digits="1234567890"
-                    android:maxLength="10"
-                    android:layout_marginTop="00dp"
-                    >
+                    android:orientation="horizontal">
 
-                </EditText>
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="60"
+                        android:inputType="phone"
+                        android:digits="1234567890"
+                        android:maxLength="2"
+                        android:layout_marginTop="00dp"
+                        >
+
+                    </TextView>
+
+                    <EditText
+                        android:id="@+id/handphoneedit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1121829875"
+                        android:inputType="phone"
+                        android:digits="1234567890"
+                        android:maxLength="10"
+                        android:layout_marginTop="00dp"
+                        >
+
+                    </EditText>
+
+                </LinearLayout>
+
                 <TextView
                     android:id="@+id/mobile_error_message_textview"
                     android:layout_width="wrap_content"
@@ -684,7 +713,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PIN"
+                    android:text="Payment PIN Password"
                     android:textColor="#000000"
                     android:textStyle="bold">
 

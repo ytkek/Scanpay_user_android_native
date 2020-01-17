@@ -1,5 +1,6 @@
 package ths.ScanPay_User;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -9,10 +10,13 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EditProfileActivity extends AppCompatActivity {
-
+    Activity editactivity;
     ImageView back;
     ImageView profile_img;
     TextView changefullnamebtn,changeidbtn,changepasswordbtn,
@@ -50,6 +54,7 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.editprofile);
 
+        editactivity=this;
         changefullname = (EditText)findViewById(R.id.fullnameedit);
         changefullname.setEnabled(false);
 
@@ -83,7 +88,7 @@ public class EditProfileActivity extends AppCompatActivity {
         changeid =(EditText)findViewById(R.id.idedit);
         changeid.setEnabled(false);
 
-       
+
 
         password_error_message = (TextView) findViewById(R.id.password_error_message_textview);
         password_error_message.setVisibility(View.INVISIBLE);
@@ -156,12 +161,17 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //changefullname.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-                changepassword.setEnabled(true);
+                changepassword.setEnabled(false);
                 changepassword.requestFocus();
                 changepassword.setFocusable(true);
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(changepassword, InputMethodManager.SHOW_IMPLICIT);
+               // InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+               // imm.showSoftInput(changepassword, InputMethodManager.SHOW_IMPLICIT);
 
+                EditProfileDialog cdd=new EditProfileDialog(editactivity,"password");
+
+                cdd.show();
+                Window window = cdd.getWindow();
+                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
             }
         });
@@ -170,7 +180,17 @@ public class EditProfileActivity extends AppCompatActivity {
         changeemail.setEnabled(false);
 
 
+        changeemailbtn = (TextView)findViewById(R.id.changeemailbtn);
+        changeemailbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditProfileDialog cdd=new EditProfileDialog(editactivity,"email");
 
+                cdd.show();
+                Window window = cdd.getWindow();
+                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            }
+        });
 
 
         changemobile = (EditText)findViewById(R.id.handphoneedit);
@@ -435,12 +455,17 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //changefullname.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-                changepin.setEnabled(true);
+                changepin.setEnabled(false);
                 changepin.requestFocus();
                 changepin.setFocusable(true);
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(changepin, InputMethodManager.SHOW_IMPLICIT);
+                //InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+               // imm.showSoftInput(changepin, InputMethodManager.SHOW_IMPLICIT);
 
+                EditProfileDialog cdd=new EditProfileDialog(editactivity,"pin");
+
+                cdd.show();
+                Window window = cdd.getWindow();
+                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
             }
         });

@@ -51,6 +51,11 @@
         <activity android:name=".EditProfileActivity"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".EditProfileDialog"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/TextAppearance.Theme.Dialog">
+        </activity>
+
     </application>
 
 </manifest>
