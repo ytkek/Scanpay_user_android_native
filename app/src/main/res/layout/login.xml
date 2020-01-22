@@ -58,10 +58,10 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
         <EditText
-            android:id="@+id/id"
+            android:id="@+id/postalcode"
             android:layout_width="50dp"
             android:layout_height="45dp"
-            android:background="@drawable/textinputborder"
+
             android:paddingLeft="10dp"
             android:text="60"
             android:layout_marginRight="10dp">
@@ -70,7 +70,7 @@
                 android:id="@+id/idbox"
                 android:layout_width="fill_parent"
                 android:layout_height="45dp"
-                android:background="@drawable/textinputborder"
+
                 android:paddingLeft="10dp"
                 android:text=""
                 android:layout_marginLeft="10dp">
@@ -91,7 +91,7 @@
             android:id="@+id/passwordbox"
             android:layout_width="fill_parent"
             android:layout_height="45dp"
-            android:background="@drawable/textinputborder"
+
             android:paddingLeft="10dp"
             android:text=""
             android:inputType="textPassword">
@@ -137,6 +137,7 @@
             android:gravity="center"/>
 
             <TextView
+                android:id="@+id/recoverypasswordbtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="here"
