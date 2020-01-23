@@ -58,6 +58,9 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/TextAppearance.Theme.Dialog">
         </activity>
+        <activity android:name=".BalanceActivity"
+            android:screenOrientation="portrait">
+        </activity>
 
     </application>
 

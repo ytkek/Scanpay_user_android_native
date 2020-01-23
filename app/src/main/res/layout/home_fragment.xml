@@ -17,6 +17,7 @@
 
 
             <ImageView
+                android:id="@+id/paybtn"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:src="@drawable/pay_90"
@@ -25,6 +26,7 @@
 
             </ImageView>
             <ImageView
+                android:id="@+id/balancebtn"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:src="@drawable/balance_90"
