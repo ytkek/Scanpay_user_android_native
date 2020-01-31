@@ -53,6 +53,7 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/jompaybtn"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/jompay_90"
@@ -84,6 +85,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/findmerchantbtn"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/find_merchant_90"

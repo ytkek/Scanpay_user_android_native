@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 
 public class HomeFragment extends Fragment {
 
-    ImageView balanceimagebtn;
+    ImageView balanceimagebtn,jompaybtn,findmerchantbtn;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -28,12 +28,29 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.home_fragment, container, false);
         // Inflate the layout for this fragment
 
+        jompaybtn = (ImageView)view.findViewById(R.id.jompaybtn);
+        jompaybtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent lol = new Intent(getContext(),JomPayWebview.class);
+                startActivity(lol);
+            }
+        });
         balanceimagebtn = (ImageView)view.findViewById(R.id.balancebtn);
         balanceimagebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent lol = new Intent(getContext(),BalanceActivity.class);
+                startActivity(lol);
+            }
+        });
+
+        findmerchantbtn = (ImageView)view.findViewById(R.id.findmerchantbtn);
+        findmerchantbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent lol = new Intent(getContext(),FindMerchantActivity.class);
                 startActivity(lol);
             }
         });
