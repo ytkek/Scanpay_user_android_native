@@ -11,11 +11,10 @@ import androidx.fragment.app.Fragment;
 
 public class HomeFragment extends Fragment {
 
-    ImageView balanceimagebtn,jompaybtn,findmerchantbtn;
+    ImageView balanceimagebtn,jompaybtn,findmerchantbtn,paybtn,topupbtn;
     public HomeFragment() {
         // Required empty public constructor
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +27,22 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.home_fragment, container, false);
         // Inflate the layout for this fragment
 
+        topupbtn = (ImageView)view.findViewById(R.id.topupbtn);
+        topupbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent lol = new Intent(getContext(),TopUpScanQRActivity.class);
+                startActivity(lol);
+            }
+        });
+        paybtn = (ImageView)view.findViewById(R.id.paybtn);
+        paybtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent lol = new Intent(getContext(),PaymentScanQRActivity.class);
+                startActivity(lol);
+            }
+        });
         jompaybtn = (ImageView)view.findViewById(R.id.jompaybtn);
         jompaybtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,10 +1,13 @@
 package ths.ScanPay_User;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,15 +37,23 @@ public class FindMerchantAdapter extends RecyclerView.Adapter<FindMerchantAdapte
         FindMerchantlist c = findmerchantlist.get(position);
 
         Glide.with(context)  //2
-                .load(c.getImageshop()) //3
+                .load(ApiUrl.PicDomain+c.getM_profileimagepath()+c.getM_profilefilename()) //3
                 .fitCenter()
                 .placeholder(R.drawable.img_placeholder) //5
                 .error(R.drawable.img_broken) //6
                 .into(holder.findmerchant_shopimage);
 
-        holder.findmerchant_shopname.setText(c.getShopname());
-        holder.findmerchant_shopaddress.setText(c.getShopaddress());
-
+        holder.findmerchant_shopname.setText(c.getM_companyname());
+        holder.findmerchant_shopaddress.setText(c.getM_address1()+c.getM_address2()+c.getM_address3());
+        holder.shoplayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(v.getContext(),FindMerchantDetail.class);
+                a.putExtra("wtf","wtf");
+                a.putExtra("wtf2","wtf2");
+                v.getContext().startActivity(a);
+            }
+        });
     }
 
     @Override
@@ -65,7 +76,7 @@ public class FindMerchantAdapter extends RecyclerView.Adapter<FindMerchantAdapte
         public ImageView findmerchant_shopimage;
         public TextView findmerchant_shopname;
         public TextView findmerchant_shopaddress;
-
+        public LinearLayout shoplayout;
 
         public MyViewHolder(View view) {
             super(view);
@@ -74,13 +85,9 @@ public class FindMerchantAdapter extends RecyclerView.Adapter<FindMerchantAdapte
             findmerchant_shopimage = (ImageView) view.findViewById(R.id.shopimage);
             findmerchant_shopname = (TextView) view.findViewById(R.id.shopname);
             findmerchant_shopaddress = (TextView) view.findViewById(R.id.shopaddress);
+            shoplayout = (LinearLayout)view.findViewById(R.id.shoplayout);
 
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(context, String.valueOf(getLayoutPosition()),Toast.LENGTH_SHORT).show();
-                }
-            });
+
         }
     }
 

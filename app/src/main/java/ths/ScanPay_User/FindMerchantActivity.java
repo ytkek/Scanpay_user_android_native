@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -17,13 +18,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import ths.ScanPay_User.GetFunction.GetFindMerchantListTask;
+
 public class FindMerchantActivity  extends AppCompatActivity {
     Activity findmerchantactivity;
 
-    Spinner spinner;
+    public static Spinner spinner;
     ImageView backbtn;
-    RecyclerView recyclerView;
-    RecyclerView.Adapter mAdapter;
+    public static RecyclerView recyclerView;
+    public static RecyclerView.Adapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,15 +63,27 @@ public class FindMerchantActivity  extends AppCompatActivity {
 
         recyclerView.setLayoutManager(layoutManager);
 
+        new GetFindMerchantListTask(this, recyclerView).execute();
 
-        List<FindMerchantlist> findmerchantlist = new ArrayList<>();
-        findmerchantlist.add(new FindMerchantlist("https://insideretail.hk/wp-content/uploads/2019/08/Monocle-HKIA-1.jpg", "Monocle", "911,jalan teratai"));
-        findmerchantlist.add(new FindMerchantlist("https://insideretail.hk/wp-content/uploads/2019/08/Monocle-HKIA-1.jpg", "Monocle", "911,jalan teratai"));
-        findmerchantlist.add(new FindMerchantlist("https://insideretail.hk/wp-content/uploads/2019/08/Monocle-HKIA-1.jpg", "Monocle", "911,jalan teratai"));
-        findmerchantlist.add(new FindMerchantlist("https://insideretail.hk/wp-content/uploads/2019/08/Monocle-HKIA-1.jpg", "Monocle", "911,jalan teratai"));
-        mAdapter = new FindMerchantAdapter(this, findmerchantlist);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                new GetFindMerchantListTask(findmerchantactivity, recyclerView).execute();
+            }
 
-        recyclerView.setAdapter(mAdapter);
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+      //  List<FindMerchantlist> findmerchantlist = new ArrayList<>();
+       // findmerchantlist.add(new FindMerchantlist("https://insideretail.hk/wp-content/uploads/2019/08/Monocle-HKIA-1.jpg", "Monocle", "911,jalan teratai"));
+       // findmerchantlist.add(new FindMerchantlist("https://insideretail.hk/wp-content/uploads/2019/08/Monocle-HKIA-1.jpg", "Monocle", "911,jalan teratai"));
+       // findmerchantlist.add(new FindMerchantlist("https://insideretail.hk/wp-content/uploads/2019/08/Monocle-HKIA-1.jpg", "Monocle", "911,jalan teratai"));
+       // findmerchantlist.add(new FindMerchantlist("https://insideretail.hk/wp-content/uploads/2019/08/Monocle-HKIA-1.jpg", "Monocle", "911,jalan teratai"));
+      //  mAdapter = new FindMerchantAdapter(this, findmerchantlist);
+
+       // recyclerView.setAdapter(mAdapter);
 
 
     }
