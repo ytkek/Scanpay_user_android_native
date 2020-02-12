@@ -49,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="want to know what goodies fdeffffffffdfdfdffdfdfdffffffffffffffff"
-                android:maxLines="3"
+                android:maxLines="1"
                 android:layout_marginLeft="5dp">
 
             </TextView>

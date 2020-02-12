@@ -2,15 +2,28 @@ package ths.ScanPay_User;
 
 public class MessageCentrelist
 {
+    private String id;
     private String title;
     private String date;
     private String message;
 
+    public MessageCentrelist()
+    {
+
+    }
     public MessageCentrelist(String title,String message,String date)
     {
         this.title=title;
         this.message=message;
         this.date=date;
+    }
+    public String getId()
+    {
+        return id;
+    }
+    public void setId(String id)
+    {
+        this.id=id;
     }
     public String getTitle()
     {

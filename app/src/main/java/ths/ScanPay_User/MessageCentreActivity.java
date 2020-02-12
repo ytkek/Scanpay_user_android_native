@@ -11,11 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import ths.ScanPay_User.GetFunction.GetFindMerchantListTask;
+import ths.ScanPay_User.GetFunction.GetMessageListTask;
+
 public class MessageCentreActivity extends AppCompatActivity {
 
     ImageView back;
-    RecyclerView recyclerView;
-    RecyclerView.Adapter mAdapter;
+    public static RecyclerView recyclerView;
+    public static RecyclerView.Adapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +31,14 @@ public class MessageCentreActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(layoutManager);
 
+        new GetMessageListTask(this, recyclerView).execute();
 
-        List<MessageCentrelist> messagecentreist = new ArrayList<>();
-        messagecentreist.add(new MessageCentrelist("aaa","aaa","aaaa"));
-        messagecentreist.add(new MessageCentrelist("bbb","bbb","bbb"));
-        mAdapter = new MessageCentreAdapter(this,messagecentreist);
+       // List<MessageCentrelist> messagecentreist = new ArrayList<>();
+       // messagecentreist.add(new MessageCentrelist("aaa","aaa","aaaa"));
+        //messagecentreist.add(new MessageCentrelist("bbb","bbb","bbb"));
+       // mAdapter = new MessageCentreAdapter(this,messagecentreist);
 
-        recyclerView.setAdapter(mAdapter);
+        //recyclerView.setAdapter(mAdapter);
 
 
         back = (ImageView) findViewById(R.id.backbtn);

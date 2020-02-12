@@ -32,9 +32,9 @@ public class FindMerchantAdapter extends RecyclerView.Adapter<FindMerchantAdapte
     }
 
     @Override
-    public void onBindViewHolder(FindMerchantAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(FindMerchantAdapter.MyViewHolder holder, final int position) {
 
-        FindMerchantlist c = findmerchantlist.get(position);
+        final FindMerchantlist c = findmerchantlist.get(position);
 
         Glide.with(context)  //2
                 .load(ApiUrl.PicDomain+c.getM_profileimagepath()+c.getM_profilefilename()) //3
@@ -49,9 +49,21 @@ public class FindMerchantAdapter extends RecyclerView.Adapter<FindMerchantAdapte
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(v.getContext(),FindMerchantDetail.class);
-                a.putExtra("wtf","wtf");
-                a.putExtra("wtf2","wtf2");
+                a.putExtra("m_companyname",c.getM_companyname());
+                a.putExtra("m_address",c.getM_address1()+c.getM_address2()+c.getM_address3()+c.getM_address4());
+                a.putExtra("m_tel",c.getM_telcc()+c.getM_telac()+c.getM_telno());
+                a.putExtra("m_mobileno",c.getM_mobileno());
+                a.putExtra("m_email",c.getM_email());
+                a.putExtra("m_url",c.getM_url());
+                a.putExtra("m_businesshour",c.getM_businesshour());
+                a.putExtra("m_remarks",c.getM_remarks());
+                a.putExtra("m_profilepic",ApiUrl.PicDomain+c.getM_profileimagepath()+c.getM_profilefilename());
+                a.putExtra("m_photofilename1",ApiUrl.PicDomain+c.getM_profileimagepath()+c.getM_photofilename1());
+                a.putExtra("m_photofilename2",ApiUrl.PicDomain+c.getM_profileimagepath()+c.getM_photofilename2());
+                a.putExtra("m_photofilename3",ApiUrl.PicDomain+c.getM_profileimagepath()+c.getM_photofilename3());
+               // a.putExtra("wtf2","wtf2");
                 v.getContext().startActivity(a);
+                //Toast.makeText(context,""+position,Toast.LENGTH_SHORT).show();
             }
         });
     }

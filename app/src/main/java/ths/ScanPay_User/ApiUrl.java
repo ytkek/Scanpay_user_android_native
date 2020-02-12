@@ -6,5 +6,6 @@ public class ApiUrl {
     public static String PicDomain = "https://www.myscanpay.com/V4/";
 
     public static String FindMerchantApi="GetAllMerchantList.aspx";
+    public static String FindMessageListApi="GetUserMessageList.aspx";
 
 }
