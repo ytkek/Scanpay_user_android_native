@@ -1,10 +1,13 @@
 package ths.ScanPay_User;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,7 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import ths.ScanPay_User.MessageNotification.MessageNotification;
 
 public class MessageCentreAdapter extends RecyclerView.Adapter<MessageCentreAdapter.MyViewHolder> {
 
@@ -29,13 +35,44 @@ public class MessageCentreAdapter extends RecyclerView.Adapter<MessageCentreAdap
     }
 
     @Override
-    public void onBindViewHolder(MessageCentreAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(MessageCentreAdapter.MyViewHolder holder, final int position) {
 
-        MessageCentrelist c = messagecentreList.get(position);
+        final MessageCentrelist c = messagecentreList.get(position);
+
+
+            if(MessageCentreActivity.db.getAllMessage().get(position).getIndicator().equals("false"))
+            {
+                holder.indicator.setVisibility(View.VISIBLE);
+                Log.d("wtf",""+MessageCentreActivity.db.getAllMessage().get(position).getIndicator());
+            }
+            else if (MessageCentreActivity.db.getAllMessage().get(position).getIndicator().equals("true"))
+            {
+                holder.indicator.setVisibility(View.INVISIBLE);
+                Log.d("wtf",""+MessageCentreActivity.db.getAllMessage().get(position).getIndicator());
+            }
+
+
+            // MessageCentreActivity.db.deleteNote(MessageCentreActivity.db.getAllMessage().get(i));
 
 
         holder.messagecentre_title.setText(c.getTitle());
         holder.messagecentre_message.setText(c.getMessage());
+
+        holder.message_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                MessageCentreActivity.db.updateNote("true",position+1);
+
+                Intent a = new Intent(v.getContext(),MessageCentreDetail.class);
+                a.putExtra("nob_id",c.getId());
+                a.putExtra("nob_title",c.getTitle());
+                a.putExtra("nob_message",c.getMessage());
+                a.putExtra("nob_publishdate",c.getDate());
+
+                v.getContext().startActivity(a);
+            }
+        });
     }
 
     @Override
@@ -57,6 +94,8 @@ public class MessageCentreAdapter extends RecyclerView.Adapter<MessageCentreAdap
 
         public TextView messagecentre_title;
         public TextView messagecentre_message;
+        public LinearLayout message_layout;
+        public ImageView indicator;
 
 
         public MyViewHolder(View view) {
@@ -65,13 +104,10 @@ public class MessageCentreAdapter extends RecyclerView.Adapter<MessageCentreAdap
 
             messagecentre_title = (TextView) view.findViewById(R.id.title);
             messagecentre_message = (TextView) view.findViewById(R.id.message);
+            indicator = (ImageView)view.findViewById(R.id.indicator);
+            indicator.setVisibility(View.INVISIBLE);
+            message_layout= (LinearLayout)view.findViewById(R.id.messagelayout);
 
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(context, String.valueOf(getLayoutPosition()),Toast.LENGTH_SHORT).show();
-                }
-            });
         }
     }
 }

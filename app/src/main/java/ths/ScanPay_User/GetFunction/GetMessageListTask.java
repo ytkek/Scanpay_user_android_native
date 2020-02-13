@@ -7,6 +7,8 @@ package ths.ScanPay_User.GetFunction;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.util.Log;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,6 +16,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ths.ScanPay_User.ApiUrl;
 import ths.ScanPay_User.FindMerchantActivity;
@@ -22,6 +25,7 @@ import ths.ScanPay_User.FindMerchantlist;
 import ths.ScanPay_User.MessageCentreActivity;
 import ths.ScanPay_User.MessageCentreAdapter;
 import ths.ScanPay_User.MessageCentrelist;
+import ths.ScanPay_User.MessageNotification.MessageNotification;
 import ths.ScanPay_User.NetworkUtil;
 
 /**
@@ -126,6 +130,15 @@ public class GetMessageListTask extends AsyncTask<Void, Integer, ArrayList<Messa
         super.onPostExecute(result);
 
         progDailog.dismiss();
+
+
+        for (int j=0; j<result.size();j++)
+        {
+            MessageCentreActivity.db.insertIndicator("false");
+            //Log.d("wtf",""+j);
+        }
+
+
 
         MessageCentreActivity.mAdapter = new MessageCentreAdapter(context,result);
 

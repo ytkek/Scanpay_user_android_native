@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="DialogFullScreenTheme" parent="Theme.AppCompat.Light.DialogWhenLarge">
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+    </style>
 </resources>

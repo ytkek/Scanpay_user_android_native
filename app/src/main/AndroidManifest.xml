@@ -52,6 +52,9 @@
         <activity android:name=".MessageCentreActivity"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".MessageCentreDetail"
+            android:screenOrientation="portrait">
+        </activity>
         <activity android:name=".SystemInfoActivity"
             android:screenOrientation="portrait">
         </activity>

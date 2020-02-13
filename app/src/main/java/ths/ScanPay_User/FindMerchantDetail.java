@@ -82,7 +82,7 @@ public class FindMerchantDetail extends AppCompatActivity {
         profilepic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog settingsDialog = new Dialog(findmerchantdetail);
+                Dialog settingsDialog = new Dialog(findmerchantdetail, R.style.DialogFullScreenTheme);
 
                 View v2 = findmerchantdetail.getLayoutInflater().inflate(R.layout.image_dialog_layout, null);
 
@@ -108,7 +108,7 @@ public class FindMerchantDetail extends AppCompatActivity {
         photofilename1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog settingsDialog = new Dialog(findmerchantdetail);
+                Dialog settingsDialog = new Dialog(findmerchantdetail, R.style.DialogFullScreenTheme);
 
                 View v2 = findmerchantdetail.getLayoutInflater().inflate(R.layout.image_dialog_layout, null);
 
@@ -131,7 +131,7 @@ public class FindMerchantDetail extends AppCompatActivity {
         photofilename2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog settingsDialog = new Dialog(findmerchantdetail);
+                Dialog settingsDialog = new Dialog(findmerchantdetail, R.style.DialogFullScreenTheme);
 
                 View v2 = findmerchantdetail.getLayoutInflater().inflate(R.layout.image_dialog_layout, null);
 
@@ -155,7 +155,7 @@ public class FindMerchantDetail extends AppCompatActivity {
         photofilename3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog settingsDialog = new Dialog(findmerchantdetail);
+                Dialog settingsDialog = new Dialog(findmerchantdetail, R.style.DialogFullScreenTheme);
 
                 View v2 = findmerchantdetail.getLayoutInflater().inflate(R.layout.image_dialog_layout, null);
 

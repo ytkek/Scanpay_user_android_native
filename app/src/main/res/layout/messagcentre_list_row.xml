@@ -5,6 +5,7 @@
     android:background="#ffffff">
 
     <LinearLayout
+        android:id="@+id/messagelayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
@@ -63,10 +64,12 @@
             android:layout_weight="2"
             android:gravity="center">
         <ImageView
+            android:id="@+id/indicator"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/reddot"
-            android:layout_gravity="center"></ImageView>
+            android:layout_gravity="center"
+            android:visibility="invisible"></ImageView>
         </LinearLayout>
 
 
