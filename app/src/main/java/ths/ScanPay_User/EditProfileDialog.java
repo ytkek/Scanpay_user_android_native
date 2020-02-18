@@ -14,17 +14,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import ths.ScanPay_User.GetFunction.GetUserProfileListTask;
+import ths.ScanPay_User.PostFunction.PostUserProfile_MobileNumber_Task;
+import ths.ScanPay_User.PostFunction.PostUserProfile_Name_Task;
+import ths.ScanPay_User.PostFunction.PostUserProfile_NewPassword_Task;
 
 public class EditProfileDialog extends Dialog implements
         android.view.View.OnClickListener {
 
     public Activity c;
     public Dialog d;
-    public Button yes, no;
+    public Button yes, no,savebtn,savebtn_password;
     ImageView close;
     String data;
-    EditText newpasswordedit,oldpasswordedit,emailbind,newpaymentedit,oldpaymentedit;
-    TextView password_error_message,emailink,payment_error_message,oldpayment_error_message;
+    EditText newpasswordedit,oldpasswordedit,emailbind,newpaymentedit,oldpaymentedit,fullnameedit,mobilenumberedit;
+    TextView oldpassword_error_message,password_error_message,emailink,payment_error_message,oldpayment_error_message,fullname_error_message,mobilenumber_error_message;
 
     public EditProfileDialog(Activity a,String data) {
         super(a);
@@ -38,15 +44,63 @@ public class EditProfileDialog extends Dialog implements
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+        if(data.equals("fullname"))
+        {
+            setContentView(R.layout.editprofile_fullname_dialog);
+            fullnameedit = (EditText)findViewById(R.id.fullnameedit);
+            fullnameedit.setText(GlobalVariable.OldName);
+            fullname_error_message = (TextView)findViewById(R.id.fullname_error_message_textview);
+            fullname_error_message.setVisibility(View.INVISIBLE);
 
+            savebtn = (Button)findViewById(R.id.savebtn);
+            savebtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                   new PostUserProfile_Name_Task(c).execute(fullnameedit.getText().toString(),"601121829875");
+                }
+            });
+        }
 
         if(data.equals("password"))
         {
             setContentView(R.layout.editprofile_password_dialog);
-            newpasswordedit = (EditText)findViewById(R.id.newpasswordedit);
-
             password_error_message = (TextView) findViewById(R.id.password_error_message_textview);
             password_error_message.setVisibility(View.INVISIBLE);
+
+            oldpassword_error_message = (TextView) findViewById(R.id.oldpassword_error_message_textview);
+            oldpassword_error_message.setVisibility(View.INVISIBLE);
+
+            newpasswordedit = (EditText)findViewById(R.id.newpasswordedit);
+            oldpasswordedit = (EditText)findViewById(R.id.oldpasswordedit);
+
+            savebtn_password=(Button)findViewById(R.id.savebtn);
+            savebtn_password.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(oldpasswordedit.getText().toString().equals(GlobalVariable.OldPassword))
+                    {
+                        oldpassword_error_message.setVisibility(View.INVISIBLE);
+                        if(! newpasswordedit.getText().toString().equals("") && password_error_message.getVisibility()==View.INVISIBLE)
+                        {
+                            oldpassword_error_message.setVisibility(View.INVISIBLE);
+                            Toast.makeText(c,"can be save now",Toast.LENGTH_SHORT).show();
+                            new PostUserProfile_NewPassword_Task(c).execute("601121829875",newpasswordedit.getText().toString());
+                        }
+                        else
+                        {
+                            oldpassword_error_message.setVisibility(View.VISIBLE);
+                            oldpassword_error_message.setText("Still Exits Error Message");
+                        }
+
+                    }
+                    else
+                    {
+                        oldpassword_error_message.setVisibility(View.VISIBLE);
+                        oldpassword_error_message.setText("Type in Wrong Old Password");
+                    }
+                }
+            });
+
 
             newpasswordedit.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -94,6 +148,59 @@ public class EditProfileDialog extends Dialog implements
                 @Override
                 public void afterTextChanged(Editable s) {
 
+                }
+            });
+        }
+
+        if(data.equals("mobile"))
+        {
+            setContentView(R.layout.editprofile_mobile_dialog);
+            mobilenumberedit = (EditText)findViewById(R.id.mobilenumberedit);
+            mobilenumberedit.setText(GlobalVariable.OldMobileNumber);
+            mobilenumber_error_message = (TextView)findViewById(R.id.mobilenumber_error_message_textview);
+            mobilenumber_error_message.setVisibility(View.INVISIBLE);
+
+            mobilenumberedit.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if(s.toString().startsWith("0"))
+                    {
+
+
+                        mobilenumberedit.setText("");
+                    }
+
+                    if(s.length()==8||s.length()==9||s.length()==10)
+                    {
+                        mobilenumber_error_message.setVisibility(View.INVISIBLE);
+                    }
+                    else
+                    {
+                        mobilenumber_error_message.setVisibility(View.VISIBLE);
+                        mobilenumber_error_message.setText("Please Insert Valid Phone Number");
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+
+
+
+
+
+            savebtn = (Button)findViewById(R.id.savebtn);
+            savebtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new PostUserProfile_MobileNumber_Task(c).execute("601121829875",mobilenumberedit.getText().toString());
                 }
             });
         }

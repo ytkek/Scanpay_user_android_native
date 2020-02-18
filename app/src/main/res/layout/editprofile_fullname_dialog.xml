@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="EDIT PASSWORD"
+            android:text="EDIT NAME"
             android:textStyle="bold"
             android:layout_weight="1"
             android:textSize="18dp">
@@ -34,50 +34,24 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please enter your new password"
+        android:text="Please enter your full name"
         android:textSize="18dp"
         android:layout_margin="10dp">
 
     </TextView>
 
     <EditText
-        android:id="@+id/newpasswordedit"
+        android:id="@+id/fullnameedit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
-        android:inputType="textPassword"
+
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
 
     </EditText>
     <TextView
-        android:id="@+id/password_error_message_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#D81B60"
-        android:text="error message"
-        android:layout_marginLeft="10dp"></TextView>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Please enter your old password"
-        android:textSize="18dp"
-        android:layout_margin="10dp">
-
-    </TextView>
-
-    <EditText
-        android:id="@+id/oldpasswordedit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:inputType="textPassword"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp" >
-
-    </EditText>
-    <TextView
-        android:id="@+id/oldpassword_error_message_textview"
+        android:id="@+id/fullname_error_message_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#D81B60"

@@ -22,14 +22,16 @@ public class MessageCentreActivity extends AppCompatActivity {
     ImageView back;
     public static RecyclerView recyclerView;
     public static RecyclerView.Adapter mAdapter;
-    public static MessageDatabaseHelper db;
-
+    public static MessageDatabaseHelper db,backupdb;
+    public static ArrayList<MessageNotification> arraylist_messagedb = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.messagecentre);
 
         db =new MessageDatabaseHelper(this);
+        backupdb = new MessageDatabaseHelper(this);
+
 
         recyclerView = (RecyclerView) findViewById(R.id.messagecentre_listview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);

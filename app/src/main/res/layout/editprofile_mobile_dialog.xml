@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="EDIT PASSWORD"
+            android:text="EDIT MOBILE NUMBER"
             android:textStyle="bold"
             android:layout_weight="1"
             android:textSize="18dp">
@@ -34,50 +34,41 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please enter your new password"
+        android:text="Please enter your mobile number"
         android:textSize="18dp"
         android:layout_margin="10dp">
 
     </TextView>
 
-    <EditText
-        android:id="@+id/newpasswordedit"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
-        android:inputType="textPassword"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="60"
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp">
 
-    </EditText>
+        </TextView>
+
+        <EditText
+            android:id="@+id/mobilenumberedit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:inputType="phone"
+            android:digits="1234567890"
+            android:maxLength="10"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+        </EditText>
+    </LinearLayout>
+
     <TextView
-        android:id="@+id/password_error_message_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#D81B60"
-        android:text="error message"
-        android:layout_marginLeft="10dp"></TextView>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Please enter your old password"
-        android:textSize="18dp"
-        android:layout_margin="10dp">
-
-    </TextView>
-
-    <EditText
-        android:id="@+id/oldpasswordedit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:inputType="textPassword"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp" >
-
-    </EditText>
-    <TextView
-        android:id="@+id/oldpassword_error_message_textview"
+        android:id="@+id/mobilenumber_error_message_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#D81B60"

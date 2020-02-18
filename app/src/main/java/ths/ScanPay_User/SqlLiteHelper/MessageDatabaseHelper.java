@@ -43,7 +43,7 @@ public class MessageDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long insertIndicator(String indicator) {
+    public long insertIndicator(String indicator,String nob_id) {
         // get writable database as we want to write data
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -51,6 +51,8 @@ public class MessageDatabaseHelper extends SQLiteOpenHelper {
         // `id` and `timestamp` will be inserted automatically.
         // no need to add them
         values.put(MessageNotification.COLUMN_INDICATOR, indicator);
+
+        values.put(MessageNotification.COLUMN_NOBID, nob_id);
         // insert row
         long id = db.insert(MessageNotification.TABLE_NAME, null, values);
 
@@ -60,6 +62,7 @@ public class MessageDatabaseHelper extends SQLiteOpenHelper {
         // return newly inserted row id
         return id;
     }
+
 
 
     public List<MessageNotification> getAllMessage() {
@@ -77,6 +80,7 @@ public class MessageDatabaseHelper extends SQLiteOpenHelper {
             do {
                 MessageNotification note = new MessageNotification();
                 note.setId(cursor.getInt(cursor.getColumnIndex(MessageNotification.COLUMN_ID)));
+                note.setNob_id(cursor.getString(cursor.getColumnIndex(MessageNotification.COLUMN_NOBID)));
                 note.setIndicator(cursor.getString(cursor.getColumnIndex(MessageNotification.COLUMN_INDICATOR)));
                 note.setTimestamp(cursor.getString(cursor.getColumnIndex(MessageNotification.COLUMN_TIMESTAMP)));
 
@@ -102,10 +106,16 @@ public class MessageDatabaseHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(id)});
     }
 
-    public void deleteNote(MessageNotification note) {
+    public void deleteall()
+    {
+        SQLiteDatabase db = this.getWritableDatabase(); //get database
+        db.execSQL("DELETE FROM messagenotification"); //delete all rows in a table
+        db.close();
+    }
+    public void deleteNote(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(MessageNotification.TABLE_NAME, MessageNotification.COLUMN_ID + " = ?",
-                new String[]{String.valueOf(note.getId())});
+                new String[]{String.valueOf(id)});
         db.close();
     }
 

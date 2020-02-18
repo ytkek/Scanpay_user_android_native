@@ -52,7 +52,7 @@ public class MessageCentreDetail extends AppCompatActivity {
             public void onClick(View v) {
 
                 finish();
-               // MessageCentreActivity.mAdapter = new MessageCentreAdapter(getApplicationContext(),GetMessageListTask.listMockData);
+                MessageCentreActivity.mAdapter = new MessageCentreAdapter(getApplicationContext(),GetMessageListTask.listMockData);
 
                 MessageCentreActivity.recyclerView.setAdapter(MessageCentreActivity.mAdapter);
 

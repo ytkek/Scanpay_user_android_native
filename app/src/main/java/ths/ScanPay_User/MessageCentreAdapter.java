@@ -24,6 +24,7 @@ public class MessageCentreAdapter extends RecyclerView.Adapter<MessageCentreAdap
 
     private List<MessageCentrelist> messagecentreList;
     private Context context;
+    public static int numposition;
     /**
      * View holder class
      */
@@ -35,7 +36,7 @@ public class MessageCentreAdapter extends RecyclerView.Adapter<MessageCentreAdap
     }
 
     @Override
-    public void onBindViewHolder(MessageCentreAdapter.MyViewHolder holder, final int position) {
+    public void onBindViewHolder(final MessageCentreAdapter.MyViewHolder holder, int position) {
 
         final MessageCentrelist c = messagecentreList.get(position);
 
@@ -43,12 +44,12 @@ public class MessageCentreAdapter extends RecyclerView.Adapter<MessageCentreAdap
             if(MessageCentreActivity.db.getAllMessage().get(position).getIndicator().equals("false"))
             {
                 holder.indicator.setVisibility(View.VISIBLE);
-                Log.d("wtf",""+MessageCentreActivity.db.getAllMessage().get(position).getIndicator());
+              //  Log.d("wtf",""+MessageCentreActivity.db.getAllMessage().get(position).getIndicator());
             }
             else if (MessageCentreActivity.db.getAllMessage().get(position).getIndicator().equals("true"))
             {
                 holder.indicator.setVisibility(View.INVISIBLE);
-                Log.d("wtf",""+MessageCentreActivity.db.getAllMessage().get(position).getIndicator());
+              //  Log.d("wtf",""+MessageCentreActivity.db.getAllMessage().get(position).getIndicator());
             }
 
 
@@ -62,7 +63,9 @@ public class MessageCentreAdapter extends RecyclerView.Adapter<MessageCentreAdap
             @Override
             public void onClick(View v) {
 
-                MessageCentreActivity.db.updateNote("true",position+1);
+                MessageCentreActivity.db.updateNote("true",holder.getAdapterPosition()+1);
+                //MessageCentreActivity.arraylist_messagedb.get(position).setIndicator("true");
+                Log.d("wtf2",""+holder.getAdapterPosition()+1);
 
                 Intent a = new Intent(v.getContext(),MessageCentreDetail.class);
                 a.putExtra("nob_id",c.getId());

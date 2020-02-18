@@ -2,9 +2,6 @@ package ths.ScanPay_User;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -16,23 +13,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.drawable.RoundedBitmapDrawable;
-import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
-import java.util.ArrayList;
-import java.util.List;
+import ths.ScanPay_User.GetFunction.GetUserProfileListTask;
+import ths.ScanPay_User.PostFunction.PostUserProfile_Name_Task;
+import ths.ScanPay_User.PostFunction.PostUserProfile_OldPassword_Task;
 
 public class EditProfileActivity extends AppCompatActivity {
     Activity editactivity;
@@ -42,7 +33,7 @@ public class EditProfileActivity extends AppCompatActivity {
              changeemailbtn,changemobilebtn,changegenderbtn,
              changenicknamebtn,changeremarkbtn,changedobbtn,
              changepinbtn;
-    EditText changefullname,changeid,changepassword,changeemail,
+   public static  EditText changefullname,changeid,changepassword,changeemail,
              changemobile,changegender,changenickname,changeremark,
              changedob,changepin;
 
@@ -55,6 +46,11 @@ public class EditProfileActivity extends AppCompatActivity {
         setContentView(R.layout.editprofile);
 
         editactivity=this;
+
+        new GetUserProfileListTask(this).execute();
+
+
+
         changefullname = (EditText)findViewById(R.id.fullnameedit);
         changefullname.setEnabled(false);
 
@@ -75,12 +71,17 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //changefullname.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-                changefullname.setEnabled(true);
-                changefullname.requestFocus();
+                //changefullname.setEnabled(true);
+               // changefullname.requestFocus();
                 changefullname.setFocusable(true);
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(changefullname, InputMethodManager.SHOW_IMPLICIT);
+               // InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+               // imm.showSoftInput(changefullname, InputMethodManager.SHOW_IMPLICIT);
 
+                EditProfileDialog cdd=new EditProfileDialog(editactivity,"fullname");
+
+                cdd.show();
+                Window window = cdd.getWindow();
+                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
             }
         });
@@ -162,11 +163,11 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //changefullname.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
                 changepassword.setEnabled(false);
-                changepassword.requestFocus();
-                changepassword.setFocusable(true);
+               // changepassword.requestFocus();
+              //  changepassword.setFocusable(true);
                // InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                // imm.showSoftInput(changepassword, InputMethodManager.SHOW_IMPLICIT);
-
+                new PostUserProfile_OldPassword_Task(editactivity).execute("601121829875");
                 EditProfileDialog cdd=new EditProfileDialog(editactivity,"password");
 
                 cdd.show();
@@ -214,7 +215,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     changemobile.setText("");
                 }
 
-                if(s.length()==9||s.length()==10)
+                if(s.length()==8||s.length()==9||s.length()==10)
                 {
                     mobile_error_message.setVisibility(View.INVISIBLE);
                 }
@@ -248,12 +249,16 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //changefullname.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-                changemobile.setEnabled(true);
-                changemobile.requestFocus();
-                changemobile.setFocusable(true);
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(changemobile, InputMethodManager.SHOW_IMPLICIT);
+               // changemobile.setEnabled(true);
+                //changemobile.requestFocus();
+               // changemobile.setFocusable(true);
+               // InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+               // imm.showSoftInput(changemobile, InputMethodManager.SHOW_IMPLICIT);
+                EditProfileDialog cdd=new EditProfileDialog(editactivity,"mobile");
 
+                cdd.show();
+                Window window = cdd.getWindow();
+                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
             }
         });
@@ -476,6 +481,10 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 validatealldata();
+
+
+
+               new PostUserProfile_Name_Task(editactivity).execute();
             }
         });
 
