@@ -78,16 +78,7 @@
 
         </TextView>
 
-        <Button
-            android:id="@+id/save"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:background="@drawable/lightblue_round_border"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:text="Save">
 
-        </Button>
 
     </LinearLayout>
 

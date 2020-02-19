@@ -22,7 +22,7 @@ import ths.ScanPay_User.NetworkUtil;
 /**
  * Created by Windows on 20/9/2016.
  */
-public class PostUserProfile_MobileNumber_Task extends AsyncTask<String, Integer, String> {
+public class PostUserProfile_Gender_Task extends AsyncTask<String, Integer, String> {
 
     public Context context = null;
     public static ArrayList<FindMerchantlist> listMockData;
@@ -31,7 +31,7 @@ public class PostUserProfile_MobileNumber_Task extends AsyncTask<String, Integer
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
-    public PostUserProfile_MobileNumber_Task(Context context){
+    public PostUserProfile_Gender_Task(Context context){
         this.context = context;
 
 
@@ -57,15 +57,23 @@ public class PostUserProfile_MobileNumber_Task extends AsyncTask<String, Integer
     {
         String param1= params[0];
         String param2= params[1];
+
+        if(param2.toLowerCase().equals("male"))
+        {
+            param2="M";
+        }
+        else if(param2.toLowerCase().equals("female"))
+        {
+            param2="F";
+        }
         String response="";
-        String apiUrl = ApiUrl.Domain + ApiUrl.PostUserProfile_MobileNumber_Api;
+        String apiUrl = ApiUrl.Domain + ApiUrl.PostUserProfile_Gender_Api;
         listMockData = new ArrayList<FindMerchantlist>();
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
-
             hashMap.put("LoginID", param1);
-            hashMap.put("MobileNumber",param2);
+            hashMap.put("Gender", param2);
             response = NetworkUtil.sendPost(apiUrl,hashMap);
             try{
 
@@ -91,7 +99,8 @@ public class PostUserProfile_MobileNumber_Task extends AsyncTask<String, Integer
 
         progDailog.dismiss();
 
-        if(result.equals("SAVE PROFILE MOBILE NUMBER SUCCESS"))
+
+        if(result.equals("SAVE PROFILE GENDER SUCCESS"))
         {
             new GetUserProfileListTask(context).execute();
             Toast.makeText(context,"Save Success",Toast.LENGTH_SHORT).show();

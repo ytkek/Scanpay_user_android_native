@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="EDIT NICKNAME"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:textSize="18dp">
+
+        </TextView>
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/xmark"
+            >
+
+        </ImageView>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please enter your nickname"
+        android:textSize="18dp"
+        android:layout_margin="10dp">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/nicknameedit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+    </EditText>
+    <TextView
+        android:id="@+id/nickname_error_message_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#D81B60"
+        android:text="error message"
+        android:layout_marginLeft="10dp"></TextView>
+
+    <Button
+        android:id="@+id/savebtn"
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:background="@drawable/round_border"
+        android:textColor="#ffffff"
+        android:text="Save"></Button>
+
+
+</LinearLayout>

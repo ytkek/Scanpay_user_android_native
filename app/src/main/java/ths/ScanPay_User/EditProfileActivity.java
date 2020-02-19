@@ -280,31 +280,6 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
-        changegender.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-               if(s.toString().toLowerCase().equals("male")||s.toString().toLowerCase().equals("female"))
-               {
-                   gender_error_message.setVisibility(View.INVISIBLE);
-               }
-               else
-               {
-                   gender_error_message.setVisibility(View.VISIBLE);
-                   gender_error_message.setText("Please insert male or female only");
-
-               }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
 
 
 
@@ -313,11 +288,17 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //changefullname.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-                changegender.setEnabled(true);
-                changegender.requestFocus();
-                changegender.setFocusable(true);
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(changegender, InputMethodManager.SHOW_IMPLICIT);
+               // changegender.setEnabled(true);
+               // changegender.requestFocus();
+               // changegender.setFocusable(true);
+               // InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+               // imm.showSoftInput(changegender, InputMethodManager.SHOW_IMPLICIT);
+                EditProfileDialog cdd=new EditProfileDialog(editactivity,"gender");
+
+                cdd.show();
+                Window window = cdd.getWindow();
+                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
 
 
             }
@@ -343,11 +324,16 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //changefullname.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-                changenickname.setEnabled(true);
-                changenickname.requestFocus();
-                changenickname.setFocusable(true);
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(changenickname, InputMethodManager.SHOW_IMPLICIT);
+               // changenickname.setEnabled(true);
+               // changenickname.requestFocus();
+               // changenickname.setFocusable(true);
+               // InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+               // imm.showSoftInput(changenickname, InputMethodManager.SHOW_IMPLICIT);
+                EditProfileDialog cdd=new EditProfileDialog(editactivity,"nickname");
+
+                cdd.show();
+                Window window = cdd.getWindow();
+                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
 
             }
@@ -372,12 +358,16 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //changefullname.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-                changeremark.setEnabled(true);
-                changeremark.requestFocus();
-                changeremark.setFocusable(true);
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(changeremark, InputMethodManager.SHOW_IMPLICIT);
+               // changeremark.setEnabled(true);
+               // changeremark.requestFocus();
+               // changeremark.setFocusable(true);
+               // InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+               // imm.showSoftInput(changeremark, InputMethodManager.SHOW_IMPLICIT);
+                EditProfileDialog cdd=new EditProfileDialog(editactivity,"remarks");
 
+                cdd.show();
+                Window window = cdd.getWindow();
+                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
             }
         });
@@ -401,11 +391,16 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //changefullname.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-                changedob.setEnabled(true);
-                changedob.requestFocus();
-                changedob.setFocusable(true);
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(changedob, InputMethodManager.SHOW_IMPLICIT);
+               // changedob.setEnabled(true);
+               // changedob.requestFocus();
+              //  changedob.setFocusable(true);
+               // InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+               // imm.showSoftInput(changedob, InputMethodManager.SHOW_IMPLICIT);
+                EditProfileDialog cdd=new EditProfileDialog(editactivity,"dob");
+
+                cdd.show();
+                Window window = cdd.getWindow();
+                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
 
             }
@@ -476,17 +471,7 @@ public class EditProfileActivity extends AppCompatActivity {
         });
 
 
-        savebtn = (Button)findViewById(R.id.save);
-        savebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                validatealldata();
 
-
-
-               new PostUserProfile_Name_Task(editactivity).execute();
-            }
-        });
 
 
 

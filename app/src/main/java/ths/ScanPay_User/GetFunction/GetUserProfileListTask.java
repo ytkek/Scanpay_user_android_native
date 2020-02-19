@@ -14,9 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import ths.ScanPay_User.ApiUrl;
@@ -148,6 +152,10 @@ public class GetUserProfileListTask extends AsyncTask<Void, Integer, ArrayList<E
                         newsData.setMl_nickname(tmp.getString("ml_nickname"));
                         // Log.d("wtf",newsData.getM_id());
                     }
+                    if(tmp.has("ml_dob"))
+                    {
+                        newsData.setMl_dob(tmp.getString("ml_dob"));
+                    }
                     if (tmp.has("ml_paymentpin"))
                     {
                         newsData.setMl_paymentpin(tmp.getString("ml_paymentpin"));
@@ -196,16 +204,33 @@ public class GetUserProfileListTask extends AsyncTask<Void, Integer, ArrayList<E
         if(result.get(0).getMl_gender().equals("M"))
         {
             EditProfileActivity.changegender.setText("male");
+            GlobalVariable.OldGender="male";
         }
         else if (result.get(0).getMl_gender().equals("F"))
         {
             EditProfileActivity.changegender.setText("female");
+            GlobalVariable.OldGender="female";
         }
 
         EditProfileActivity.changenickname.setText(result.get(0).getMl_nickname()+ " ");
+        GlobalVariable.OldNickName=result.get(0).getMl_nickname();
+
         EditProfileActivity.changeremark.setText(result.get(0).getMl_remarks()+ " ");
-        EditProfileActivity.changedob.setText(result.get(0).getMl_dob()+ " ");
+        GlobalVariable.OldRemarks=result.get(0).getMl_remarks();
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        try {
+            Date date = format.parse(result.get(0).getMl_dob());
+            EditProfileActivity.changedob.setText(DateFormat.getDateInstance(DateFormat.SHORT).format(date)+ " ");
+            GlobalVariable.OldDob=DateFormat.getDateInstance(DateFormat.SHORT).format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+
         EditProfileActivity.changepin.setText(result.get(0).getMl_paymentpin()+ " ");
+        GlobalVariable.OldPin=result.get(0).getMl_paymentpin();
     }
 
 

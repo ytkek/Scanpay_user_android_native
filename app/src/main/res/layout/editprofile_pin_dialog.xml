@@ -40,18 +40,85 @@
 
     </TextView>
 
-    <EditText
-        android:id="@+id/newpaymentedit"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
-        android:inputType="textPassword"
-        android:maxLength="6"
-        android:digits="1234567890"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/pin1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/textinputborder"
+            android:inputType="phone"
+            android:digits="1234567890"
+            android:maxLength="1"
+            android:hint=""
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            ></EditText>
+        <EditText
+            android:id="@+id/pin2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/textinputborder"
+            android:inputType="phone"
+            android:digits="1234567890"
+            android:maxLength="1"
+            android:hint=""
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            ></EditText>
+        <EditText
+            android:id="@+id/pin3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/textinputborder"
+            android:inputType="phone"
+            android:digits="1234567890"
+            android:maxLength="1"
+            android:hint=""
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            ></EditText>
+        <EditText
+            android:id="@+id/pin4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/textinputborder"
+            android:inputType="phone"
+            android:digits="1234567890"
+            android:maxLength="1"
+            android:hint=""
+            android:paddingLeft="20dp"
+            android:textSize="20dp"></EditText>
 
-    </EditText>
+        <EditText
+            android:id="@+id/pin5"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/textinputborder"
+            android:inputType="phone"
+            android:digits="1234567890"
+            android:maxLength="1"
+            android:hint=""
+            android:paddingLeft="20dp"
+            android:textSize="20dp"></EditText>
+        <EditText
+            android:id="@+id/pin6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/textinputborder"
+            android:inputType="phone"
+            android:digits="1234567890"
+            android:maxLength="1"
+            android:hint=""
+            android:paddingLeft="20dp"
+            android:textSize="20dp"></EditText>
+
+
+
+    </LinearLayout>
     <TextView
         android:id="@+id/payment_error_message_textview"
         android:layout_width="wrap_content"
@@ -68,18 +135,85 @@
 
     </TextView>
 
-    <EditText
-        android:id="@+id/oldpaymentedit"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
-        android:inputType="textPassword"
-        android:maxLength="6"
-        android:digits="1234567890"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp" >
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/oldpin1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/textinputborder"
+            android:inputType="phone"
+            android:digits="1234567890"
+            android:maxLength="1"
+            android:hint=""
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            ></EditText>
+        <EditText
+            android:id="@+id/oldpin2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/textinputborder"
+            android:inputType="phone"
+            android:digits="1234567890"
+            android:maxLength="1"
+            android:hint=""
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            ></EditText>
+        <EditText
+            android:id="@+id/oldpin3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/textinputborder"
+            android:inputType="phone"
+            android:digits="1234567890"
+            android:maxLength="1"
+            android:hint=""
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            ></EditText>
+        <EditText
+            android:id="@+id/oldpin4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/textinputborder"
+            android:inputType="phone"
+            android:digits="1234567890"
+            android:maxLength="1"
+            android:hint=""
+            android:paddingLeft="20dp"
+            android:textSize="20dp"></EditText>
 
-    </EditText>
+        <EditText
+            android:id="@+id/oldpin5"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/textinputborder"
+            android:inputType="phone"
+            android:digits="1234567890"
+            android:maxLength="1"
+            android:hint=""
+            android:paddingLeft="20dp"
+            android:textSize="20dp"></EditText>
+        <EditText
+            android:id="@+id/oldpin6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/textinputborder"
+            android:inputType="phone"
+            android:digits="1234567890"
+            android:maxLength="1"
+            android:hint=""
+            android:paddingLeft="20dp"
+            android:textSize="20dp"></EditText>
+
+
+
+    </LinearLayout>
     <TextView
         android:id="@+id/oldpayment_error_message_textview"
         android:layout_width="wrap_content"

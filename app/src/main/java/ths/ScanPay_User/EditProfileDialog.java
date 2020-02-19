@@ -8,18 +8,25 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import ths.ScanPay_User.GetFunction.GetUserProfileListTask;
+import ths.ScanPay_User.PostFunction.PostUserProfile_Dob_Task;
+import ths.ScanPay_User.PostFunction.PostUserProfile_Gender_Task;
 import ths.ScanPay_User.PostFunction.PostUserProfile_MobileNumber_Task;
 import ths.ScanPay_User.PostFunction.PostUserProfile_Name_Task;
 import ths.ScanPay_User.PostFunction.PostUserProfile_NewPassword_Task;
+import ths.ScanPay_User.PostFunction.PostUserProfile_NickName_Task;
+import ths.ScanPay_User.PostFunction.PostUserProfile_Pin_Payment_Task;
+import ths.ScanPay_User.PostFunction.PostUserProfile_Remarks_Task;
 
 public class EditProfileDialog extends Dialog implements
         android.view.View.OnClickListener {
@@ -29,9 +36,14 @@ public class EditProfileDialog extends Dialog implements
     public Button yes, no,savebtn,savebtn_password;
     ImageView close;
     String data;
-    EditText newpasswordedit,oldpasswordedit,emailbind,newpaymentedit,oldpaymentedit,fullnameedit,mobilenumberedit;
-    TextView oldpassword_error_message,password_error_message,emailink,payment_error_message,oldpayment_error_message,fullname_error_message,mobilenumber_error_message;
+    EditText newpasswordedit,oldpasswordedit,emailbind,newpaymentedit,oldpaymentedit,fullnameedit,mobilenumberedit,genderedit,nicknameedit,remarkedit;
+    TextView oldpassword_error_message,password_error_message,emailink,payment_error_message,oldpayment_error_message,
+            fullname_error_message,mobilenumber_error_message,gender_error_message,nickname_error_message,remark_error_message,dob_error_message;
 
+    public static EditText dobedit;
+
+    EditText pin1,pin2,pin3,pin4,pin5,pin6,oldpin1,oldpin2,oldpin3,oldpin4,oldpin5,oldpin6;
+    public boolean indicator_newpin,indicator_oldpin;
     public EditProfileDialog(Activity a,String data) {
         super(a);
         // TODO Auto-generated constructor stub
@@ -56,6 +68,7 @@ public class EditProfileDialog extends Dialog implements
             savebtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                   dismiss();
                    new PostUserProfile_Name_Task(c).execute(fullnameedit.getText().toString(),"601121829875");
                 }
             });
@@ -83,7 +96,7 @@ public class EditProfileDialog extends Dialog implements
                         if(! newpasswordedit.getText().toString().equals("") && password_error_message.getVisibility()==View.INVISIBLE)
                         {
                             oldpassword_error_message.setVisibility(View.INVISIBLE);
-                            Toast.makeText(c,"can be save now",Toast.LENGTH_SHORT).show();
+                            dismiss();
                             new PostUserProfile_NewPassword_Task(c).execute("601121829875",newpasswordedit.getText().toString());
                         }
                         else
@@ -200,6 +213,7 @@ public class EditProfileDialog extends Dialog implements
             savebtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    dismiss();
                     new PostUserProfile_MobileNumber_Task(c).execute("601121829875",mobilenumberedit.getText().toString());
                 }
             });
@@ -222,9 +236,212 @@ public class EditProfileDialog extends Dialog implements
                 }
             });
         }
+
+        if(data.equals("gender"))
+        {
+            setContentView(R.layout.editprofile_gender_dialog);
+
+            gender_error_message= (TextView)findViewById(R.id.gender_error_message_textview);
+            gender_error_message.setVisibility(View.INVISIBLE);
+
+            genderedit = (EditText)findViewById(R.id.genderedit);
+            genderedit.setText(GlobalVariable.OldGender);
+            genderedit.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if(s.toString().toLowerCase().equals("male")||s.toString().toLowerCase().equals("female"))
+                    {
+                        gender_error_message.setVisibility(View.INVISIBLE);
+                    }
+                    else
+                    {
+                        gender_error_message.setVisibility(View.VISIBLE);
+                        gender_error_message.setText("Please insert male or female only");
+
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+
+            savebtn = (Button)findViewById(R.id.savebtn);
+            savebtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if(!genderedit.getText().toString().equals("")&& gender_error_message.getVisibility()==View.INVISIBLE)
+                    {
+                        gender_error_message.setVisibility(View.INVISIBLE);
+                        dismiss();
+                        new PostUserProfile_Gender_Task(c).execute("601121829875",genderedit.getText().toString());
+                    }
+                    else
+                    {
+                        gender_error_message.setVisibility(View.VISIBLE);
+                        gender_error_message.setText("Still Exits Error Message");
+                    }
+
+                }
+            });
+        }
+
+        if(data.equals("nickname"))
+        {
+            setContentView(R.layout.editprofile_nickname_dialog);
+            nicknameedit = (EditText)findViewById(R.id.nicknameedit);
+            nicknameedit.setText(GlobalVariable.OldNickName);
+            nicknameedit.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                   if(s.length()>0)
+                   {
+                       nickname_error_message.setVisibility(View.INVISIBLE);
+                   }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+            nickname_error_message=(TextView)findViewById(R.id.nickname_error_message_textview);
+            nickname_error_message.setVisibility(View.INVISIBLE);
+
+            savebtn = (Button)findViewById(R.id.savebtn);
+            savebtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(!nicknameedit.getText().toString().equals("")&& nickname_error_message.getVisibility()==View.INVISIBLE)
+                    {
+                        nickname_error_message.setVisibility(View.INVISIBLE);
+                        dismiss();
+                        new PostUserProfile_NickName_Task(c).execute(nicknameedit.getText().toString(),"601121829875");
+                    }
+                    else
+                    {
+                        nickname_error_message.setVisibility(View.VISIBLE);
+                        nickname_error_message.setText("Still Exits Error Message");
+                    }
+
+                }
+            });
+        }
+
+        if(data.equals("remarks"))
+        {
+            setContentView(R.layout.editprofile_remarks_dialog);
+
+
+
+            remarkedit = (EditText)findViewById(R.id.remarksedit);
+            remarkedit.setText(GlobalVariable.OldRemarks);
+            remarkedit.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if(s.length()>0)
+                    {
+                        remark_error_message.setVisibility(View.INVISIBLE);
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+
+            remark_error_message=(TextView)findViewById(R.id.remarks_error_message_textview);
+            remark_error_message.setVisibility(View.INVISIBLE);
+
+            savebtn = (Button)findViewById(R.id.savebtn);
+            savebtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(!remarkedit.getText().toString().equals("")&& remark_error_message.getVisibility()==View.INVISIBLE)
+                    {
+                        remark_error_message.setVisibility(View.INVISIBLE);
+                        dismiss();
+                        new PostUserProfile_Remarks_Task(c).execute(remarkedit.getText().toString(),"601121829875");
+                    }
+                    else
+                    {
+                        remark_error_message.setVisibility(View.VISIBLE);
+                        remark_error_message.setText("Still Exits Error Message");
+                    }
+
+                }
+            });
+        }
+
+        if(data.equals("dob"))
+        {
+            setContentView(R.layout.editprofile_dob_dialog);
+
+            dob_error_message = (TextView)findViewById(R.id.dob_error_message_textview);
+            dob_error_message.setVisibility(View.INVISIBLE);
+
+            dobedit = (EditText)findViewById(R.id.dobedit);
+            dobedit.setText(GlobalVariable.OldDob);
+            dobedit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+
+                    if(hasFocus==true)
+                    {
+                        DateDialog cdd=new DateDialog(c,"dob");
+
+                        cdd.show();
+                        Window window = cdd.getWindow();
+                        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+                    }
+
+                }
+            });
+
+            savebtn = (Button)findViewById(R.id.savebtn);
+            savebtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(!dobedit.getText().toString().equals("")&&dob_error_message.getVisibility()==View.INVISIBLE)
+                    {
+                        dob_error_message.setVisibility(View.INVISIBLE);
+                        dismiss();
+                        new PostUserProfile_Dob_Task(c).execute(dobedit.getText().toString(),"601121829875");
+                    }
+                    else
+                    {
+                        dob_error_message.setVisibility(View.VISIBLE);
+                        dob_error_message.setText("Still Exits Error Message");
+                    }
+
+                }
+            });
+
+        }
         if(data.equals("pin"))
         {
             setContentView(R.layout.editprofile_pin_dialog);
+
+            Toast.makeText(c,GlobalVariable.OldPin,Toast.LENGTH_SHORT).show();
 
             payment_error_message= (TextView)findViewById(R.id.payment_error_message_textview);
             payment_error_message.setVisibility(View.INVISIBLE);
@@ -232,10 +449,20 @@ public class EditProfileDialog extends Dialog implements
             oldpayment_error_message = (TextView)findViewById(R.id.oldpayment_error_message_textview);
             oldpayment_error_message.setVisibility(View.INVISIBLE);
 
-            newpaymentedit = (EditText)findViewById(R.id.newpaymentedit);
-            newpaymentedit.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+            pin1 = (EditText) findViewById(R.id.pin1);
+            pin2 = (EditText) findViewById(R.id.pin2);
+            pin3 = (EditText) findViewById(R.id.pin3);
+            pin4 = (EditText) findViewById(R.id.pin4);
+            pin5 = (EditText) findViewById(R.id.pin5);
+            pin6 = (EditText) findViewById(R.id.pin6);
+            oldpin1 = (EditText) findViewById(R.id.oldpin1);
+            oldpin2 = (EditText) findViewById(R.id.oldpin2);
+            oldpin3 = (EditText) findViewById(R.id.oldpin3);
+            oldpin4 = (EditText) findViewById(R.id.oldpin4);
+            oldpin5 = (EditText) findViewById(R.id.oldpin5);
+            oldpin6 = (EditText) findViewById(R.id.oldpin6);
 
-            newpaymentedit.addTextChangedListener(new TextWatcher() {
+            pin1.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -243,55 +470,513 @@ public class EditProfileDialog extends Dialog implements
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    if(s.length()>=6)
+
+                    if(s.length()!=0)
+                    {
+                        pin2.requestFocus();
+
+                    }
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+            pin2.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    if(s.length()!=0)
+                    {
+                        pin3.requestFocus();
+
+                    }
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+            pin3.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    if(s.length()!=0)
+                    {
+                        pin4.requestFocus();
+
+                    }
+
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+
+            pin4.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    if(s.length()!=0)
+                    {
+                        pin5.requestFocus();
+
+                    }
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+
+            pin5.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    if(s.length()!=0)
+                    {
+                        pin6.requestFocus();
+
+                    }
+
+                }
+
+
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+            pin6.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    if(s.length()!=0)
+                    {
+
+
+                    }
+
+                }
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+
+            });
+            pin1.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    //You can identify which key pressed buy checking keyCode value with KeyEvent.KEYCODE_
+                    if(keyCode == KeyEvent.KEYCODE_DEL) {
+                        //this is for backspac
+
+                    }
+                    return false;
+                }
+            });
+            pin2.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    //You can identify which key pressed buy checking keyCode value with KeyEvent.KEYCODE_
+                    if(keyCode == KeyEvent.KEYCODE_DEL) {
+                        //this is for backspace
+                        if(pin2.getText().toString().equals(""))
+                        {
+
+                            pin1.requestFocus();
+                        }
+
+                    }
+                    return false;
+                }
+            });
+            pin3.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    //You can identify which key pressed buy checking keyCode value with KeyEvent.KEYCODE_
+                    if(keyCode == KeyEvent.KEYCODE_DEL) {
+                        //this is for backspace
+                        if(pin3.getText().toString().equals(""))
+                        {
+
+                            pin2.requestFocus();
+                        }
+
+                    }
+                    return false;
+                }
+            });
+
+            pin4.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    //You can identify which key pressed buy checking keyCode value with KeyEvent.KEYCODE_
+                    if(keyCode == KeyEvent.KEYCODE_DEL) {
+                        //this is for backspace
+                        if(pin4.getText().toString().equals(""))
+                        {
+
+                            pin3.requestFocus();
+                        }
+
+                    }
+                    return false;
+                }
+            });
+
+            pin5.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    //You can identify which key pressed buy checking keyCode value with KeyEvent.KEYCODE_
+                    if(keyCode == KeyEvent.KEYCODE_DEL) {
+                        //this is for backspace
+                        if(pin5.getText().toString().equals(""))
+                        {
+
+                            pin4.requestFocus();
+                        }
+
+                    }
+                    return false;
+                }
+            });
+            pin6.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    //You can identify which key pressed buy checking keyCode value with KeyEvent.KEYCODE_
+                    if(keyCode == KeyEvent.KEYCODE_DEL) {
+                        //this is for backspace
+                        if(pin6.getText().toString().equals(""))
+                        {
+
+                            pin5.requestFocus();
+                        }
+
+                    }
+                    return false;
+                }
+            });
+            oldpin1.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    if(s.length()!=0)
+                    {
+                        oldpin2.requestFocus();
+
+                    }
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+            oldpin2.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    if(s.length()!=0)
+                    {
+                        oldpin3.requestFocus();
+
+                    }
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+            oldpin3.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    if(s.length()!=0)
+                    {
+                        oldpin4.requestFocus();
+
+                    }
+
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+
+            oldpin4.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    if(s.length()!=0)
+                    {
+                        oldpin5.requestFocus();
+
+                    }
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+
+            oldpin5.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    if(s.length()!=0)
+                    {
+                        oldpin6.requestFocus();
+
+                    }
+
+                }
+
+
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+            oldpin6.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    if(s.length()!=0)
+                    {
+
+
+                    }
+
+                }
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+
+            });
+            oldpin1.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    //You can identify which key pressed buy checking keyCode value with KeyEvent.KEYCODE_
+                    if(keyCode == KeyEvent.KEYCODE_DEL) {
+                        //this is for backspac
+
+                    }
+                    return false;
+                }
+            });
+            oldpin2.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    //You can identify which key pressed buy checking keyCode value with KeyEvent.KEYCODE_
+                    if(keyCode == KeyEvent.KEYCODE_DEL) {
+                        //this is for backspace
+                        if(oldpin2.getText().toString().equals(""))
+                        {
+
+                            oldpin1.requestFocus();
+                        }
+
+                    }
+                    return false;
+                }
+            });
+            oldpin3.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    //You can identify which key pressed buy checking keyCode value with KeyEvent.KEYCODE_
+                    if(keyCode == KeyEvent.KEYCODE_DEL) {
+                        //this is for backspace
+                        if(oldpin3.getText().toString().equals(""))
+                        {
+
+                            oldpin2.requestFocus();
+                        }
+
+                    }
+                    return false;
+                }
+            });
+
+            oldpin4.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    //You can identify which key pressed buy checking keyCode value with KeyEvent.KEYCODE_
+                    if(keyCode == KeyEvent.KEYCODE_DEL) {
+                        //this is for backspace
+                        if(oldpin4.getText().toString().equals(""))
+                        {
+
+                            oldpin3.requestFocus();
+                        }
+
+                    }
+                    return false;
+                }
+            });
+
+            oldpin5.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    //You can identify which key pressed buy checking keyCode value with KeyEvent.KEYCODE_
+                    if(keyCode == KeyEvent.KEYCODE_DEL) {
+                        //this is for backspace
+                        if(oldpin5.getText().toString().equals(""))
+                        {
+
+                            oldpin4.requestFocus();
+                        }
+
+                    }
+                    return false;
+                }
+            });
+            oldpin6.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    //You can identify which key pressed buy checking keyCode value with KeyEvent.KEYCODE_
+                    if(keyCode == KeyEvent.KEYCODE_DEL) {
+                        //this is for backspace
+                        if(oldpin6.getText().toString().equals(""))
+                        {
+
+                            oldpin5.requestFocus();
+                        }
+
+                    }
+                    return false;
+                }
+            });
+
+            savebtn = (Button)findViewById(R.id.savebtn);
+            savebtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(!pin1.getText().toString().equals("")&&!pin2.getText().toString().equals("")&&!pin3.getText().toString().equals("")&&!pin4.getText().toString().equals("")&&!pin5.getText().toString().equals("")&&!pin6.getText().toString().equals(""))
                     {
                         payment_error_message.setVisibility(View.INVISIBLE);
+                       // dismiss();
+                       // new PostUserProfile_Dob_Task(c).execute(dobedit.getText().toString(),"601121829875");
+                        indicator_newpin=true;
+                        if(indicator_newpin==true&&indicator_oldpin==true)
+                        {
+                            Toast.makeText(c,"save success",Toast.LENGTH_SHORT).show();
+                            new PostUserProfile_Pin_Payment_Task(c).execute("601121829875",pin1.getText().toString()+pin2.getText().toString()+pin3.getText().toString()+ pin4.getText().toString()+pin5.getText().toString()+pin6.getText().toString());
+                            indicator_oldpin=false;
+                            indicator_newpin=false;
+                        }
                     }
                     else
                     {
                         payment_error_message.setVisibility(View.VISIBLE);
-                        payment_error_message.setText("Please 6 digit pin number");
-
+                        payment_error_message.setText("Please fill all the new payment pin");
                     }
-                }
 
-                @Override
-                public void afterTextChanged(Editable s) {
-
-                }
-            });
-
-
-
-            oldpaymentedit = (EditText)findViewById(R.id.oldpaymentedit);
-            oldpaymentedit.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
-
-            oldpaymentedit.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    if(s.length()>=6)
+                    if(!oldpin1.getText().toString().equals("")&&!oldpin2.getText().toString().equals("")&&!oldpin3.getText().toString().equals("")&&!oldpin4.getText().toString().equals("")&&!oldpin5.getText().toString().equals("")&&!oldpin6.getText().toString().equals(""))
                     {
+
                         oldpayment_error_message.setVisibility(View.INVISIBLE);
+                        if(GlobalVariable.OldPin.equals(oldpin1.getText().toString()+oldpin2.getText().toString()+oldpin3.getText().toString()+oldpin4.getText().toString()+oldpin5.getText().toString()+oldpin6.getText().toString()))
+                        {
+                            indicator_oldpin=true;
+                            if(indicator_newpin==true&&indicator_oldpin==true)
+                            {
+                                new PostUserProfile_Pin_Payment_Task(c).execute("601121829875",pin1.getText().toString()+pin2.getText().toString()+pin3.getText().toString()+ pin4.getText().toString()+pin5.getText().toString()+pin6.getText().toString());
+                                Toast.makeText(c,"save success",Toast.LENGTH_SHORT).show();
+                                indicator_oldpin=false;
+                                indicator_newpin=false;
+                            }
+                        }
+                        else
+                        {
+                            oldpayment_error_message.setVisibility(View.VISIBLE);
+                            oldpayment_error_message.setText("Old payment pin not match");
+                        }
+
                     }
                     else
                     {
                         oldpayment_error_message.setVisibility(View.VISIBLE);
-                        oldpayment_error_message.setText("Please 6 digit pin number");
-
+                        oldpayment_error_message.setText("Please fill all the old payment pin");
                     }
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
 
                 }
             });
-
 
         }
 

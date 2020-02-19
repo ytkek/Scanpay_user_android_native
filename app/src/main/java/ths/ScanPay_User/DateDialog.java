@@ -58,6 +58,10 @@ public class DateDialog extends Dialog implements
                 {
                     BalanceActivity.datetoedit.setText(datepick.getDayOfMonth()+"/"+allresultmonth+"/"+datepick.getYear());
                 }
+                if(data.equals("dob"))
+                {
+                    EditProfileDialog.dobedit.setText(datepick.getDayOfMonth()+"/"+allresultmonth+"/"+datepick.getYear());
+                }
                 dismiss();
 
 
