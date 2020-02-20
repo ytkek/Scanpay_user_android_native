@@ -1,6 +1,8 @@
 package ths.ScanPay_User;
 
 import android.content.Context;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,12 +37,16 @@ public class DiscoveryAdapter  extends RecyclerView.Adapter<DiscoveryAdapter.MyV
         Discoverylist c = discoveryList.get(position);
 
         Glide.with(context)  //2
-                .load(c.getDiscovery_img()) //3
+                .load(ApiUrl.PicDomain+c.getDiscovery_imagepath()+c.getDiscovery_image()) //3
                 .placeholder(R.drawable.img_placeholder) //5
                 .error(R.drawable.img_broken) //6
                 .into(holder.discovery_img) ;
-        holder.discovery_title.setText(c.getDiscovery_title());
-       holder.discovery_content.setText(c.getDiscovery_content());
+        holder.discovery_title.setText(c.getDiscovery_name());
+       holder.discovery_content.setText(c.getDiscovery_description());
+
+        String text = "<a href='"+c.getDiscovery_externallink() +"'> Facebook Link</a>";
+
+       holder.discovery_facebook.setText(Html.fromHtml(text));
     }
 
     @Override
@@ -62,6 +68,7 @@ public class DiscoveryAdapter  extends RecyclerView.Adapter<DiscoveryAdapter.MyV
         public ImageView discovery_img;
         public TextView discovery_title;
         public TextView discovery_content;
+        public TextView discovery_facebook;
 
 
         public MyViewHolder(View view) {
@@ -70,6 +77,10 @@ public class DiscoveryAdapter  extends RecyclerView.Adapter<DiscoveryAdapter.MyV
             discovery_img = (ImageView) view.findViewById(R.id.discovery_img);
             discovery_title = (TextView) view.findViewById(R.id.discovery_title);
             discovery_content = (TextView) view.findViewById(R.id.discovery_content);
+            discovery_facebook =  (TextView)view.findViewById(R.id.discovery_facebook);
+            discovery_facebook.setClickable(true);
+            discovery_facebook.setMovementMethod(LinkMovementMethod.getInstance());
+
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override

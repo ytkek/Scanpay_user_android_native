@@ -16,12 +16,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import ths.ScanPay_User.GetFunction.GetAllDiscoveryListTask;
+
 public class DiscoveryFragment extends Fragment {
 
     Spinner spinner;
     Button viewallbtn;
-    RecyclerView recyclerView;
-    RecyclerView.Adapter mAdapter;
+    public static RecyclerView recyclerView;
+    public static RecyclerView.Adapter mAdapter;
     public DiscoveryFragment() {
         // Required empty public constructor
     }
@@ -75,13 +77,11 @@ public class DiscoveryFragment extends Fragment {
 
         recyclerView.setLayoutManager(layoutManager);
 
+        new GetAllDiscoveryListTask(getContext(),recyclerView).execute();
+       // List<Discoverylist> discoverylist = new ArrayList<>();
+      //  discoverylist.add(new Discoverylist("https://f0.pngfuel.com/png/408/791/sticker-sales-hot-price-fire-sticker-white-hot-price-text-with-red-flame-background-illustration-png-clip-art-thumbnail.png","SCANPAY","SCANPAY ON SALES"));
+      //  discoverylist.add(new Discoverylist("https://f0.pngfuel.com/png/408/791/sticker-sales-hot-price-fire-sticker-white-hot-price-text-with-red-flame-background-illustration-png-clip-art-thumbnail.png","SCANPAY","SCANPAY ON SALES"));
 
-        List<Discoverylist> discoverylist = new ArrayList<>();
-        discoverylist.add(new Discoverylist("https://f0.pngfuel.com/png/408/791/sticker-sales-hot-price-fire-sticker-white-hot-price-text-with-red-flame-background-illustration-png-clip-art-thumbnail.png","SCANPAY","SCANPAY ON SALES"));
-        discoverylist.add(new Discoverylist("https://f0.pngfuel.com/png/408/791/sticker-sales-hot-price-fire-sticker-white-hot-price-text-with-red-flame-background-illustration-png-clip-art-thumbnail.png","SCANPAY","SCANPAY ON SALES"));
-        mAdapter = new DiscoveryAdapter(getActivity(),discoverylist);
-
-        recyclerView.setAdapter(mAdapter);
 
         return view;
     }

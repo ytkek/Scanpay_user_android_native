@@ -18,4 +18,6 @@ public class ApiUrl {
     public static String PostUserProfile_Remarks_Api="PostUserProfile_Remarks.aspx";
     public static String PostUserProfile_Dob_Api="PostUserProfile_Dob.aspx";
     public static String PostUserProfile_Pin_Api="PostUserProfile_Pin.aspx";
+
+    public static String GetAllDiscoveryListApi="GetAllDiscoveryList.aspx";
 }

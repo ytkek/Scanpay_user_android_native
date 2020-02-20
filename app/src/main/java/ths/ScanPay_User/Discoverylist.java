@@ -2,39 +2,96 @@ package ths.ScanPay_User;
 
 public class Discoverylist
 {
-    private String discovery_img;
-    private String discovery_title;
-    private String discovery_content;
+    private String discovery_id;
+    private String discovery_merchantid;
+    private String discovery_name;
+    private String discovery_description;
+    private String discovery_datefrom;
+    private String discovery_dateto;
+    private String discovery_image;
+    private String discovery_imagepath;
+    private String discovery_externallink;
 
-    public Discoverylist(String discovery_img,String discovery_title,String discovery_content)
-    {
-        this.discovery_img=discovery_img;
-        this.discovery_title=discovery_title;
-        this.discovery_content=discovery_content;
-    }
 
-    public String getDiscovery_img()
+    public Discoverylist()
     {
-        return discovery_img;
+
     }
-    public void setDiscovery_img(String discovery_img)
-    {
-        this.discovery_img=discovery_img;
-    }
-    public String getDiscovery_title()
-    {
-        return discovery_title;
-    }
-    public void setDiscovery_title(String discovery_title)
-    {
-        this.discovery_title=discovery_title;
-    }
-    public String getDiscovery_content()
-    {
-        return discovery_content;
-    }
-    public void setDiscovery_content(String discovery_content)
-    {
-        this.discovery_content=discovery_content;
-    }
+  public String getDiscovery_id()
+  {
+      return discovery_id;
+  }
+  public void setDiscovery_id(String discovery_id)
+  {
+      this.discovery_id=discovery_id;
+  }
+  public String getDiscovery_merchantid()
+  {
+      return discovery_merchantid;
+  }
+  public void setDiscovery_merchantid(String discovery_merchantid)
+  {
+      this.discovery_merchantid=discovery_merchantid;
+  }
+
+  public String getDiscovery_name()
+  {
+      return discovery_name;
+  }
+  public void setDiscovery_name(String discovery_name)
+  {
+      this.discovery_name=discovery_name;
+  }
+  public String getDiscovery_description()
+  {
+      return discovery_description;
+  }
+  public void setDiscovery_description(String discovery_description)
+  {
+      this.discovery_description=discovery_description;
+  }
+
+  public String getDiscovery_datefrom()
+  {
+      return discovery_datefrom;
+  }
+  public void setDiscovery_datefrom(String discovery_datefrom)
+  {
+      this.discovery_datefrom=discovery_datefrom;
+  }
+  public String getDiscovery_dateto()
+  {
+      return discovery_dateto;
+  }
+  public void setDiscovery_dateto(String discovery_dateto)
+  {
+      this.discovery_dateto=discovery_dateto;
+  }
+
+  public String getDiscovery_image()
+  {
+      return discovery_image;
+  }
+  public void setDiscovery_image(String discovery_image)
+  {
+      this.discovery_image=discovery_image;
+  }
+
+  public String getDiscovery_imagepath()
+  {
+      return discovery_imagepath;
+  }
+  public void setDiscovery_imagepath(String discovery_imagepath)
+  {
+      this.discovery_imagepath=discovery_imagepath;
+  }
+
+  public String getDiscovery_externallink()
+  {
+      return discovery_externallink;
+  }
+  public void setDiscovery_externallink(String discovery_externallink)
+  {
+      this.discovery_externallink=discovery_externallink;
+  }
 }
