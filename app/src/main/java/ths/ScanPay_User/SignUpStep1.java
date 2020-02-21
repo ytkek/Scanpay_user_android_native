@@ -1,5 +1,6 @@
 package ths.ScanPay_User;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -18,24 +19,30 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.concurrent.TimeUnit;
 
+import ths.ScanPay_User.PostFunction.PostSignUp_Validate_LoginID_Task;
+
 public class SignUpStep1 extends AppCompatActivity {
 
-    Button verifybtn,resendbtn,nextbtn;
-    LinearLayout otplayout,passwordlayout,reconfirmpasswordlayout;
+    public static Button verifybtn,resendbtn,nextbtn;
+    public static LinearLayout otplayout,passwordlayout,reconfirmpasswordlayout;
     EditText mobileedittext,otp1,otp2,otp3,otp4,otp5,otp6,passwordedit,confirmpasswordedit;
-    boolean verifybool=false;
-    TextView checkotpresult,password_error;
+    public static boolean verifybool=false;
+    public static TextView checkotpresult,password_error,checkloginidresult;
     ImageView backbtn;
+
+    Activity SignUpStep1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup_step1);
 
+        SignUpStep1=this;
         backbtn = (ImageView)findViewById(R.id.backbtn);
 
         mobileedittext = (EditText)findViewById(R.id.mobile_edit);
-
+        checkloginidresult = (TextView)findViewById(R.id.checkloginidresult);
+        checkloginidresult.setVisibility(View.INVISIBLE);
         otplayout = (LinearLayout)findViewById(R.id.OTPlayout);
         otplayout.setVisibility(View.GONE);
 
@@ -86,7 +93,7 @@ public class SignUpStep1 extends AppCompatActivity {
                     mobileedittext.setText("");
                 }
 
-                if(s.length()==9||s.length()==10)
+                if(s.length()==8||s.length()==9||s.length()==10)
                 {
                     if(verifybool==false)
                     {
@@ -114,12 +121,14 @@ public class SignUpStep1 extends AppCompatActivity {
         verifybtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                verifybool=true;
 
-                    otplayout.setVisibility(View.VISIBLE);
-                    verifybtn.setVisibility(View.GONE);
-                    countresend();
-                    sendOTP();
+                new PostSignUp_Validate_LoginID_Task(SignUpStep1).execute("60"+mobileedittext.getText().toString());
+                //SignUpStep1.verifybool=true;
+
+                //SignUpStep1.otplayout.setVisibility(View.VISIBLE);
+               // SignUpStep1.verifybtn.setVisibility(View.GONE);
+               // countresend();
+               // sendOTP();
 
 
             }
@@ -496,7 +505,7 @@ public class SignUpStep1 extends AppCompatActivity {
 
 
     }
-    public void countresend()
+    public static void countresend()
     {
         new CountDownTimer(30000, 1000) { // adjust the milli seconds here
 
@@ -514,7 +523,7 @@ public class SignUpStep1 extends AppCompatActivity {
 
 
     }
-    public void sendOTP()
+    public static void sendOTP()
     {
 
     }

@@ -4,6 +4,7 @@ public class Discoverylist
 {
     private String discovery_id;
     private String discovery_merchantid;
+    private String discovery_groupid;
     private String discovery_name;
     private String discovery_description;
     private String discovery_datefrom;
@@ -32,6 +33,14 @@ public class Discoverylist
   public void setDiscovery_merchantid(String discovery_merchantid)
   {
       this.discovery_merchantid=discovery_merchantid;
+  }
+  public String getDiscovery_groupid()
+  {
+      return discovery_groupid;
+  }
+  public void setDiscovery_groupid(String discovery_groupid)
+  {
+      this.discovery_groupid=discovery_groupid;
   }
 
   public String getDiscovery_name()

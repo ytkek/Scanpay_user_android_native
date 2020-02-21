@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -17,13 +18,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ths.ScanPay_User.GetFunction.GetAllDiscoveryListTask;
+import ths.ScanPay_User.GetFunction.GetFindMerchantListTask;
 
 public class DiscoveryFragment extends Fragment {
 
-    Spinner spinner;
+    public static Spinner spinner;
     Button viewallbtn;
     public static RecyclerView recyclerView;
     public static RecyclerView.Adapter mAdapter;
+    public static boolean indicator=false;
     public DiscoveryFragment() {
         // Required empty public constructor
     }
@@ -55,19 +58,25 @@ public class DiscoveryFragment extends Fragment {
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
 
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                new GetAllDiscoveryListTask(getContext(),recyclerView).execute();
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         viewallbtn = (Button) view.findViewById(R.id.viewallbtn);
 
         viewallbtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-
-                Toast.makeText(getActivity(),
-                        "OnClickListener : " +
-                                "\nSpinner 1 : "+ String.valueOf(spinner.getSelectedItem()),
-
-                        Toast.LENGTH_SHORT).show();
+               indicator=true;
+                new GetAllDiscoveryListTask(getContext(),recyclerView).execute();
             }
 
         });

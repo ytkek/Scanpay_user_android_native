@@ -20,4 +20,7 @@ public class ApiUrl {
     public static String PostUserProfile_Pin_Api="PostUserProfile_Pin.aspx";
 
     public static String GetAllDiscoveryListApi="GetAllDiscoveryList.aspx";
+
+    public static String PostSignUp_Validate_LoginID_Api="PostSignUp_Validate_LoginID.aspx";
+    public static String PostSignUp_Send_OTP_Api = "PostSignUp_Send_OTP.aspx";
 }

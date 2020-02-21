@@ -145,6 +145,14 @@
 
             </EditText>
             </LinearLayout>
+             <TextView
+                    android:id="@+id/checkloginidresult"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="correct"
+                    android:textColor="#ED1C24"
+                    android:layout_marginLeft="10dp"></TextView>
+
             <Button
                 android:id="@+id/verifyotp"
                 android:layout_width="100dp"

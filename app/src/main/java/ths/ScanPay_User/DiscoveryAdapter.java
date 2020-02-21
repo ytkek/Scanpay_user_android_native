@@ -1,6 +1,8 @@
 package ths.ScanPay_User;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -8,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +37,7 @@ public class DiscoveryAdapter  extends RecyclerView.Adapter<DiscoveryAdapter.MyV
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
-        Discoverylist c = discoveryList.get(position);
+        final Discoverylist c = discoveryList.get(position);
 
         Glide.with(context)  //2
                 .load(ApiUrl.PicDomain+c.getDiscovery_imagepath()+c.getDiscovery_image()) //3
@@ -43,10 +46,32 @@ public class DiscoveryAdapter  extends RecyclerView.Adapter<DiscoveryAdapter.MyV
                 .into(holder.discovery_img) ;
         holder.discovery_title.setText(c.getDiscovery_name());
        holder.discovery_content.setText(c.getDiscovery_description());
+        holder.discovery_more_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse(c.getDiscovery_externallink()); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                context.startActivity(intent);
+            }
+        });
+        holder.discovery_share_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                    shareIntent.setType("text/plain");
+                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, "ScanPay Advertisement");
+                    String shareMessage= "ScanPay help you to share\n";
+                    shareMessage = shareMessage  + c.getDiscovery_externallink() +"";
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                    context.startActivity(Intent.createChooser(shareIntent, "choose one"));
+                } catch(Exception e) {
+                    //e.toString();
+                }
+            }
+        });
 
-        String text = "<a href='"+c.getDiscovery_externallink() +"'> Facebook Link</a>";
 
-       holder.discovery_facebook.setText(Html.fromHtml(text));
     }
 
     @Override
@@ -68,7 +93,8 @@ public class DiscoveryAdapter  extends RecyclerView.Adapter<DiscoveryAdapter.MyV
         public ImageView discovery_img;
         public TextView discovery_title;
         public TextView discovery_content;
-        public TextView discovery_facebook;
+        public LinearLayout discovery_share_btn;
+        public LinearLayout discovery_more_btn;
 
 
         public MyViewHolder(View view) {
@@ -77,17 +103,10 @@ public class DiscoveryAdapter  extends RecyclerView.Adapter<DiscoveryAdapter.MyV
             discovery_img = (ImageView) view.findViewById(R.id.discovery_img);
             discovery_title = (TextView) view.findViewById(R.id.discovery_title);
             discovery_content = (TextView) view.findViewById(R.id.discovery_content);
-            discovery_facebook =  (TextView)view.findViewById(R.id.discovery_facebook);
-            discovery_facebook.setClickable(true);
-            discovery_facebook.setMovementMethod(LinkMovementMethod.getInstance());
+            discovery_share_btn = (LinearLayout) view.findViewById(R.id.share_btn);
+            discovery_more_btn = (LinearLayout)view.findViewById(R.id.more_btn);
+            discovery_share_btn = (LinearLayout)view.findViewById(R.id.share_btn);
 
-
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(context, String.valueOf(getLayoutPosition()),Toast.LENGTH_SHORT).show();
-                }
-            });
         }
     }
 }

@@ -87,6 +87,10 @@ public class GetAllDiscoveryListTask extends AsyncTask<Void, Integer, ArrayList<
                     {
                         newsData.setDiscovery_merchantid(tmp.getString("lop_merchantid"));
                     }
+                    if(tmp.has("lop_groupid"))
+                    {
+                        newsData.setDiscovery_groupid(tmp.getString("lop_groupid" ));
+                    }
                     if(tmp.has("lop_name"))
                     {
                         newsData.setDiscovery_name(tmp.getString("lop_name"));
@@ -144,10 +148,177 @@ public class GetAllDiscoveryListTask extends AsyncTask<Void, Integer, ArrayList<
         super.onPostExecute(result);
 
         progDailog.dismiss();
+        int num = DiscoveryFragment.spinner.getSelectedItemPosition();
+        String code;
+        ArrayList<Discoverylist> sortresult = new ArrayList<Discoverylist>();
+        if(DiscoveryFragment.indicator==true)
+        {
+            DiscoveryFragment.mAdapter = new DiscoveryAdapter(context,result);
 
-       DiscoveryFragment.mAdapter = new DiscoveryAdapter(context,result);
+            DiscoveryFragment.recyclerView.setAdapter(DiscoveryFragment.mAdapter);
+            DiscoveryFragment.indicator=false;
+        }
+        else
+        {
+            if (num==0)
+            {
+                code="0";
+                for (int i=0; i<result.size();i++)
+                {
+                    if(code.equals(result.get(i).getDiscovery_groupid()))
+                    {
+                        sortresult.add(result.get(i));
 
-        DiscoveryFragment.recyclerView.setAdapter(DiscoveryFragment.mAdapter);
+                    }
+
+                    if(i==result.size()-1)
+                    {
+
+                        DiscoveryFragment.mAdapter = new DiscoveryAdapter(context,sortresult);
+
+                        DiscoveryFragment.recyclerView.setAdapter(DiscoveryFragment.mAdapter);
+
+                    }
+                }
+            }
+            if (num==1)
+            {
+                code="1";
+                for (int i=0; i<result.size();i++)
+                {
+                    if(code.equals(result.get(i).getDiscovery_groupid()))
+                    {
+                        sortresult.add(result.get(i));
+
+                    }
+
+                    if(i==result.size()-1)
+                    {
+
+                        DiscoveryFragment.mAdapter = new DiscoveryAdapter(context,sortresult);
+
+                        DiscoveryFragment.recyclerView.setAdapter(DiscoveryFragment.mAdapter);
+
+                    }
+                }
+            }
+            if (num==2)
+            {
+                code="2";
+                for (int i=0; i<result.size();i++)
+                {
+                    if(code.equals(result.get(i).getDiscovery_groupid()))
+                    {
+                        sortresult.add(result.get(i));
+
+                    }
+
+                    if(i==result.size()-1)
+                    {
+
+                        DiscoveryFragment.mAdapter = new DiscoveryAdapter(context,sortresult);
+
+                        DiscoveryFragment.recyclerView.setAdapter(DiscoveryFragment.mAdapter);
+
+                    }
+                }
+            }
+            if (num==3)
+            {
+                code="3";
+                for (int i=0; i<result.size();i++)
+                {
+                    if(code.equals(result.get(i).getDiscovery_groupid()))
+                    {
+                        sortresult.add(result.get(i));
+
+                    }
+
+                    if(i==result.size()-1)
+                    {
+
+                        DiscoveryFragment.mAdapter = new DiscoveryAdapter(context,sortresult);
+
+                        DiscoveryFragment.recyclerView.setAdapter(DiscoveryFragment.mAdapter);
+
+                    }
+                }
+            }
+            if (num==4)
+            {
+                code="4";
+                for (int i=0; i<result.size();i++)
+                {
+                    if(code.equals(result.get(i).getDiscovery_groupid()))
+                    {
+                        sortresult.add(result.get(i));
+
+                    }
+
+                    if(i==result.size()-1)
+                    {
+
+                        DiscoveryFragment.mAdapter = new DiscoveryAdapter(context,sortresult);
+
+                        DiscoveryFragment.recyclerView.setAdapter(DiscoveryFragment.mAdapter);
+
+                    }
+                }
+            }
+            if (num==5)
+            {
+                code="5";
+                for (int i=0; i<result.size();i++)
+                {
+                    if(code.equals(result.get(i).getDiscovery_groupid()))
+                    {
+                        sortresult.add(result.get(i));
+
+                    }
+
+                    if(i==result.size()-1)
+                    {
+
+                        DiscoveryFragment.mAdapter = new DiscoveryAdapter(context,sortresult);
+
+                        DiscoveryFragment.recyclerView.setAdapter(DiscoveryFragment.mAdapter);
+
+                    }
+                }
+            }
+
+            if (num==6)
+            {
+                code="6";
+                for (int i=0; i<result.size();i++)
+                {
+                    if(code.equals(result.get(i).getDiscovery_groupid()))
+                    {
+                        sortresult.add(result.get(i));
+
+                    }
+
+                    if(i==result.size()-1)
+                    {
+
+                        DiscoveryFragment.mAdapter = new DiscoveryAdapter(context,sortresult);
+
+                        DiscoveryFragment.recyclerView.setAdapter(DiscoveryFragment.mAdapter);
+
+                    }
+                }
+            }
+
+        }
+
+
+
+
+
+
+      // DiscoveryFragment.mAdapter = new DiscoveryAdapter(context,result);
+
+       // DiscoveryFragment.recyclerView.setAdapter(DiscoveryFragment.mAdapter);
         // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
 
        // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
