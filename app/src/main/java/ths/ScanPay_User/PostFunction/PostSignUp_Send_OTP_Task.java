@@ -59,7 +59,7 @@ public class PostSignUp_Send_OTP_Task extends AsyncTask<String, Integer, String>
         String param1= params[0];
 
         String response="";
-        String apiUrl = ApiUrl.Domain + ApiUrl.PostSignUp_Send_OTP_Api;
+        String apiUrl = ApiUrl.Domain + ApiUrl.PostSignUp_Send_OTP_Api ;
         listMockData = new ArrayList<FindMerchantlist>();
         if (NetworkUtil.isNetworkAvailable(context))
         {
@@ -90,8 +90,17 @@ public class PostSignUp_Send_OTP_Task extends AsyncTask<String, Integer, String>
         super.onPostExecute(result);
 
         progDailog.dismiss();
+        //Toast.makeText(context,result,Toast.LENGTH_SHORT).show()
+            SignUpStep1.systemOTP=result;
+            SignUpStep1.checkloginidresult.setVisibility(View.INVISIBLE);
+            //SignUpStep1.verifybool=true;
 
-        Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
+            SignUpStep1.otplayout.setVisibility(View.VISIBLE);
+            SignUpStep1.verifybtn.setVisibility(View.GONE);
+            SignUpStep1.countresend();
+            SignUpStep1.sendOTP();
+
+
 
 
 

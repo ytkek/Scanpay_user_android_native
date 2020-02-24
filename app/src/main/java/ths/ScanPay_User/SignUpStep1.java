@@ -7,6 +7,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -14,11 +15,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.concurrent.TimeUnit;
 
+import ths.ScanPay_User.PostFunction.PostSignUp_Send_OTP_Task;
+import ths.ScanPay_User.PostFunction.PostSignUp_Update_App_Password_Task;
 import ths.ScanPay_User.PostFunction.PostSignUp_Validate_LoginID_Task;
 
 public class SignUpStep1 extends AppCompatActivity {
@@ -29,7 +33,7 @@ public class SignUpStep1 extends AppCompatActivity {
     public static boolean verifybool=false;
     public static TextView checkotpresult,password_error,checkloginidresult;
     ImageView backbtn;
-
+    public static String systemOTP,currentOTP,MobileNum;
     Activity SignUpStep1;
 
     @Override
@@ -102,6 +106,7 @@ public class SignUpStep1 extends AppCompatActivity {
                     else
                     {
                         verifybtn.setVisibility(View.GONE);
+
                     }
 
                 }
@@ -136,8 +141,10 @@ public class SignUpStep1 extends AppCompatActivity {
         resendbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                countresend();
-                sendOTP();
+              //  countresend();
+               // sendOTP();
+                new PostSignUp_Send_OTP_Task(SignUpStep1).execute("60"+mobileedittext.getText().toString());
+
             }
         });
 
@@ -490,8 +497,11 @@ public class SignUpStep1 extends AppCompatActivity {
         nextbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent next = new Intent(getApplicationContext(),SignUpStep2.class);
-                startActivity(next);
+
+                MobileNum="60"+mobileedittext.getText().toString();
+                //Toast.makeText(context,result,Toast.LENGTH_SHORT).show()
+                new PostSignUp_Update_App_Password_Task(SignUpStep1).execute(passwordedit.getText().toString(),"60"+mobileedittext.getText().toString(),systemOTP);
+
             }
         });
 
@@ -530,9 +540,12 @@ public class SignUpStep1 extends AppCompatActivity {
 
     public void checkOTP()
     {
-        boolean result=true;
-        if(result==true)
+        boolean result=false;
+        currentOTP=otp1.getText().toString()+otp2.getText().toString()+otp3.getText().toString()+otp4.getText().toString()+otp5.getText().toString()+otp6.getText().toString();
+
+        if(currentOTP.equals(systemOTP))
         {
+           result=true;
             checkotpresult.setVisibility(View.VISIBLE);
             checkotpresult.setText("correct");
             final Handler handler = new Handler();
@@ -552,25 +565,26 @@ public class SignUpStep1 extends AppCompatActivity {
         else
         {
 
-            //checkotpresult.setText("wrong");
+            result=false;
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     // Do something after 5s = 5000ms
-                   // otp1.setText("");
-                   /// otp2.setText("");
-                   // otp3.setText("");
-                   // otp4.setText("");
-                    //otp5.setText("");
-                   // otp6.setText("");
-                   // otp1.requestFocus();
+                     otp1.setText("");
+                     otp2.setText("");
+                     otp3.setText("");
+                     otp4.setText("");
+                     otp5.setText("");
+                     otp6.setText("");
+                     otp1.requestFocus();
                     checkotpresult.setVisibility(View.VISIBLE);
                     checkotpresult.setText("wrong");
                 }
             }, 2000);
 
         }
+
 
     }
 

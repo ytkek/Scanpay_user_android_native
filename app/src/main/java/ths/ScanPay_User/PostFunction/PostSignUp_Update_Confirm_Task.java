@@ -7,7 +7,6 @@ package ths.ScanPay_User.PostFunction;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,24 +16,22 @@ import java.util.HashMap;
 
 import ths.ScanPay_User.ApiUrl;
 import ths.ScanPay_User.FindMerchantlist;
-import ths.ScanPay_User.GetFunction.GetUserProfileListTask;
 import ths.ScanPay_User.NetworkUtil;
 import ths.ScanPay_User.SignUpStep1;
 
 /**
  * Created by Windows on 20/9/2016.
  */
-public class PostSignUp_Validate_LoginID_Task extends AsyncTask<String, Integer, String> {
+public class PostSignUp_Update_Confirm_Task extends AsyncTask<String, Integer, String> {
 
     public Context context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
-    String loginid;
 
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
-    public PostSignUp_Validate_LoginID_Task(Context context){
+    public PostSignUp_Update_Confirm_Task(Context context){
         this.context = context;
 
 
@@ -59,15 +56,20 @@ public class PostSignUp_Validate_LoginID_Task extends AsyncTask<String, Integer,
     protected String doInBackground(String... params)
     {
         String param1= params[0];
-        loginid=param1;
+        String param2= params[1];
+
+
+
         String response="";
-        String apiUrl = ApiUrl.Domain + ApiUrl.PostSignUp_Validate_LoginID_Api;
+        String apiUrl = ApiUrl.Domain + ApiUrl.PostSignUp_Update_Confirm_Api ;
         listMockData = new ArrayList<FindMerchantlist>();
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
 
+
             hashMap.put("LoginID", param1);
+            hashMap.put("Otp", param2);
             response = NetworkUtil.sendPost(apiUrl,hashMap);
             try{
 
@@ -93,18 +95,13 @@ public class PostSignUp_Validate_LoginID_Task extends AsyncTask<String, Integer,
 
         progDailog.dismiss();
 
-            if(result.equals("This Login ID not available"))
-            {
-                SignUpStep1.checkloginidresult.setVisibility(View.VISIBLE);
-                SignUpStep1.checkloginidresult.setText("This Login ID is not available");
+      
+        if(result.equals("Update Confirm Success"))
+        {
+            new PostSignUp_Update_MemberList_Task(context).execute(SignUpStep1.MobileNum,SignUpStep1.systemOTP);
+        }
 
-            }
-            else if(result.equals("This Login allow"))
-            {
 
-                new PostSignUp_Send_OTP_Task(context).execute(loginid);
-
-            }
 
 
 

@@ -23,4 +23,9 @@ public class ApiUrl {
 
     public static String PostSignUp_Validate_LoginID_Api="PostSignUp_Validate_LoginID.aspx";
     public static String PostSignUp_Send_OTP_Api = "PostSignUp_Send_OTP.aspx";
+    public static String PostSignUp_Update_Password_Api="PostSignUp_Update_App_Password.aspx";
+    public static String PostSignUp_Update_User_Info_Api="PostSignUp_Update_User_Info.aspx";
+    public static String PostSignUp_Update_Payment_Info_Api="PostSignUp_Update_Payment_Info.aspx";
+    public static String PostSignUp_Update_Confirm_Api="PostSignUp_Update_Confirm.aspx";
+    public static String PostSignUp_Update_MemberList_Api="PostSignUp_Update_MemberList.aspx";
 }

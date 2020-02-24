@@ -1,5 +1,6 @@
 package ths.ScanPay_User;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,17 +13,21 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import ths.ScanPay_User.PostFunction.PostSignUp_Update_User_Info_Task;
+
 public class SignUpStep2 extends AppCompatActivity {
 
     EditText nameedit,emailedit;
     Button nextbtn;
     TextView error_message_textview;
     ImageView backbtn;
+    Activity SignUpStep2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup_step2);
 
+        SignUpStep2=this;
         backbtn = (ImageView)findViewById(R.id.backbtn);
         nameedit = (EditText)findViewById(R.id.name_edit);
 
@@ -102,8 +107,9 @@ public class SignUpStep2 extends AppCompatActivity {
                 boolean emailvalidate =isEmailValid(emailedit.getText().toString());
                 if(emailvalidate==true)
                 {
-                    Intent step3 = new Intent(getApplicationContext(),SignUpStep3.class);
-                    startActivity(step3);
+
+                    new PostSignUp_Update_User_Info_Task(SignUpStep2).execute(nameedit.getText().toString(),emailedit.getText().toString(),SignUpStep1.MobileNum,SignUpStep1.systemOTP);
+
                 }
                 else
                 {

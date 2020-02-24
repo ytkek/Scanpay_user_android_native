@@ -1,5 +1,6 @@
 package ths.ScanPay_User;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import ths.ScanPay_User.PostFunction.PostSignUp_Update_PaymentInfo_Task;
+
 public class SignUpStep3 extends AppCompatActivity {
 
     EditText pin1,pin2,pin3,pin4,pin5,pin6;
@@ -22,11 +25,13 @@ public class SignUpStep3 extends AppCompatActivity {
     Button nextbtn;
     TextView agreementbtn;
     ImageView backbtn;
+    Activity SignUpStep3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup_step3);
 
+        SignUpStep3=this;
         backbtn = (ImageView)findViewById(R.id.backbtn);
 
         pin1 = (EditText) findViewById(R.id.pin1);
@@ -42,6 +47,14 @@ public class SignUpStep3 extends AppCompatActivity {
         nextbtn.setEnabled(false);
         nextbtn.setAlpha(.1f);
 
+
+        nextbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String totalpin=pin1.getText().toString()+pin2.getText().toString()+pin3.getText().toString()+pin4.getText().toString()+pin5.getText().toString()+pin6.getText().toString();
+                new PostSignUp_Update_PaymentInfo_Task(SignUpStep3).execute(totalpin,SignUpStep1.MobileNum,SignUpStep1.systemOTP);
+            }
+        });
         agreementbtn = (TextView)findViewById(R.id.viewagreementbtn);
 
         agreementbtn.setOnClickListener(new View.OnClickListener() {
