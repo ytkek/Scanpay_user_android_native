@@ -6,14 +6,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 
+import ths.ScanPay_User.GetFunction.GetUserProfileListTask;
+import ths.ScanPay_User.PostFunction.PostLogout_Update_LoginID_Task;
+
 public class SettingFragment extends Fragment {
 
-    ImageView qr_img,aboutus,location,message,systeminfo;
+    ImageView qr_img,aboutus,location,message,systeminfo,logout;
+    public static TextView  username,ID;
     public SettingFragment() {
         // Required empty public constructor
     }
@@ -28,13 +33,26 @@ public class SettingFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.setting_fragment, container, false);
+
+
         qr_img = (ImageView)view.findViewById(R.id.qr_img);
         aboutus = (ImageView)view.findViewById(R.id.aboutus);
         location = (ImageView)view.findViewById(R.id.location);
         message = (ImageView)view.findViewById(R.id.message) ;
         systeminfo = (ImageView)view.findViewById(R.id.systeminfo);
+        logout=(ImageView)view.findViewById(R.id.logout);
 
+        username=(TextView)view.findViewById(R.id.username);
+        ID=(TextView)view.findViewById(R.id.ID);
 
+       // new GetUserProfileListTask(getContext()).execute();
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new PostLogout_Update_LoginID_Task(getContext()).execute(MainActivity.LoginID);
+            }
+        });
         qr_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

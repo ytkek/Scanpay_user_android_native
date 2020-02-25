@@ -28,4 +28,7 @@ public class ApiUrl {
     public static String PostSignUp_Update_Payment_Info_Api="PostSignUp_Update_Payment_Info.aspx";
     public static String PostSignUp_Update_Confirm_Api="PostSignUp_Update_Confirm.aspx";
     public static String PostSignUp_Update_MemberList_Api="PostSignUp_Update_MemberList.aspx";
+
+    public static String PostLogin_Validate_LoginID_Api="PostLogin_Validate_LoginID.aspx";
+    public static String PostLogout_Update_LoginID_Api="PostLogout_Update_Status.aspx";
 }

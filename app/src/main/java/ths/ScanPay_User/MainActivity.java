@@ -25,12 +25,14 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    public static String LoginID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        Intent intent = getIntent();
+        LoginID =  intent.getExtras().getString("LoginID");
 
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

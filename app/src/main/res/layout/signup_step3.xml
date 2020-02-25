@@ -136,7 +136,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/textinputborder"
-                    android:inputType="phone"
+                    android:inputType="numberPassword"
                     android:digits="1234567890"
                     android:maxLength="1"
                     android:hint=""
@@ -148,7 +148,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/textinputborder"
-                    android:inputType="phone"
+                    android:inputType="numberPassword"
                     android:digits="1234567890"
                     android:maxLength="1"
                     android:hint=""
@@ -160,7 +160,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/textinputborder"
-                    android:inputType="phone"
+                    android:inputType="numberPassword"
                     android:digits="1234567890"
                     android:maxLength="1"
                     android:hint=""
@@ -172,7 +172,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/textinputborder"
-                    android:inputType="phone"
+                    android:inputType="numberPassword"
                     android:digits="1234567890"
                     android:maxLength="1"
                     android:hint=""
@@ -184,7 +184,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/textinputborder"
-                    android:inputType="phone"
+                    android:inputType="numberPassword"
                     android:digits="1234567890"
                     android:maxLength="1"
                     android:hint=""
@@ -195,7 +195,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/textinputborder"
-                    android:inputType="phone"
+                    android:inputType="numberPassword"
                     android:digits="1234567890"
                     android:maxLength="1"
                     android:hint=""
@@ -203,6 +203,14 @@
                     android:textSize="20dp"></EditText>
 
 
+                <Button
+                    android:id="@+id/showbtn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:text="Show"
+                    android:textSize="8dp">
+
+                </Button>
 
             </LinearLayout>
             <TextView

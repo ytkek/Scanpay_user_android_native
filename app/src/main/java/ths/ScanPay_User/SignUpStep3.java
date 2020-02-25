@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -22,7 +26,7 @@ public class SignUpStep3 extends AppCompatActivity {
 
     EditText pin1,pin2,pin3,pin4,pin5,pin6;
     CheckBox agreementcheckbox;
-    Button nextbtn;
+    Button nextbtn,showbtn;
     TextView agreementbtn;
     ImageView backbtn;
     Activity SignUpStep3;
@@ -40,6 +44,7 @@ public class SignUpStep3 extends AppCompatActivity {
         pin4 = (EditText) findViewById(R.id.pin4);
         pin5 = (EditText) findViewById(R.id.pin5);
         pin6 = (EditText) findViewById(R.id.pin6);
+        showbtn=(Button) findViewById(R.id.showbtn);
 
         agreementcheckbox = (CheckBox)findViewById(R.id.agreementcheckbox);
 
@@ -74,17 +79,17 @@ public class SignUpStep3 extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if(s.length()!=0)
-                {
-                    pin2.requestFocus();
-                    checkinformation();
-                }
+
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                if(s.length()!=0)
+                {
+                    pin2.requestFocus();
+                    checkinformation();
+                }
             }
         });
 
@@ -97,17 +102,17 @@ public class SignUpStep3 extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if(s.length()!=0)
-                {
-                    pin3.requestFocus();
-                    checkinformation();
-                }
+
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                if(s.length()!=0)
+                {
+                    pin3.requestFocus();
+                    checkinformation();
+                }
             }
         });
         pin3.addTextChangedListener(new TextWatcher() {
@@ -119,18 +124,18 @@ public class SignUpStep3 extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if(s.length()!=0)
-                {
-                    pin4.requestFocus();
-                    checkinformation();
-                }
+
 
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                if(s.length()!=0)
+                {
+                    pin4.requestFocus();
+                    checkinformation();
+                }
             }
         });
 
@@ -143,17 +148,17 @@ public class SignUpStep3 extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if(s.length()!=0)
-                {
-                    pin5.requestFocus();
-                    checkinformation();
-                }
+
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                if(s.length()!=0)
+                {
+                    pin5.requestFocus();
+                    checkinformation();
+                }
             }
         });
 
@@ -166,11 +171,7 @@ public class SignUpStep3 extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if(s.length()!=0)
-                {
-                    pin6.requestFocus();
-                    checkinformation();
-                }
+
 
             }
 
@@ -178,7 +179,11 @@ public class SignUpStep3 extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                if(s.length()!=0)
+                {
+                    pin6.requestFocus();
+                    checkinformation();
+                }
             }
         });
         pin6.addTextChangedListener(new TextWatcher() {
@@ -190,16 +195,16 @@ public class SignUpStep3 extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
+
+
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
                 if(s.length()!=0)
                 {
 
                     checkinformation();
                 }
-
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-
             }
 
         });
@@ -297,6 +302,36 @@ public class SignUpStep3 extends AppCompatActivity {
             }
         });
 
+
+        showbtn.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+
+                switch ( event.getAction() ) {
+
+                    case MotionEvent.ACTION_UP:
+                        pin1.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        pin2.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        pin3.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        pin4.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        pin5.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        pin6.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        break;
+
+                    case MotionEvent.ACTION_DOWN:
+
+                        pin1.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        pin2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        pin3.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        pin4.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        pin5.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        pin6.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+
+                        break;
+
+                }
+                return true;
+            }
+        });
         agreementcheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

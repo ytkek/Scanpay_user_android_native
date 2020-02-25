@@ -69,7 +69,7 @@ public class EditProfileDialog extends Dialog implements
                 @Override
                 public void onClick(View v) {
                    dismiss();
-                   new PostUserProfile_Name_Task(c).execute(fullnameedit.getText().toString(),"601121829875");
+                   new PostUserProfile_Name_Task(c).execute(fullnameedit.getText().toString(),MainActivity.LoginID);
                 }
             });
         }
@@ -97,7 +97,7 @@ public class EditProfileDialog extends Dialog implements
                         {
                             oldpassword_error_message.setVisibility(View.INVISIBLE);
                             dismiss();
-                            new PostUserProfile_NewPassword_Task(c).execute("601121829875",newpasswordedit.getText().toString());
+                            new PostUserProfile_NewPassword_Task(c).execute(MainActivity.LoginID,newpasswordedit.getText().toString());
                         }
                         else
                         {
@@ -214,7 +214,7 @@ public class EditProfileDialog extends Dialog implements
                 @Override
                 public void onClick(View v) {
                     dismiss();
-                    new PostUserProfile_MobileNumber_Task(c).execute("601121829875",mobilenumberedit.getText().toString());
+                    new PostUserProfile_MobileNumber_Task(c).execute(MainActivity.LoginID,mobilenumberedit.getText().toString());
                 }
             });
         }
@@ -281,7 +281,7 @@ public class EditProfileDialog extends Dialog implements
                     {
                         gender_error_message.setVisibility(View.INVISIBLE);
                         dismiss();
-                        new PostUserProfile_Gender_Task(c).execute("601121829875",genderedit.getText().toString());
+                        new PostUserProfile_Gender_Task(c).execute(MainActivity.LoginID,genderedit.getText().toString());
                     }
                     else
                     {
@@ -328,7 +328,7 @@ public class EditProfileDialog extends Dialog implements
                     {
                         nickname_error_message.setVisibility(View.INVISIBLE);
                         dismiss();
-                        new PostUserProfile_NickName_Task(c).execute(nicknameedit.getText().toString(),"601121829875");
+                        new PostUserProfile_NickName_Task(c).execute(nicknameedit.getText().toString(),MainActivity.LoginID);
                     }
                     else
                     {
@@ -379,7 +379,7 @@ public class EditProfileDialog extends Dialog implements
                     {
                         remark_error_message.setVisibility(View.INVISIBLE);
                         dismiss();
-                        new PostUserProfile_Remarks_Task(c).execute(remarkedit.getText().toString(),"601121829875");
+                        new PostUserProfile_Remarks_Task(c).execute(remarkedit.getText().toString(),MainActivity.LoginID);
                     }
                     else
                     {
@@ -425,7 +425,7 @@ public class EditProfileDialog extends Dialog implements
                     {
                         dob_error_message.setVisibility(View.INVISIBLE);
                         dismiss();
-                        new PostUserProfile_Dob_Task(c).execute(dobedit.getText().toString(),"601121829875");
+                        new PostUserProfile_Dob_Task(c).execute(dobedit.getText().toString(),MainActivity.LoginID);
                     }
                     else
                     {
@@ -936,7 +936,7 @@ public class EditProfileDialog extends Dialog implements
                         if(indicator_newpin==true&&indicator_oldpin==true)
                         {
                             Toast.makeText(c,"save success",Toast.LENGTH_SHORT).show();
-                            new PostUserProfile_Pin_Payment_Task(c).execute("601121829875",pin1.getText().toString()+pin2.getText().toString()+pin3.getText().toString()+ pin4.getText().toString()+pin5.getText().toString()+pin6.getText().toString());
+                            new PostUserProfile_Pin_Payment_Task(c).execute(MainActivity.LoginID,pin1.getText().toString()+pin2.getText().toString()+pin3.getText().toString()+ pin4.getText().toString()+pin5.getText().toString()+pin6.getText().toString());
                             indicator_oldpin=false;
                             indicator_newpin=false;
                         }
@@ -956,7 +956,7 @@ public class EditProfileDialog extends Dialog implements
                             indicator_oldpin=true;
                             if(indicator_newpin==true&&indicator_oldpin==true)
                             {
-                                new PostUserProfile_Pin_Payment_Task(c).execute("601121829875",pin1.getText().toString()+pin2.getText().toString()+pin3.getText().toString()+ pin4.getText().toString()+pin5.getText().toString()+pin6.getText().toString());
+                                new PostUserProfile_Pin_Payment_Task(c).execute(MainActivity.LoginID,pin1.getText().toString()+pin2.getText().toString()+pin3.getText().toString()+ pin4.getText().toString()+pin5.getText().toString()+pin6.getText().toString());
                                 Toast.makeText(c,"save success",Toast.LENGTH_SHORT).show();
                                 indicator_oldpin=false;
                                 indicator_newpin=false;

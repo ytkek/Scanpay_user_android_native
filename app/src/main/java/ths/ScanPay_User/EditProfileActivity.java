@@ -167,7 +167,7 @@ public class EditProfileActivity extends AppCompatActivity {
               //  changepassword.setFocusable(true);
                // InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                // imm.showSoftInput(changepassword, InputMethodManager.SHOW_IMPLICIT);
-                new PostUserProfile_OldPassword_Task(editactivity).execute("601121829875");
+                new PostUserProfile_OldPassword_Task(editactivity).execute(MainActivity.LoginID);
                 EditProfileDialog cdd=new EditProfileDialog(editactivity,"password");
 
                 cdd.show();

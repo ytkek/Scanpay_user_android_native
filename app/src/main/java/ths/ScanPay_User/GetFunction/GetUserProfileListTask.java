@@ -21,16 +21,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import ths.ScanPay_User.ApiUrl;
 import ths.ScanPay_User.EditProfileActivity;
 import ths.ScanPay_User.EditProfilelist;
 import ths.ScanPay_User.GlobalVariable;
+import ths.ScanPay_User.MainActivity;
 import ths.ScanPay_User.MessageCentreActivity;
 import ths.ScanPay_User.MessageCentreAdapter;
 import ths.ScanPay_User.MessageCentrelist;
 import ths.ScanPay_User.NetworkUtil;
+import ths.ScanPay_User.SettingFragment;
 
 /**
  * Created by Windows on 20/9/2016.
@@ -69,11 +72,19 @@ public class GetUserProfileListTask extends AsyncTask<Void, Integer, ArrayList<E
     @Override
     protected ArrayList<EditProfilelist> doInBackground(Void... params)
     {
+
+
+
         String apiUrl = ApiUrl.Domain + ApiUrl.GetUserProfileListApi;
         listMockData = new ArrayList<EditProfilelist>();
         if (NetworkUtil.isNetworkAvailable(context))
         {
-            String response = NetworkUtil.SentGet(apiUrl,false);
+            HashMap<String, String> hashMap = new HashMap<String, String>();
+
+            hashMap.put("LoginID", MainActivity.LoginID);
+
+
+            String response = NetworkUtil.sendPost(apiUrl,hashMap);
             try
             {
                 JSONObject jObj = new JSONObject(response);
@@ -193,8 +204,10 @@ public class GetUserProfileListTask extends AsyncTask<Void, Integer, ArrayList<E
         // Collections.sort(result, Collections.reverseOrder());
         EditProfileActivity.changefullname.setText(result.get(0).getMl_name() + " ");
         GlobalVariable.OldName=result.get(0).getMl_name();
+       // SettingFragment.username.setText(result.get(0).getMl_name());
 
         EditProfileActivity.changeid.setText(result.get(0).getMl_login() + " ");
+      //  SettingFragment.ID.setText(result.get(0).getMl_login());
         EditProfileActivity.changepassword.setText(result.get(0).getMl_password() + " ");
         EditProfileActivity.changeemail.setText(result.get(0).getMl_email() + " ");
 
