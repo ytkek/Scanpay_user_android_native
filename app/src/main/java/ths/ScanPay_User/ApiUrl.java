@@ -31,4 +31,9 @@ public class ApiUrl {
 
     public static String PostLogin_Validate_LoginID_Api="PostLogin_Validate_LoginID.aspx";
     public static String PostLogout_Update_LoginID_Api="PostLogout_Update_Status.aspx";
+
+    public static String PostPay_CreditBalance_Api="PostPay_CreditBalance.aspx";
+    public static String PostPay_MerchantInfo_Api = "PostPay_MerchantInfo.aspx";
+    public static String PostPay_CheckDailyExpLimit_Api = "PostPay_CheckDailyExpLimit.aspx";
+    public static String PostPay_Validate_PinNumber_Api = "PostPay_Validate_PinNumber.aspx";
 }

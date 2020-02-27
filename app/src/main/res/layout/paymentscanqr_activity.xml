@@ -1,6 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:id="@+id/backbtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:layout_gravity="left"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_back3"></ImageView>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:text="PAYMENT"></TextView>
+    <LinearLayout
+        android:id="@+id/payment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/checkdailylimit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="wtf"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            ></TextView>
+
+        <View
+            android:layout_height="0.5dp"
+            android:layout_width="match_parent"
+            android:background="#000000">
+
+        </View>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IMPORTANT"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+        </TextView>
+        <TextView
+            android:id="@+id/merchant_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transaction with merchant XXXX"
+            android:textSize="20dp"
+            android:textColor="#2B547E"
+            android:textStyle="bold"></TextView>
+
+        <EditText
+            android:id="@+id/amount_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="10"
+            android:enabled="false"
+            android:hint="">
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/pin_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="6"
+            android:inputType="phone"
+            android:enabled="true"
+            android:hint="Pin Number">
+
+        </EditText>
+        <Button
+            android:id="@+id/confirmbtn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/round_border"
+            android:layout_marginTop="20dp"
+            android:text="Confirm"
+            android:textColor="#ffffff"
+            ></Button>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/error_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="error"
+        android:textSize="18dp"
+        android:textColor="#D81B60">
+
+    </TextView>
 
 </LinearLayout>
