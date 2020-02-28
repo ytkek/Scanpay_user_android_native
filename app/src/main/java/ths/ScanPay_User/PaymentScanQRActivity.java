@@ -21,24 +21,28 @@ import com.google.zxing.client.android.Intents;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import ths.ScanPay_User.Generic.Generic;
 import ths.ScanPay_User.PostFunction.PostPay_CreditBalance_Task;
+import ths.ScanPay_User.PostFunction.PostPay_Get_OTP_Task;
 import ths.ScanPay_User.PostFunction.PostPay_MerchantInfo_Task;
 import ths.ScanPay_User.PostFunction.PostPay_Validate_PinNumber_Task;
 
 public class PaymentScanQRActivity extends AppCompatActivity {
 
     public final int CUSTOMIZED_REQUEST_CODE = 0x0000ffff;
-    String type,merchantid,amount,lqrcode,qrcode;
+    public static String type,merchantid,amount,lqrcode,qrcode;
     public static boolean creditbalance_indicator,merchantinfo_indicator,dailyexplimit_indicator;
 
     public static String qr_amount;
 
     public static TextView checkdailylimit,merchant_name;
-    public static EditText pin_edit,amount_edit;
+    public static EditText pin_edit,amount_edit,new_otp_edit;
 
-    public static LinearLayout payment_layout;
+    public static LinearLayout payment_layout,OTPlayout,set_new_Otp_layout;
+    public static TextView otp_empty,otp_different;
 
-    public static TextView error_message;
+    public static Button getnewotpbtn,resendotpbtn,saveotpbtn;
+    public static TextView error_message,user_number;
 
     ImageView back_btn;
 
@@ -66,8 +70,33 @@ public class PaymentScanQRActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        OTPlayout=(LinearLayout)findViewById(R.id.OTPlayout);
+        OTPlayout.setVisibility(View.GONE);
+
+        otp_empty=(TextView)findViewById(R.id.otp_empty_textview);
+        otp_empty.setVisibility(View.GONE);
+
+        otp_different=(TextView)findViewById(R.id.otp_different_textview);
+        otp_different.setVisibility(View.GONE);
+
+        getnewotpbtn=(Button)findViewById(R.id.getnewotpbtn);
+
+
+
+        set_new_Otp_layout=(LinearLayout)findViewById(R.id.set_new_otp_layout);
+        set_new_Otp_layout.setVisibility(View.GONE);
+
+        resendotpbtn=(Button)findViewById(R.id.resendotpbtn);
+
+        user_number=(TextView)findViewById(R.id.user_number);
+
+        new_otp_edit=(EditText)findViewById(R.id.new_otp_edit);
+
+        saveotpbtn = (Button)findViewById(R.id.saveotpbtn);
+        saveotpbtn.setVisibility(View.INVISIBLE);
         payment_layout=(LinearLayout)findViewById(R.id.payment_layout);
-        payment_layout.setVisibility(View.VISIBLE);
+        payment_layout.setVisibility(View.GONE);
 
         checkdailylimit= (TextView)findViewById(R.id.checkdailylimit);
         merchant_name = (TextView)findViewById(R.id.merchant_name);
@@ -122,6 +151,9 @@ public class PaymentScanQRActivity extends AppCompatActivity {
         if(result.getContents() == null) {
 
         } else {
+
+            new PostPay_Get_OTP_Task(PaymentScanQRActivity).execute(MainActivity.LoginID);
+
             new PostPay_CreditBalance_Task(this).execute(MainActivity.LoginID);
             try{
                 String[] arrayString = result.getContents().split("\\|\\|");
@@ -152,6 +184,7 @@ public class PaymentScanQRActivity extends AppCompatActivity {
             {
 
             }
+
 
 
         }

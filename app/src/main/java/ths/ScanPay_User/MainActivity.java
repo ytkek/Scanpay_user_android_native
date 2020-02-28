@@ -20,6 +20,8 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import ths.ScanPay_User.Generic.Generic;
+
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         LoginID =  intent.getExtras().getString("LoginID");
 
+        //testing
+       // Generic.SaveOtp("145546",this);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);

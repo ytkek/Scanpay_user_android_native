@@ -36,4 +36,7 @@ public class ApiUrl {
     public static String PostPay_MerchantInfo_Api = "PostPay_MerchantInfo.aspx";
     public static String PostPay_CheckDailyExpLimit_Api = "PostPay_CheckDailyExpLimit.aspx";
     public static String PostPay_Validate_PinNumber_Api = "PostPay_Validate_PinNumber.aspx";
+    public static String PostPay_Validate_OTP_Api="PostPay_Validate_OTP.aspx";
+    public static String PostPay_Send_OTP_Api="PostPay_Send_OTP.aspx";
+    public static String PostPay_Save_OTP_Api="PostPay_Save_OTP.aspx";
 }
