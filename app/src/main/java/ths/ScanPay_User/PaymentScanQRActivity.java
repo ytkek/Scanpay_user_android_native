@@ -30,7 +30,7 @@ import ths.ScanPay_User.PostFunction.PostPay_Validate_PinNumber_Task;
 public class PaymentScanQRActivity extends AppCompatActivity {
 
     public final int CUSTOMIZED_REQUEST_CODE = 0x0000ffff;
-    public static String type,merchantid,amount,lqrcode,qrcode;
+    public static String type,merchantid,amount,lqrcode,qrcode,merchantname;
     public static boolean creditbalance_indicator,merchantinfo_indicator,dailyexplimit_indicator;
 
     public static String qr_amount;
@@ -38,10 +38,10 @@ public class PaymentScanQRActivity extends AppCompatActivity {
     public static TextView checkdailylimit,merchant_name;
     public static EditText pin_edit,amount_edit,new_otp_edit;
 
-    public static LinearLayout payment_layout,OTPlayout,set_new_Otp_layout;
+    public static LinearLayout payment_layout,OTPlayout,set_new_Otp_layout,payment_result_layout;
     public static TextView otp_empty,otp_different;
 
-    public static Button getnewotpbtn,resendotpbtn,saveotpbtn;
+    public static Button getnewotpbtn,resendotpbtn,saveotpbtn,payment_close_btn;
     public static TextView error_message,user_number;
 
     ImageView back_btn;
@@ -68,6 +68,8 @@ public class PaymentScanQRActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+                clear();
+
             }
         });
 
@@ -129,6 +131,18 @@ public class PaymentScanQRActivity extends AppCompatActivity {
 
             }
         });
+
+        payment_result_layout=(LinearLayout)findViewById(R.id.payment_result_layout);
+        payment_result_layout.setVisibility(View.GONE);
+
+        payment_close_btn=(Button)findViewById(R.id.payment_close_btn);
+        payment_close_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                clear();
+            }
+        });
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -166,7 +180,7 @@ public class PaymentScanQRActivity extends AppCompatActivity {
                         amount=arrayString[1];
                         qr_amount=amount;
                         lqrcode = arrayString[2];
-                        new PostPay_MerchantInfo_Task(this).execute(type,merchantid,amount,lqrcode);
+                        new PostPay_MerchantInfo_Task(this).execute(type,merchantid,amount,lqrcode,qrcode);
                         Log.d("Scanned: " , "pay"+arrayString[a] );
                     }
                     else if(arrayString.length==2)
@@ -174,7 +188,7 @@ public class PaymentScanQRActivity extends AppCompatActivity {
                         type="pay_cashier";
                         merchantid = arrayString[0];
                         qrcode=arrayString[1];
-                        new PostPay_MerchantInfo_Task(this).execute(type,merchantid,qrcode);
+                        new PostPay_MerchantInfo_Task(this).execute(type,merchantid,amount,lqrcode,qrcode);
                         Log.d("Scanned: " , "cashier"+arrayString[a] );
                     }
 
@@ -188,6 +202,20 @@ public class PaymentScanQRActivity extends AppCompatActivity {
 
 
         }
+    }
+    public static void clear()
+    {
+
+        type="";
+        merchantid="";
+        amount="";
+        lqrcode="";
+        qrcode="";
+        merchantname="";
+        checkdailylimit.setText("");
+        merchant_name.setText("");
+        amount_edit.setText("");
+        qr_amount="";
     }
 
 }

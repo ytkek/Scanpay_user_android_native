@@ -110,7 +110,7 @@ public class PostPay_CreditBalance_Task extends AsyncTask<String, Integer, Strin
 
             PaymentScanQRActivity.amount_edit.setText(PaymentScanQRActivity.qr_amount);
 
-            new PostPay_CheckDailyExpLimit_Task(context).execute(MainActivity.LoginID,PaymentScanQRActivity.qr_amount);
+            new PostPay_CheckDailyExpLimit_Task(context).execute(MainActivity.LoginID);
 
         }
 

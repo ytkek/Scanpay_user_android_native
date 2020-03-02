@@ -58,7 +58,6 @@ public class PostPay_CheckDailyExpLimit_Task extends AsyncTask<String, Integer, 
     protected String doInBackground(String... params)
     {
         params1= params[0];
-        params2 = params[1];
 
 
 
@@ -70,7 +69,7 @@ public class PostPay_CheckDailyExpLimit_Task extends AsyncTask<String, Integer, 
             HashMap<String, String> hashMap = new HashMap<String, String>();
 
             hashMap.put("LoginID", params1);
-            hashMap.put("Amount",params2);
+
 
 
             response = NetworkUtil.sendPost(apiUrl,hashMap);

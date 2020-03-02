@@ -7,6 +7,7 @@ package ths.ScanPay_User.PostFunction;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ public class PostPay_MerchantInfo_Task extends AsyncTask<String, Integer, String
     public Context context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
+
 
 
     private ProgressDialog loadingDialog;
@@ -61,6 +63,35 @@ public class PostPay_MerchantInfo_Task extends AsyncTask<String, Integer, String
         String params2 = params[1];
         String params3= params[2];
         String params4 = params[3];
+        String params5 = params[4];
+
+
+        if (params3 != null && !params3.isEmpty())
+        {
+
+        }
+        else
+        {
+            params3 = "";
+
+        }
+        if (params4 != null && !params4.isEmpty())
+        {
+
+        }
+        else
+        {
+            params4 = "";
+        }
+        if (params5 != null && !params5.isEmpty())
+        {
+
+        }
+        else
+        {
+            params5 = "";
+        }
+
 
 
 
@@ -73,14 +104,10 @@ public class PostPay_MerchantInfo_Task extends AsyncTask<String, Integer, String
 
             hashMap.put("type" , params1);
             hashMap.put("merchantid",params2);
-            if(params1=="pay")
-            {
-                hashMap.put("amount",params3);
-                hashMap.put("dynamicqrcode",params4);
-            }
-            else if (params1=="pay_cashier") {
-                hashMap.put("qrcode", params3);
-            }
+            hashMap.put("amount",params3);
+            hashMap.put("dynamicqrcode",params4);
+            hashMap.put("qrcode", params5);
+
 
 
             response = NetworkUtil.sendPost(apiUrl,hashMap);
@@ -118,7 +145,28 @@ public class PostPay_MerchantInfo_Task extends AsyncTask<String, Integer, String
             }
             else
             {
-                PaymentScanQRActivity.merchant_name.setText("Transaction with merchant "+result);
+                String[] arrayString = result.split(",");
+
+                for (int a=0; a<arrayString.length;a++)
+                {
+                    Log.d("wtf",arrayString[a]);
+                }
+
+
+                PaymentScanQRActivity.merchant_name.setText("Transaction with merchant "+arrayString[0]);
+                PaymentScanQRActivity.merchantname=result;
+               if(arrayString[1].equals("cashier"))
+                {
+                   PaymentScanQRActivity.amount_edit.setEnabled(true);
+                }
+               else if (arrayString[1].equals("pay"))
+              {
+                   PaymentScanQRActivity.amount_edit.setEnabled(false);
+               }
+
+
+
+
             }
 
 

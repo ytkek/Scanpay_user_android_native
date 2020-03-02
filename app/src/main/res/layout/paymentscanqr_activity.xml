@@ -249,4 +249,32 @@ Why you receive this message :\n 1.) Change of device\n 2.) Change of credential
 
     </TextView>
 
+
+    <LinearLayout
+        android:id="@+id/payment_result_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:text="PAYMENT SUCCESSFULLY"
+            android:layout_gravity="center">
+
+        </TextView>
+
+        <Button
+            android:id="@+id/payment_close_btn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/round_border"
+            android:layout_marginTop="20dp"
+            android:text="OK"
+            android:textColor="#ffffff"
+            ></Button>
+    </LinearLayout>
+
 </LinearLayout>

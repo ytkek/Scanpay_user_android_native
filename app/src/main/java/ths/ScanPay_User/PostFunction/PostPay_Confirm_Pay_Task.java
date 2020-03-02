@@ -7,6 +7,7 @@ package ths.ScanPay_User.PostFunction;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -17,24 +18,23 @@ import java.util.HashMap;
 
 import ths.ScanPay_User.ApiUrl;
 import ths.ScanPay_User.FindMerchantlist;
-import ths.ScanPay_User.MainActivity;
 import ths.ScanPay_User.NetworkUtil;
 import ths.ScanPay_User.PaymentScanQRActivity;
 
 /**
  * Created by Windows on 20/9/2016.
  */
-public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, String> {
+public class PostPay_Confirm_Pay_Task extends AsyncTask<String, Integer, String> {
 
     public Context context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
-    String params1,params2;
+
 
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
-    public PostPay_Validate_PinNumber_Task(Context context){
+    public PostPay_Confirm_Pay_Task(Context context){
         this.context = context;
 
 
@@ -58,19 +58,51 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
     @Override
     protected String doInBackground(String... params)
     {
-        params1= params[0];
-        params2=params[1];
+        String params1= params[0];
+        String params2 = params[1];
+        String params3= params[2];
+        String params4 = params[3];
+        String params5 = params[4];
+        String params6 = params[5];
+        String params7 = params[6];
+
+        if (params6 != null && !params6.isEmpty())
+        {
+
+        }
+        else
+        {
+            params6 = "";
+        }
+        if (params7 != null && !params7.isEmpty())
+        {
+
+        }
+        else
+        {
+            params7 = "";
+        }
 
 
         String response="";
-        String apiUrl = ApiUrl.Domain + ApiUrl.PostPay_Validate_PinNumber_Api ;
+        String apiUrl = ApiUrl.Domain + ApiUrl.PostPay_Confirm_Pay_Api ;
         listMockData = new ArrayList<FindMerchantlist>();
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
 
-            hashMap.put("LoginID", params1);
-            hashMap.put("Pin_Number",params2);
+            hashMap.put("LoginID" , params1);
+            hashMap.put("MerchantID",params2);
+            hashMap.put("MerchantName",params3);
+            hashMap.put("type",params4);
+            hashMap.put("Amount",params5);
+            hashMap.put("qrcode",params6);
+            hashMap.put("dyqrcode",params7);
+
+
+
+
+
 
             response = NetworkUtil.sendPost(apiUrl,hashMap);
             try{
@@ -97,17 +129,16 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
 
         progDailog.dismiss();
 
-        if(result.equals("Valid Pin Number"))
+        Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
+        if(result.equals("payment success"))
         {
-            new PostPay_Confirm_Pay_Task(context).execute(MainActivity.LoginID,PaymentScanQRActivity.merchantid,PaymentScanQRActivity.merchantname,PaymentScanQRActivity.type,PaymentScanQRActivity.amount_edit.getText().toString(),PaymentScanQRActivity.qrcode,PaymentScanQRActivity.lqrcode);
+            PaymentScanQRActivity.payment_layout.setVisibility(View.GONE);
+            PaymentScanQRActivity.payment_result_layout.setVisibility(View.VISIBLE);
         }
-        else if(result.equals("Invalid Pin Number"))
+        else
         {
-            Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
+
         }
-
-
-
 
 
 
