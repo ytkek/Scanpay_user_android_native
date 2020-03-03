@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -34,9 +37,9 @@ public class PaymentScanQRActivity extends AppCompatActivity {
     public static boolean creditbalance_indicator,merchantinfo_indicator,dailyexplimit_indicator;
 
     public static String qr_amount;
-
+    EditText pin1,pin2,pin3,pin4,pin5,pin6;
     public static TextView checkdailylimit,merchant_name;
-    public static EditText pin_edit,amount_edit,new_otp_edit;
+    public static EditText amount_edit,new_otp_edit;
 
     public static LinearLayout payment_layout,OTPlayout,set_new_Otp_layout,payment_result_layout;
     public static TextView otp_empty,otp_different;
@@ -62,6 +65,11 @@ public class PaymentScanQRActivity extends AppCompatActivity {
         integrator.setBeepEnabled(true);
         integrator.setCaptureActivity(CaptureActivityPortrait.class);
         integrator.initiateScan();
+
+
+
+
+
 
         back_btn=(ImageView) findViewById(R.id.backbtn);
         back_btn.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +111,245 @@ public class PaymentScanQRActivity extends AppCompatActivity {
         checkdailylimit= (TextView)findViewById(R.id.checkdailylimit);
         merchant_name = (TextView)findViewById(R.id.merchant_name);
 
-        pin_edit=(EditText)findViewById(R.id.pin_edit);
+        pin1 = (EditText) findViewById(R.id.pin1);
+        pin2 = (EditText) findViewById(R.id.pin2);
+        pin3 = (EditText) findViewById(R.id.pin3);
+        pin4 = (EditText) findViewById(R.id.pin4);
+        pin5 = (EditText) findViewById(R.id.pin5);
+        pin6 = (EditText) findViewById(R.id.pin6);
+
+        pin1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length()!=0)
+                {
+                    pin2.requestFocus();
+                    checkinformation();
+                }
+            }
+        });
+
+        pin2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length()!=0)
+                {
+                    pin3.requestFocus();
+                    checkinformation();
+                }
+            }
+        });
+        pin3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length()!=0)
+                {
+                    pin4.requestFocus();
+                    checkinformation();
+                }
+            }
+        });
+
+        pin4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length()!=0)
+                {
+                    pin5.requestFocus();
+                    checkinformation();
+                }
+            }
+        });
+
+        pin5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+
+            }
+
+
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length()!=0)
+                {
+                    pin6.requestFocus();
+                    checkinformation();
+                }
+            }
+        });
+        pin6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length()!=0)
+                {
+
+                    checkinformation();
+                }
+            }
+
+        });
+        pin1.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                //You can identify which key pressed buy checking keyCode value with KeyEvent.KEYCODE_
+                if(keyCode == KeyEvent.KEYCODE_DEL) {
+                    //this is for backspac
+                    checkinformation();
+                }
+                return false;
+            }
+        });
+        pin2.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                //You can identify which key pressed buy checking keyCode value with KeyEvent.KEYCODE_
+                if(keyCode == KeyEvent.KEYCODE_DEL) {
+                    //this is for backspace
+                    if(pin2.getText().toString().equals(""))
+                    {
+                        checkinformation();
+                        pin1.requestFocus();
+                    }
+
+                }
+                return false;
+            }
+        });
+        pin3.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                //You can identify which key pressed buy checking keyCode value with KeyEvent.KEYCODE_
+                if(keyCode == KeyEvent.KEYCODE_DEL) {
+                    //this is for backspace
+                    if(pin3.getText().toString().equals(""))
+                    {
+                        checkinformation();
+                        pin2.requestFocus();
+                    }
+
+                }
+                return false;
+            }
+        });
+
+        pin4.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                //You can identify which key pressed buy checking keyCode value with KeyEvent.KEYCODE_
+                if(keyCode == KeyEvent.KEYCODE_DEL) {
+                    //this is for backspace
+                    if(pin4.getText().toString().equals(""))
+                    {
+                        checkinformation();
+                        pin3.requestFocus();
+                    }
+
+                }
+                return false;
+            }
+        });
+
+        pin5.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                //You can identify which key pressed buy checking keyCode value with KeyEvent.KEYCODE_
+                if(keyCode == KeyEvent.KEYCODE_DEL) {
+                    //this is for backspace
+                    if(pin5.getText().toString().equals(""))
+                    {
+                        checkinformation();
+                        pin4.requestFocus();
+                    }
+
+                }
+                return false;
+            }
+        });
+        pin6.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                //You can identify which key pressed buy checking keyCode value with KeyEvent.KEYCODE_
+                if(keyCode == KeyEvent.KEYCODE_DEL) {
+                    //this is for backspace
+                    if(pin6.getText().toString().equals(""))
+                    {
+                        checkinformation();
+                        pin5.requestFocus();
+                    }
+
+                }
+                return false;
+            }
+        });
+
         amount_edit=(EditText)findViewById(R.id.amount_edit);
 
         error_message=(TextView)findViewById(R.id.error_message);
@@ -114,20 +360,7 @@ public class PaymentScanQRActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(amount_edit.getText().length()==0 )
-                {
-                    Toast.makeText(PaymentScanQRActivity,"amount cant be empty",Toast.LENGTH_SHORT).show();
-                }
-                else if(pin_edit.getText().length()==0)
-                {
-                    Toast.makeText(PaymentScanQRActivity,"pin number cant be empty",Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    new PostPay_Validate_PinNumber_Task(PaymentScanQRActivity).execute(MainActivity.LoginID,pin_edit.getText().toString());
-                }
-
-
+          new PostPay_Validate_PinNumber_Task(PaymentScanQRActivity).execute(MainActivity.LoginID,pin1.getText().toString()+pin2.getText().toString()+pin3.getText().toString()+pin4.getText().toString()+pin5.getText().toString()+pin6.getText().toString());
 
             }
         });
@@ -216,6 +449,24 @@ public class PaymentScanQRActivity extends AppCompatActivity {
         merchant_name.setText("");
         amount_edit.setText("");
         qr_amount="";
+    }
+
+    public void checkinformation()
+    {
+        if(!pin1.getText().toString().equals("")&&!pin2.getText().toString().equals("")&&!pin3.getText().toString().equals("")&&!pin4.getText().toString().equals("")&&!pin5.getText().toString().equals("")&&!pin6.getText().toString().equals(""))
+        {
+            confirm_btn.setAlpha(1f);
+            confirm_btn.setEnabled(true);
+        }
+        else
+        {
+            confirm_btn.setAlpha(.1f);
+            confirm_btn.setEnabled(false);
+        }
+    }
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 
 }

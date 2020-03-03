@@ -40,4 +40,7 @@ public class ApiUrl {
     public static String PostPay_Send_OTP_Api="PostPay_Send_OTP.aspx";
     public static String PostPay_Save_OTP_Api="PostPay_Save_OTP.aspx";
     public static String PostPay_Confirm_Pay_Api="PostPay_Confirm_Pay.aspx";
+
+
+    public static String PostTopUp_MerchantInfo_Api="PostTopUp_MerchantInfo.aspx";
 }

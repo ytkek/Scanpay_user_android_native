@@ -7,7 +7,6 @@ package ths.ScanPay_User.PostFunction;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,22 +19,22 @@ import ths.ScanPay_User.ApiUrl;
 import ths.ScanPay_User.FindMerchantlist;
 import ths.ScanPay_User.NetworkUtil;
 import ths.ScanPay_User.PaymentScanQRActivity;
+import ths.ScanPay_User.TopUpScanQRActivity;
 
 /**
  * Created by Windows on 20/9/2016.
  */
-public class PostPay_MerchantInfo_Task extends AsyncTask<String, Integer, String> {
+public class PostTopup_Confirm_Topup_Task extends AsyncTask<String, Integer, String> {
 
     public Context context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
 
 
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
-    public PostPay_MerchantInfo_Task(Context context){
+    public PostTopup_Confirm_Topup_Task(Context context){
         this.context = context;
 
 
@@ -64,49 +63,44 @@ public class PostPay_MerchantInfo_Task extends AsyncTask<String, Integer, String
         String params3= params[2];
         String params4 = params[3];
         String params5 = params[4];
+        String params6 = params[5];
+        String params7 = params[6];
 
-
-        if (params3 != null && !params3.isEmpty())
+        if (params6 != null && !params6.isEmpty())
         {
 
         }
         else
         {
-            params3 = "";
-
+            params6 = "";
         }
-        if (params4 != null && !params4.isEmpty())
+        if (params7 != null && !params7.isEmpty())
         {
 
         }
         else
         {
-            params4 = "";
+            params7 = "";
         }
-        if (params5 != null && !params5.isEmpty())
-        {
-
-        }
-        else
-        {
-            params5 = "";
-        }
-
-
 
 
         String response="";
-        String apiUrl = ApiUrl.Domain + ApiUrl.PostPay_MerchantInfo_Api ;
+        String apiUrl = ApiUrl.Domain + ApiUrl.PostPay_Confirm_Pay_Api ;
         listMockData = new ArrayList<FindMerchantlist>();
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
 
-            hashMap.put("type" , params1);
-            hashMap.put("merchantid",params2);
-            hashMap.put("amount",params3);
-            hashMap.put("dynamicqrcode",params4);
-            hashMap.put("qrcode", params5);
+            hashMap.put("LoginID" , params1);
+            hashMap.put("MerchantID",params2);
+            hashMap.put("MerchantName",params3);
+            hashMap.put("type",params4);
+            hashMap.put("Amount",params5);
+            hashMap.put("qrcode",params6);
+            hashMap.put("dyqrcode",params7);
+
+
+
 
 
 
@@ -136,35 +130,16 @@ public class PostPay_MerchantInfo_Task extends AsyncTask<String, Integer, String
         progDailog.dismiss();
 
 
-            if(result.equals("Invalid Merchant"))
-            {
+        Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
+        if(result.equals("payment success"))
+        {
+            TopUpScanQRActivity.topup_layout.setVisibility(View.GONE);
+            TopUpScanQRActivity.topup_result_layout.setVisibility(View.VISIBLE);
+        }
+        else
+        {
 
-                PaymentScanQRActivity.payment_layout.setVisibility(View.GONE);
-                PaymentScanQRActivity.error_message.setText("INVALID MERCHANT!!!!");
-                PaymentScanQRActivity.error_message.setVisibility(View.VISIBLE);
-            }
-            else
-            {
-                String[] arrayString = result.split(",");
-
-
-
-                PaymentScanQRActivity.merchant_name.setText("Transaction with merchant "+arrayString[0]);
-                PaymentScanQRActivity.merchantname=arrayString[0];
-               if(arrayString[1].equals("cashier"))
-                {
-                   PaymentScanQRActivity.amount_edit.setEnabled(true);
-                }
-               else if (arrayString[1].equals("pay"))
-              {
-                   PaymentScanQRActivity.amount_edit.setEnabled(false);
-               }
-
-
-
-
-            }
-
+        }
 
 
 

@@ -7,7 +7,6 @@ package ths.ScanPay_User.PostFunction;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -18,24 +17,25 @@ import java.util.HashMap;
 
 import ths.ScanPay_User.ApiUrl;
 import ths.ScanPay_User.FindMerchantlist;
+import ths.ScanPay_User.Generic.Generic;
+import ths.ScanPay_User.MainActivity;
 import ths.ScanPay_User.NetworkUtil;
 import ths.ScanPay_User.PaymentScanQRActivity;
+import ths.ScanPay_User.TopUpScanQRActivity;
 
 /**
  * Created by Windows on 20/9/2016.
  */
-public class PostPay_MerchantInfo_Task extends AsyncTask<String, Integer, String> {
+public class PostTopup_Get_OTP_Task extends AsyncTask<String, Integer, String> {
 
     public Context context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
 
-
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
-    public PostPay_MerchantInfo_Task(Context context){
+    public PostTopup_Get_OTP_Task(Context context){
         this.context = context;
 
 
@@ -59,57 +59,16 @@ public class PostPay_MerchantInfo_Task extends AsyncTask<String, Integer, String
     @Override
     protected String doInBackground(String... params)
     {
-        String params1= params[0];
-        String params2 = params[1];
-        String params3= params[2];
-        String params4 = params[3];
-        String params5 = params[4];
-
-
-        if (params3 != null && !params3.isEmpty())
-        {
-
-        }
-        else
-        {
-            params3 = "";
-
-        }
-        if (params4 != null && !params4.isEmpty())
-        {
-
-        }
-        else
-        {
-            params4 = "";
-        }
-        if (params5 != null && !params5.isEmpty())
-        {
-
-        }
-        else
-        {
-            params5 = "";
-        }
-
-
-
+        String param1= params[0];
 
         String response="";
-        String apiUrl = ApiUrl.Domain + ApiUrl.PostPay_MerchantInfo_Api ;
+        String apiUrl = ApiUrl.Domain + ApiUrl.PostPay_Validate_OTP_Api ;
         listMockData = new ArrayList<FindMerchantlist>();
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
 
-            hashMap.put("type" , params1);
-            hashMap.put("merchantid",params2);
-            hashMap.put("amount",params3);
-            hashMap.put("dynamicqrcode",params4);
-            hashMap.put("qrcode", params5);
-
-
-
+            hashMap.put("LoginID", param1);
             response = NetworkUtil.sendPost(apiUrl,hashMap);
             try{
 
@@ -136,40 +95,36 @@ public class PostPay_MerchantInfo_Task extends AsyncTask<String, Integer, String
         progDailog.dismiss();
 
 
-            if(result.equals("Invalid Merchant"))
-            {
-
-                PaymentScanQRActivity.payment_layout.setVisibility(View.GONE);
-                PaymentScanQRActivity.error_message.setText("INVALID MERCHANT!!!!");
-                PaymentScanQRActivity.error_message.setVisibility(View.VISIBLE);
-            }
-            else
-            {
-                String[] arrayString = result.split(",");
-
-
-
-                PaymentScanQRActivity.merchant_name.setText("Transaction with merchant "+arrayString[0]);
-                PaymentScanQRActivity.merchantname=arrayString[0];
-               if(arrayString[1].equals("cashier"))
-                {
-                   PaymentScanQRActivity.amount_edit.setEnabled(true);
+        String otp= Generic.getOtp(context);
+        if(otp.equals(""))
+        {
+            TopUpScanQRActivity.OTPlayout.setVisibility(View.VISIBLE);
+            TopUpScanQRActivity.otp_empty.setVisibility(View.VISIBLE);
+            TopUpScanQRActivity.getnewotpbtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TopUpScanQRActivity.OTPlayout.setVisibility(View.GONE);
+                    new PostTopup_Send_OTP_Task(context).execute(MainActivity.LoginID);
                 }
-               else if (arrayString[1].equals("pay"))
-              {
-                   PaymentScanQRActivity.amount_edit.setEnabled(false);
-               }
-
-
-
-
-            }
-
-
-
-
-
-
+            });
+        }
+        else if (!result.equals(otp))
+        {
+            TopUpScanQRActivity.OTPlayout.setVisibility(View.VISIBLE);
+            TopUpScanQRActivity.otp_different.setVisibility(View.VISIBLE);
+            TopUpScanQRActivity.getnewotpbtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TopUpScanQRActivity.OTPlayout.setVisibility(View.GONE);
+                   new PostTopup_Send_OTP_Task(context).execute(MainActivity.LoginID);
+                }
+            });
+        }
+        else if (result.equals(otp))
+        {
+            Toast.makeText(context,"correct OTP",Toast.LENGTH_SHORT).show();
+            TopUpScanQRActivity.topup_layout.setVisibility(View.VISIBLE);
+        }
 
 
 

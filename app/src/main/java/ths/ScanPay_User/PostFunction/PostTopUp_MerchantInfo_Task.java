@@ -7,9 +7,7 @@ package ths.ScanPay_User.PostFunction;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,11 +18,12 @@ import ths.ScanPay_User.ApiUrl;
 import ths.ScanPay_User.FindMerchantlist;
 import ths.ScanPay_User.NetworkUtil;
 import ths.ScanPay_User.PaymentScanQRActivity;
+import ths.ScanPay_User.TopUpScanQRActivity;
 
 /**
  * Created by Windows on 20/9/2016.
  */
-public class PostPay_MerchantInfo_Task extends AsyncTask<String, Integer, String> {
+public class PostTopUp_MerchantInfo_Task extends AsyncTask<String, Integer, String> {
 
     public Context context = null;
     public static ArrayList<FindMerchantlist> listMockData;
@@ -35,7 +34,7 @@ public class PostPay_MerchantInfo_Task extends AsyncTask<String, Integer, String
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
-    public PostPay_MerchantInfo_Task(Context context){
+    public PostTopUp_MerchantInfo_Task(Context context){
         this.context = context;
 
 
@@ -96,7 +95,7 @@ public class PostPay_MerchantInfo_Task extends AsyncTask<String, Integer, String
 
 
         String response="";
-        String apiUrl = ApiUrl.Domain + ApiUrl.PostPay_MerchantInfo_Api ;
+        String apiUrl = ApiUrl.Domain + ApiUrl.PostTopUp_MerchantInfo_Api ;
         listMockData = new ArrayList<FindMerchantlist>();
         if (NetworkUtil.isNetworkAvailable(context))
         {
@@ -139,29 +138,15 @@ public class PostPay_MerchantInfo_Task extends AsyncTask<String, Integer, String
             if(result.equals("Invalid Merchant"))
             {
 
-                PaymentScanQRActivity.payment_layout.setVisibility(View.GONE);
-                PaymentScanQRActivity.error_message.setText("INVALID MERCHANT!!!!");
-                PaymentScanQRActivity.error_message.setVisibility(View.VISIBLE);
+                TopUpScanQRActivity.topup_layout.setVisibility(View.GONE);
+                TopUpScanQRActivity.error_message.setText("INVALID MERCHANT!!!!");
+                TopUpScanQRActivity.error_message.setVisibility(View.VISIBLE);
             }
             else
             {
-                String[] arrayString = result.split(",");
 
-
-
-                PaymentScanQRActivity.merchant_name.setText("Transaction with merchant "+arrayString[0]);
-                PaymentScanQRActivity.merchantname=arrayString[0];
-               if(arrayString[1].equals("cashier"))
-                {
-                   PaymentScanQRActivity.amount_edit.setEnabled(true);
-                }
-               else if (arrayString[1].equals("pay"))
-              {
-                   PaymentScanQRActivity.amount_edit.setEnabled(false);
-               }
-
-
-
+                TopUpScanQRActivity.merchant_name.setText("Transaction with merchant "+result);
+                TopUpScanQRActivity.merchantname=result;
 
             }
 

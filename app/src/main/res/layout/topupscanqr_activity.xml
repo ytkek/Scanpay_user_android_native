@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
@@ -89,7 +88,7 @@ Why you receive this message :\n 1.) Change of device\n 2.) Change of credential
             android:id="@+id/user_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="601121829875"
+            android:text="60-XXXXXXXXXX"
             android:textSize="25dp"
             android:textColor="#2B547E"
             android:textStyle="bold"
@@ -161,8 +160,9 @@ Why you receive this message :\n 1.) Change of device\n 2.) Change of credential
             ></Button>
 
     </LinearLayout>
+
     <LinearLayout
-        android:id="@+id/payment_layout"
+        android:id="@+id/topup_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -171,16 +171,26 @@ Why you receive this message :\n 1.) Change of device\n 2.) Change of credential
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:text="PAYMENT"></TextView>
+            android:text="TOPUP"></TextView>
         <TextView
-            android:id="@+id/checkdailylimit"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="wtf"
+            android:text="CREDIT BALANCE"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
+            android:textColor="#000000"
+            android:textSize="20dp"
             ></TextView>
-
+        <TextView
+            android:id="@+id/credit_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RM XX.00"
+            android:textSize="20dp"
+            android:textColor="#2B547E"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"></TextView>
         <View
             android:layout_height="0.5dp"
             android:layout_width="match_parent"
@@ -223,98 +233,10 @@ Why you receive this message :\n 1.) Change of device\n 2.) Change of credential
                 android:maxLength="10"
                 android:enabled="false"
                 android:textColor="#000000"
-                android:inputType="numberDecimal"
-
                 android:hint="">
 
             </EditText>
         </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Please Enter Your Pin Number">
-
-        </TextView>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:orientation="horizontal">
-            <EditText
-                android:id="@+id/pin1"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/textinputborder"
-                android:inputType="phone"
-                android:digits="1234567890"
-                android:maxLength="1"
-                android:hint=""
-                android:paddingLeft="20dp"
-                android:textSize="20dp"
-                ></EditText>
-            <EditText
-                android:id="@+id/pin2"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/textinputborder"
-                android:inputType="phone"
-                android:digits="1234567890"
-                android:maxLength="1"
-                android:hint=""
-                android:paddingLeft="20dp"
-                android:textSize="20dp"
-                ></EditText>
-            <EditText
-                android:id="@+id/pin3"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/textinputborder"
-                android:inputType="phone"
-                android:digits="1234567890"
-                android:maxLength="1"
-                android:hint=""
-                android:paddingLeft="20dp"
-                android:textSize="20dp"
-                ></EditText>
-            <EditText
-                android:id="@+id/pin4"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/textinputborder"
-                android:inputType="phone"
-                android:digits="1234567890"
-                android:maxLength="1"
-                android:hint=""
-                android:paddingLeft="20dp"
-                android:textSize="20dp"></EditText>
-
-            <EditText
-                android:id="@+id/pin5"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/textinputborder"
-                android:inputType="phone"
-                android:digits="1234567890"
-                android:maxLength="1"
-                android:hint=""
-                android:paddingLeft="20dp"
-                android:textSize="20dp"></EditText>
-            <EditText
-                android:id="@+id/pin6"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/textinputborder"
-                android:inputType="phone"
-                android:digits="1234567890"
-                android:maxLength="1"
-                android:hint=""
-                android:paddingLeft="20dp"
-                android:textSize="20dp"></EditText>
-
-
-
-        </LinearLayout>
-
         <Button
             android:id="@+id/confirmbtn"
             android:layout_width="match_parent"
@@ -324,11 +246,7 @@ Why you receive this message :\n 1.) Change of device\n 2.) Change of credential
             android:text="Confirm"
             android:textColor="#ffffff"
             ></Button>
-
-
     </LinearLayout>
-
-
     <TextView
         android:id="@+id/error_message"
         android:layout_width="wrap_content"
@@ -338,10 +256,8 @@ Why you receive this message :\n 1.) Change of device\n 2.) Change of credential
         android:textColor="#D81B60">
 
     </TextView>
-
-
     <LinearLayout
-        android:id="@+id/payment_result_layout"
+        android:id="@+id/topup_result_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -351,13 +267,13 @@ Why you receive this message :\n 1.) Change of device\n 2.) Change of credential
             android:layout_height="wrap_content"
             android:textSize="24dp"
             android:textStyle="bold"
-            android:text="PAYMENT SUCCESSFULLY"
+            android:text="TOPUP SUCCESSFULLY"
             android:layout_gravity="center">
 
         </TextView>
 
         <Button
-            android:id="@+id/payment_close_btn"
+            android:id="@+id/topup_close_btn"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/round_border"
@@ -366,5 +282,6 @@ Why you receive this message :\n 1.) Change of device\n 2.) Change of credential
             android:textColor="#ffffff"
             ></Button>
     </LinearLayout>
+
 
 </LinearLayout>

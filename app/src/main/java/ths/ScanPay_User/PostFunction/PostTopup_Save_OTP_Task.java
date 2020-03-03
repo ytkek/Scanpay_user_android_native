@@ -8,8 +8,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.view.View;
-import android.view.Window;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,27 +16,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import ths.ScanPay_User.ApiUrl;
-import ths.ScanPay_User.EditProfileDialog;
 import ths.ScanPay_User.FindMerchantlist;
-import ths.ScanPay_User.MainActivity;
+import ths.ScanPay_User.Generic.Generic;
 import ths.ScanPay_User.NetworkUtil;
 import ths.ScanPay_User.PaymentScanQRActivity;
-import ths.ScanPay_User.Payment_Confirm_Dialog;
+import ths.ScanPay_User.TopUpScanQRActivity;
 
 /**
  * Created by Windows on 20/9/2016.
  */
-public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, String> {
+public class PostTopup_Save_OTP_Task extends AsyncTask<String, Integer, String> {
 
     public Context context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
-    String params1,params2;
+    String param1,param2;
 
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
-    public PostPay_Validate_PinNumber_Task(Context context){
+    public PostTopup_Save_OTP_Task(Context context){
         this.context = context;
 
 
@@ -62,20 +59,17 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
     @Override
     protected String doInBackground(String... params)
     {
-        params1= params[0];
-        params2=params[1];
-
-
+         param1= params[0];
+         param2=params[1];
         String response="";
-        String apiUrl = ApiUrl.Domain + ApiUrl.PostPay_Validate_PinNumber_Api ;
+        String apiUrl = ApiUrl.Domain + ApiUrl.PostPay_Save_OTP_Api ;
         listMockData = new ArrayList<FindMerchantlist>();
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
 
-            hashMap.put("LoginID", params1);
-            hashMap.put("Pin_Number",params2);
-
+            hashMap.put("LoginID", param1);
+            hashMap.put("OTP", param2);
             response = NetworkUtil.sendPost(apiUrl,hashMap);
             try{
 
@@ -95,40 +89,24 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
     }
 
     @Override
-    protected void onPostExecute(String result)
+    protected void onPostExecute(final String result)
     {
         super.onPostExecute(result);
 
         progDailog.dismiss();
 
-        if(result.equals("Valid Pin Number"))
+        if(result.equals("SAVE OTP BACKEND SYSTEM SUCCESS"))
         {
-            Payment_Confirm_Dialog cdd=new Payment_Confirm_Dialog(context,PaymentScanQRActivity.merchantname,PaymentScanQRActivity.amount_edit.getText().toString());
-
-            cdd.show();
-            Window window = cdd.getWindow();
-            window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-           // new PostPay_Confirm_Pay_Task(context).execute(MainActivity.LoginID,PaymentScanQRActivity.merchantid,PaymentScanQRActivity.merchantname,PaymentScanQRActivity.type,PaymentScanQRActivity.amount_edit.getText().toString(),PaymentScanQRActivity.qrcode,PaymentScanQRActivity.lqrcode);
+            Generic.SaveOtp(param2,context);
+            Toast.makeText(context,"You Have Save New Otp",Toast.LENGTH_SHORT).show();
+            TopUpScanQRActivity.set_new_Otp_layout.setVisibility(View.GONE);
+            TopUpScanQRActivity.topup_layout.setVisibility(View.VISIBLE);
         }
-        else if(result.equals("Invalid Pin Number"))
+        else if(result.equals("SAVE OTP BACKEND SYSTEM FAIL"))
         {
             Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
         }
 
-
-
-
-
-
-
-
-
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 
