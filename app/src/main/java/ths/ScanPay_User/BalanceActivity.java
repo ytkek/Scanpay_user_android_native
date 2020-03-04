@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -19,12 +21,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import ths.ScanPay_User.PostFunction.PostBalance_SearchDate_Statement_Task;
+import ths.ScanPay_User.PostFunction.PostBalance_TotalCredit_Task;
+
 public class BalanceActivity extends AppCompatActivity {
     Activity balanceactivity;
     ImageView backbtn;
+    public static TextView totalbalance_textview,daily_limit_textview,daily_exp_textview;
     public static EditText datefromedit,datetoedit;
-    RecyclerView recyclerView;
-    RecyclerView.Adapter mAdapter;
+    public static RecyclerView recyclerView;
+    public static RecyclerView.Adapter mAdapter;
+    Button search_btn;
+
+    public static String datefrom,dateto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +42,26 @@ public class BalanceActivity extends AppCompatActivity {
 
         balanceactivity=this;
 
+        totalbalance_textview=(TextView)findViewById(R.id.totalbalance_textview);
+        daily_limit_textview = (TextView)findViewById(R.id.daily_limit_textview);
+        daily_exp_textview = (TextView)findViewById(R.id.daily_exp_textview);
+
+        new PostBalance_TotalCredit_Task(balanceactivity).execute(MainActivity.LoginID);
+
+        search_btn = (Button)findViewById(R.id.search_btn);
+        search_btn.setAlpha(0.5f);
+        search_btn.setEnabled(false);
+
+
+        search_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            datefrom=datefromedit.getText().toString();
+            dateto=datetoedit.getText().toString();
+
+            new PostBalance_SearchDate_Statement_Task(balanceactivity).execute();
+            }
+        });
          backbtn = (ImageView)findViewById(R.id.backbtn);
          backbtn.setOnClickListener(new View.OnClickListener() {
              @Override
@@ -52,6 +81,26 @@ public class BalanceActivity extends AppCompatActivity {
                  window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
 
+
+             }
+         });
+
+         datefromedit.addTextChangedListener(new TextWatcher() {
+             @Override
+             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+             }
+
+             @Override
+             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length()>0)
+                {
+                    checkinformation();
+                }
+             }
+
+             @Override
+             public void afterTextChanged(Editable s) {
 
              }
          });
@@ -85,7 +134,29 @@ public class BalanceActivity extends AppCompatActivity {
              }
          });
 
-         datetoedit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        datetoedit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length()>0)
+                {
+                    checkinformation();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+
+        datetoedit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
              @Override
              public void onFocusChange(View v, boolean hasFocus) {
 
@@ -105,13 +176,24 @@ public class BalanceActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
 
-        List<Balancelist> balancelist = new ArrayList<>();
-        balancelist.add(new Balancelist("20/1/2020 11:38:11","Reversal Payment","MyScanPay","1.00"));
-
-        mAdapter = new BalanceAdapter(this,balancelist);
-
-        recyclerView.setAdapter(mAdapter);
 
 
+
+
+
+
+    }
+    public void checkinformation()
+    {
+        if(datefromedit.getText().toString().equals("")||datetoedit.getText().toString().equals(""))
+        {
+            search_btn.setEnabled(false);
+            search_btn.setAlpha(0.5f);
+        }
+        else
+        {
+            search_btn.setEnabled(true);
+            search_btn.setAlpha(1f);
+        }
     }
 }

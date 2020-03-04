@@ -70,9 +70,10 @@
 
                     </TextView>
                     <TextView
+                        android:id="@+id/totalbalance_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="RM 47.00"></TextView>
+                        android:text="RM xx.xx"></TextView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -90,6 +91,7 @@
 
                     </TextView>
                     <TextView
+                        android:id="@+id/daily_limit_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="RM 200.00"></TextView>
@@ -109,6 +111,7 @@
 
                     </TextView>
                     <TextView
+                        android:id="@+id/daily_exp_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="RM 200.00"></TextView>
@@ -140,6 +143,7 @@
                 ></EditText>
 
             <Button
+                android:id="@+id/search_btn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/round_border"

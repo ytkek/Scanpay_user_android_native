@@ -8,6 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.MyViewHolder> {
@@ -29,11 +33,24 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.MyViewHo
 
         Balancelist c = balanceList.get(position);
 
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SS");
+        try {
+            Date date = df.parse(c.la_createdt);
+            df.applyPattern("yyyy/MM/dd hh:mm:ss aa");
+            String result = df.format(date);
 
-        holder.balance_date_time.setText(c.getBalance_date());
-        holder.balance_type.setText(c.getBalance_type());
-        holder.balance_reference.setText(c.getBalance_reference());
-        holder.balance_amount.setText(c.getBalance_amount());
+            holder.balance_date_time.setText(""+result);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        holder.balance_type.setText(c.la_type);
+        holder.balance_reference.setText(c.la_ref);
+        holder.balance_amount.setText(c.la_amount);
     }
 
     @Override
