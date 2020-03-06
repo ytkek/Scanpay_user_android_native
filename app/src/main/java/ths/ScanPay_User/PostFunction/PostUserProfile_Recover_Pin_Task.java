@@ -6,21 +6,17 @@ package ths.ScanPay_User.PostFunction;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.AsyncTask;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import ths.ScanPay_User.ApiUrl;
-import ths.ScanPay_User.FindMerchantActivity;
-import ths.ScanPay_User.FindMerchantAdapter;
+import ths.ScanPay_User.EditProfileDialog;
 import ths.ScanPay_User.FindMerchantlist;
 import ths.ScanPay_User.GetFunction.GetUserProfileListTask;
 import ths.ScanPay_User.NetworkUtil;
@@ -28,7 +24,7 @@ import ths.ScanPay_User.NetworkUtil;
 /**
  * Created by Windows on 20/9/2016.
  */
-public class PostUserProfile_Name_Task extends AsyncTask<String, Integer, String> {
+public class PostUserProfile_Recover_Pin_Task extends AsyncTask<String, Integer, String> {
 
     public Activity context = null;
     public static ArrayList<FindMerchantlist> listMockData;
@@ -37,7 +33,7 @@ public class PostUserProfile_Name_Task extends AsyncTask<String, Integer, String
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
-    public PostUserProfile_Name_Task(Activity context){
+    public PostUserProfile_Recover_Pin_Task(Activity context){
         this.context = context;
 
 
@@ -63,14 +59,18 @@ public class PostUserProfile_Name_Task extends AsyncTask<String, Integer, String
     {
         String param1= params[0];
         String param2= params[1];
+        String param3= params[2];
+
         String response="";
-        String apiUrl = ApiUrl.Domain + ApiUrl.PostUserProfile_Name_Api;
+        String apiUrl = ApiUrl.Domain + ApiUrl.PostUserProfile_Recover_Pin_Api;
         listMockData = new ArrayList<FindMerchantlist>();
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
-            hashMap.put("Name", param1);
-            hashMap.put("LoginID", param2);
+
+            hashMap.put("Pin_Number", param1);
+            hashMap.put("Email",param2);
+            hashMap.put("Name",param3);
             response = NetworkUtil.sendPost(apiUrl,hashMap);
             try{
 
@@ -96,12 +96,13 @@ public class PostUserProfile_Name_Task extends AsyncTask<String, Integer, String
 
         progDailog.dismiss();
 
-
-        if(result.equals("SAVE PROFILE NAME SUCCESS"))
+        Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
+        if(result.equals("Recovery Pin Success"))
         {
-            new GetUserProfileListTask(context).execute();
+            EditProfileDialog.forgetpin_error_message_textview.setVisibility(View.VISIBLE);
+            EditProfileDialog.forgetpin_error_message_textview.setText("Recovery email had sent , please check your email");
         }
-        Toast.makeText(context,"Save Success",Toast.LENGTH_SHORT).show();
+
         // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
 
        // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);

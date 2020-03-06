@@ -10,4 +10,5 @@ public class GlobalVariable {
     public static String OldRemarks="";
     public static String OldDob="";
     public static String OldPin="";
+    public static String OldEmail="";
 }

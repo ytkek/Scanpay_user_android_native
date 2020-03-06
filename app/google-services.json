@@ -1,0 +1,135 @@
+{
+  "project_info": {
+    "project_number": "381710976674",
+    "firebase_url": "https://scan-pay-fcm.firebaseio.com",
+    "project_id": "scan-pay-fcm",
+    "storage_bucket": "scan-pay-fcm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381710976674:android:fdbd11b814b033e7",
+        "android_client_info": {
+          "package_name": "ths.ScanPay_Loyalty_MyCash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381710976674-l9g3gioe1r64mk2mnj4t8ulql6lqd6pt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNDrB88Kk8CrLvtgpJ3bj1MNm2US9gUQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381710976674-l9g3gioe1r64mk2mnj4t8ulql6lqd6pt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381710976674:android:559cb80e198fe0dc9b79fb",
+        "android_client_info": {
+          "package_name": "ths.ScanPay_Merchant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381710976674-l9g3gioe1r64mk2mnj4t8ulql6lqd6pt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNDrB88Kk8CrLvtgpJ3bj1MNm2US9gUQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381710976674-l9g3gioe1r64mk2mnj4t8ulql6lqd6pt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381710976674:android:ceac59438d1a5f949b79fb",
+        "android_client_info": {
+          "package_name": "ths.ScanPay_User"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381710976674-jsf8jkuvkvp698oes67uvsm20c6ft5js.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ths.ScanPay_User",
+            "certificate_hash": "e9fab85fbaec1eb17b93f8d1ba8293db5e0ee993"
+          }
+        },
+        {
+          "client_id": "381710976674-l9g3gioe1r64mk2mnj4t8ulql6lqd6pt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNDrB88Kk8CrLvtgpJ3bj1MNm2US9gUQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381710976674-l9g3gioe1r64mk2mnj4t8ulql6lqd6pt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381710976674:android:d4ec945de7c57c039b79fb",
+        "android_client_info": {
+          "package_name": "ths.ScanPay_User2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381710976674-l9g3gioe1r64mk2mnj4t8ulql6lqd6pt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNDrB88Kk8CrLvtgpJ3bj1MNm2US9gUQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381710976674-l9g3gioe1r64mk2mnj4t8ulql6lqd6pt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

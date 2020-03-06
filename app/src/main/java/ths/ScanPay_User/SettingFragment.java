@@ -11,8 +11,11 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.messaging.FirebaseMessaging;
 
+import ths.ScanPay_User.Generic.GenericAutologin;
 import ths.ScanPay_User.GetFunction.GetUserProfileListTask;
+import ths.ScanPay_User.GetFunction.GetUserProfile_Name_ID_Task;
 import ths.ScanPay_User.PostFunction.PostLogout_Update_LoginID_Task;
 
 public class SettingFragment extends Fragment {
@@ -45,12 +48,16 @@ public class SettingFragment extends Fragment {
         username=(TextView)view.findViewById(R.id.username);
         ID=(TextView)view.findViewById(R.id.ID);
 
-       // new GetUserProfileListTask(getContext()).execute();
+        new GetUserProfile_Name_ID_Task(MainActivity.mainactivity).execute();
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new PostLogout_Update_LoginID_Task(getContext()).execute(MainActivity.LoginID);
+                new PostLogout_Update_LoginID_Task(MainActivity.mainactivity).execute(MainActivity.LoginID);
+
+                GenericAutologin.clearall(getContext());
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("all");
+                FirebaseMessaging.getInstance().unsubscribeFromTopic(MainActivity.LoginID);
             }
         });
         qr_img.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +98,7 @@ public class SettingFragment extends Fragment {
         });
 
         Glide.with(view)  //2
-                .load("https://www.myscanpay.com/v4/mobile/GetQRCode.aspx?c=11111") //3
+                .load("https://www.myscanpay.com/v4/mobile/GetQRCode.aspx?c="+MainActivity.LoginID) //3
 
                 .placeholder(R.drawable.img_placeholder) //5
                 .error(R.drawable.img_broken) //6

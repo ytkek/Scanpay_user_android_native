@@ -6,6 +6,8 @@ import android.media.Image;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -47,17 +49,17 @@ public class PaymentScanQRActivity extends AppCompatActivity {
     public static Button getnewotpbtn,resendotpbtn,saveotpbtn,payment_close_btn;
     public static TextView error_message,user_number;
 
-    ImageView back_btn;
-
+    ImageView back_btn,image_btn;
+    public boolean indicator;
     Button confirm_btn;
 
-    Activity PaymentScanQRActivity;
+    Activity PaymentScanQRActivityactivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.paymentscanqr_activity);
 
-        PaymentScanQRActivity=this;
+        PaymentScanQRActivityactivity=this;
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setPrompt("Scan a barcode");
         integrator.setCameraId(0);  // Use a specific camera of the device
@@ -117,6 +119,43 @@ public class PaymentScanQRActivity extends AppCompatActivity {
         pin4 = (EditText) findViewById(R.id.pin4);
         pin5 = (EditText) findViewById(R.id.pin5);
         pin6 = (EditText) findViewById(R.id.pin6);
+
+        image_btn=(ImageView)findViewById(R.id.image_btn);
+
+        image_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if(indicator==false)
+                {
+                    image_btn.setBackgroundResource(R.drawable.open_eye);
+                    indicator=true;
+                    pin1.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    pin2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    pin3.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    pin4.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    pin5.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    pin6.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+
+
+                }
+                else if (indicator==true)
+                {
+                    image_btn.setBackgroundResource(R.drawable.close_eye);
+                    indicator=false;
+                    pin1.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    pin2.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    pin3.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    pin4.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    pin5.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    pin6.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+
+                }
+
+            }
+        });
 
         pin1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -360,7 +399,7 @@ public class PaymentScanQRActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-          new PostPay_Validate_PinNumber_Task(PaymentScanQRActivity).execute(MainActivity.LoginID,pin1.getText().toString()+pin2.getText().toString()+pin3.getText().toString()+pin4.getText().toString()+pin5.getText().toString()+pin6.getText().toString());
+          new PostPay_Validate_PinNumber_Task(PaymentScanQRActivityactivity).execute(MainActivity.LoginID,pin1.getText().toString()+pin2.getText().toString()+pin3.getText().toString()+pin4.getText().toString()+pin5.getText().toString()+pin6.getText().toString());
 
             }
         });
@@ -399,7 +438,7 @@ public class PaymentScanQRActivity extends AppCompatActivity {
 
         } else {
 
-            new PostPay_Get_OTP_Task(PaymentScanQRActivity).execute(MainActivity.LoginID);
+            new PostPay_Get_OTP_Task(PaymentScanQRActivityactivity).execute(MainActivity.LoginID);
 
             new PostPay_CreditBalance_Task(this).execute(MainActivity.LoginID);
             try{

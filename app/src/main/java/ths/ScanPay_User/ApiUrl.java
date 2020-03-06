@@ -18,6 +18,7 @@ public class ApiUrl {
     public static String PostUserProfile_Remarks_Api = "PostUserProfile_Remarks.aspx";
     public static String PostUserProfile_Dob_Api = "PostUserProfile_Dob.aspx";
     public static String PostUserProfile_Pin_Api = "PostUserProfile_Pin.aspx";
+    public static String PostUserProfile_Recover_Pin_Api="Recover_Pin.aspx";
 
     public static String GetAllDiscoveryListApi = "GetAllDiscoveryList.aspx";
 
@@ -30,6 +31,7 @@ public class ApiUrl {
     public static String PostSignUp_Update_MemberList_Api = "PostSignUp_Update_MemberList.aspx";
 
     public static String PostLogin_Validate_LoginID_Api = "PostLogin_Validate_LoginID.aspx";
+    public static String PostLogin_Recover_LoginID_Password_Api="Recover_loginid_password.aspx";
     public static String PostLogout_Update_LoginID_Api = "PostLogout_Update_Status.aspx";
 
     public static String PostPay_CreditBalance_Api = "PostPay_CreditBalance.aspx";

@@ -4,40 +4,38 @@ package ths.ScanPay_User.PostFunction;
  * Created by Windows on 1/10/2016.
  */
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import ths.ScanPay_User.ApiUrl;
-import ths.ScanPay_User.FindMerchantActivity;
-import ths.ScanPay_User.FindMerchantAdapter;
 import ths.ScanPay_User.FindMerchantlist;
-import ths.ScanPay_User.GetFunction.GetUserProfileListTask;
+import ths.ScanPay_User.Generic.GenericAutologin;
+import ths.ScanPay_User.Login;
+import ths.ScanPay_User.MainActivity;
 import ths.ScanPay_User.NetworkUtil;
 
 /**
  * Created by Windows on 20/9/2016.
  */
-public class PostUserProfile_Name_Task extends AsyncTask<String, Integer, String> {
+public class PostLogin_Validate_AutoLoginID_Task extends AsyncTask<String, Integer, String> {
 
-    public Activity context = null;
+    public Context context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
+    String params1,params2;
 
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
-    public PostUserProfile_Name_Task(Activity context){
+    public PostLogin_Validate_AutoLoginID_Task(Context context){
         this.context = context;
 
 
@@ -61,16 +59,20 @@ public class PostUserProfile_Name_Task extends AsyncTask<String, Integer, String
     @Override
     protected String doInBackground(String... params)
     {
-        String param1= params[0];
-        String param2= params[1];
+        params1= params[0];
+        params2= params[1];
+
+
         String response="";
-        String apiUrl = ApiUrl.Domain + ApiUrl.PostUserProfile_Name_Api;
+        String apiUrl = ApiUrl.Domain + ApiUrl.PostLogin_Validate_LoginID_Api ;
         listMockData = new ArrayList<FindMerchantlist>();
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
-            hashMap.put("Name", param1);
-            hashMap.put("LoginID", param2);
+
+            hashMap.put("LoginID", params1);
+            hashMap.put("Password", params2);
+
             response = NetworkUtil.sendPost(apiUrl,hashMap);
             try{
 
@@ -97,11 +99,35 @@ public class PostUserProfile_Name_Task extends AsyncTask<String, Integer, String
         progDailog.dismiss();
 
 
-        if(result.equals("SAVE PROFILE NAME SUCCESS"))
+        if(result.equals("Allow Login"))
         {
-            new GetUserProfileListTask(context).execute();
+            GenericAutologin.SaveLoginPassword(params1,params2,context);
+
+
+            Intent mainactivity = new Intent(context, MainActivity.class);
+            mainactivity.putExtra("LoginID",params1);
+             context.startActivity(mainactivity);
         }
-        Toast.makeText(context,"Save Success",Toast.LENGTH_SHORT).show();
+        else if(result.equals("Not Allow Login"))
+        {
+            Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
+            Intent login = new Intent(context, Login.class);
+            context.startActivity(login);
+        }
+        else
+        {
+            Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
+            Intent login = new Intent(context, Login.class);
+            context.startActivity(login);
+
+
+        }
+
+
+
+
+
+
         // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
 
        // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);

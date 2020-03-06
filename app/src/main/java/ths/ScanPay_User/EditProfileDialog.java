@@ -3,11 +3,14 @@ package ths.ScanPay_User;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -26,6 +29,7 @@ import ths.ScanPay_User.PostFunction.PostUserProfile_Name_Task;
 import ths.ScanPay_User.PostFunction.PostUserProfile_NewPassword_Task;
 import ths.ScanPay_User.PostFunction.PostUserProfile_NickName_Task;
 import ths.ScanPay_User.PostFunction.PostUserProfile_Pin_Payment_Task;
+import ths.ScanPay_User.PostFunction.PostUserProfile_Recover_Pin_Task;
 import ths.ScanPay_User.PostFunction.PostUserProfile_Remarks_Task;
 
 public class EditProfileDialog extends Dialog implements
@@ -33,17 +37,18 @@ public class EditProfileDialog extends Dialog implements
 
     public Activity c;
     public Dialog d;
-    public Button yes, no,savebtn,savebtn_password;
-    ImageView close;
+    public Button yes, no,savebtn,savebtn_password,forgotpin_btn;
+    ImageView close,newpayment_image_btn,oldpayment_image_btn;
     String data;
     EditText newpasswordedit,oldpasswordedit,emailbind,newpaymentedit,oldpaymentedit,fullnameedit,mobilenumberedit,genderedit,nicknameedit,remarkedit;
     TextView oldpassword_error_message,password_error_message,emailink,payment_error_message,oldpayment_error_message,
-            fullname_error_message,mobilenumber_error_message,gender_error_message,nickname_error_message,remark_error_message,dob_error_message;
-
+            fullname_error_message,mobilenumber_error_message,gender_error_message,nickname_error_message,remark_error_message,
+            dob_error_message;
+    public static TextView forgetpin_error_message_textview;
     public static EditText dobedit;
 
     EditText pin1,pin2,pin3,pin4,pin5,pin6,oldpin1,oldpin2,oldpin3,oldpin4,oldpin5,oldpin6;
-    public boolean indicator_newpin,indicator_oldpin;
+    public boolean indicator_newpin,indicator_oldpin,indicator_newpayment_image_btn,indicator_oldpayment_image_btn;
     public EditProfileDialog(Activity a,String data) {
         super(a);
         // TODO Auto-generated constructor stub
@@ -443,6 +448,17 @@ public class EditProfileDialog extends Dialog implements
 
             Toast.makeText(c,GlobalVariable.OldPin,Toast.LENGTH_SHORT).show();
 
+            forgetpin_error_message_textview=(TextView)findViewById(R.id.forgetpin_error_message_textview);
+            forgetpin_error_message_textview.setVisibility(View.INVISIBLE);
+
+            forgotpin_btn = (Button)findViewById(R.id.forgotbtn);
+
+            forgotpin_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new PostUserProfile_Recover_Pin_Task(c).execute(GlobalVariable.OldPin,GlobalVariable.OldEmail,GlobalVariable.OldName);
+                }
+            });
             payment_error_message= (TextView)findViewById(R.id.payment_error_message_textview);
             payment_error_message.setVisibility(View.INVISIBLE);
 
@@ -462,6 +478,75 @@ public class EditProfileDialog extends Dialog implements
             oldpin5 = (EditText) findViewById(R.id.oldpin5);
             oldpin6 = (EditText) findViewById(R.id.oldpin6);
 
+
+            newpayment_image_btn=(ImageView)findViewById(R.id.newpayment_image_btn);
+            newpayment_image_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(indicator_newpayment_image_btn==false)
+                    {
+                        newpayment_image_btn.setBackgroundResource(R.drawable.open_eye);
+                        indicator_newpayment_image_btn=true;
+                        pin1.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        pin2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        pin3.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        pin4.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        pin5.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        pin6.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+
+
+                    }
+                    else if (indicator_newpayment_image_btn==true)
+                    {
+                        newpayment_image_btn.setBackgroundResource(R.drawable.close_eye);
+                        indicator_newpayment_image_btn=false;
+                        pin1.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        pin2.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        pin3.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        pin4.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        pin5.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        pin6.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+
+                    }
+
+                }
+            });
+            oldpayment_image_btn=(ImageView)findViewById(R.id.oldpayment_image_btn);
+            oldpayment_image_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(indicator_oldpayment_image_btn==false)
+                    {
+                        oldpayment_image_btn.setBackgroundResource(R.drawable.open_eye);
+                        indicator_oldpayment_image_btn=true;
+                        oldpin1.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        oldpin2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        oldpin3.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        oldpin4.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        oldpin5.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        oldpin6.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+
+
+                    }
+                    else if (indicator_oldpayment_image_btn==true)
+                    {
+                        oldpayment_image_btn.setBackgroundResource(R.drawable.close_eye);
+                        indicator_oldpayment_image_btn=false;
+                        oldpin1.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        oldpin2.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        oldpin3.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        oldpin4.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        oldpin5.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        oldpin6.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+
+                    }
+
+                }
+            });
+
+
             pin1.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -471,17 +556,17 @@ public class EditProfileDialog extends Dialog implements
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                    if(s.length()!=0)
-                    {
-                        pin2.requestFocus();
 
-                    }
 
                 }
 
                 @Override
                 public void afterTextChanged(Editable s) {
+                    if(s.length()!=0)
+                    {
+                        pin2.requestFocus();
 
+                    }
                 }
             });
             pin2.addTextChangedListener(new TextWatcher() {
@@ -493,17 +578,17 @@ public class EditProfileDialog extends Dialog implements
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                    if(s.length()!=0)
-                    {
-                        pin3.requestFocus();
 
-                    }
 
                 }
 
                 @Override
                 public void afterTextChanged(Editable s) {
+                    if(s.length()!=0)
+                    {
+                        pin3.requestFocus();
 
+                    }
                 }
             });
             pin3.addTextChangedListener(new TextWatcher() {
@@ -515,17 +600,17 @@ public class EditProfileDialog extends Dialog implements
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                    if(s.length()!=0)
-                    {
-                        pin4.requestFocus();
-
-                    }
 
 
                 }
 
                 @Override
                 public void afterTextChanged(Editable s) {
+                    if(s.length()!=0)
+                    {
+                        pin4.requestFocus();
+
+                    }
 
                 }
             });
@@ -539,17 +624,17 @@ public class EditProfileDialog extends Dialog implements
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                    if(s.length()!=0)
-                    {
-                        pin5.requestFocus();
 
-                    }
 
                 }
 
                 @Override
                 public void afterTextChanged(Editable s) {
+                    if(s.length()!=0)
+                    {
+                        pin5.requestFocus();
 
+                    }
                 }
             });
 
@@ -562,11 +647,7 @@ public class EditProfileDialog extends Dialog implements
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                    if(s.length()!=0)
-                    {
-                        pin6.requestFocus();
 
-                    }
 
                 }
 
@@ -574,7 +655,11 @@ public class EditProfileDialog extends Dialog implements
 
                 @Override
                 public void afterTextChanged(Editable s) {
+                    if(s.length()!=0)
+                    {
+                        pin6.requestFocus();
 
+                    }
                 }
             });
             pin6.addTextChangedListener(new TextWatcher() {
@@ -701,17 +786,17 @@ public class EditProfileDialog extends Dialog implements
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                    if(s.length()!=0)
-                    {
-                        oldpin2.requestFocus();
 
-                    }
 
                 }
 
                 @Override
                 public void afterTextChanged(Editable s) {
+                    if(s.length()!=0)
+                    {
+                        oldpin2.requestFocus();
 
+                    }
                 }
             });
             oldpin2.addTextChangedListener(new TextWatcher() {
@@ -723,16 +808,16 @@ public class EditProfileDialog extends Dialog implements
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                    if(s.length()!=0)
-                    {
-                        oldpin3.requestFocus();
-
-                    }
 
                 }
 
                 @Override
                 public void afterTextChanged(Editable s) {
+                    if(s.length()!=0)
+                    {
+                        oldpin3.requestFocus();
+
+                    }
 
                 }
             });
@@ -745,18 +830,18 @@ public class EditProfileDialog extends Dialog implements
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                    if(s.length()!=0)
-                    {
-                        oldpin4.requestFocus();
 
-                    }
 
 
                 }
 
                 @Override
                 public void afterTextChanged(Editable s) {
+                    if(s.length()!=0)
+                    {
+                        oldpin4.requestFocus();
 
+                    }
                 }
             });
 
@@ -769,16 +854,16 @@ public class EditProfileDialog extends Dialog implements
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                    if(s.length()!=0)
-                    {
-                        oldpin5.requestFocus();
-
-                    }
 
                 }
 
                 @Override
                 public void afterTextChanged(Editable s) {
+                    if(s.length()!=0)
+                    {
+                        oldpin5.requestFocus();
+
+                    }
 
                 }
             });
@@ -792,11 +877,6 @@ public class EditProfileDialog extends Dialog implements
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                    if(s.length()!=0)
-                    {
-                        oldpin6.requestFocus();
-
-                    }
 
                 }
 
@@ -804,6 +884,11 @@ public class EditProfileDialog extends Dialog implements
 
                 @Override
                 public void afterTextChanged(Editable s) {
+                    if(s.length()!=0)
+                    {
+                        oldpin6.requestFocus();
+
+                    }
 
                 }
             });

@@ -203,14 +203,15 @@
                     android:textSize="20dp"></EditText>
 
 
-                <Button
-                    android:id="@+id/showbtn"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:text="Show"
-                    android:textSize="8dp">
+                <ImageView
+                    android:id="@+id/image_btn"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/close_eye">
 
-                </Button>
+                </ImageView>
 
             </LinearLayout>
             <TextView

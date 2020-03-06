@@ -59,13 +59,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/textinputborder"
+                    android:background="@drawable/creditlog_border"
                     android:padding="10dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
                         android:text="Total Bal">
 
                     </TextView>
@@ -73,6 +74,7 @@
                         android:id="@+id/totalbalance_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
                         android:text="RM xx.xx"></TextView>
                 </LinearLayout>
 
@@ -82,11 +84,12 @@
                     android:layout_weight="1"
                     android:padding="10dp"
                     android:orientation="vertical"
-                    android:background="@drawable/textinputborder" >
+                    android:background="@drawable/creditlog_border" >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
                         android:text="Day Limit">
 
                     </TextView>
@@ -94,6 +97,7 @@
                         android:id="@+id/daily_limit_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
                         android:text="RM 200.00"></TextView>
                 </LinearLayout>
                 <LinearLayout
@@ -102,11 +106,12 @@
                     android:layout_weight="1"
                     android:padding="10dp"
                     android:orientation="vertical"
-                    android:background="@drawable/textinputborder">
+                    android:background="@drawable/creditlog_border">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
                         android:text="Day Bal">
 
                     </TextView>
@@ -114,6 +119,7 @@
                         android:id="@+id/daily_exp_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
                         android:text="RM 200.00"></TextView>
                 </LinearLayout>
 

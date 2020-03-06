@@ -28,8 +28,9 @@ public class SignUpStep3 extends AppCompatActivity {
     CheckBox agreementcheckbox;
     Button nextbtn,showbtn;
     TextView agreementbtn;
-    ImageView backbtn;
+    ImageView backbtn,image_btn;
     Activity SignUpStep3;
+    boolean indicator=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +45,42 @@ public class SignUpStep3 extends AppCompatActivity {
         pin4 = (EditText) findViewById(R.id.pin4);
         pin5 = (EditText) findViewById(R.id.pin5);
         pin6 = (EditText) findViewById(R.id.pin6);
-        showbtn=(Button) findViewById(R.id.showbtn);
+        image_btn=(ImageView)findViewById(R.id.image_btn);
+
+        image_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if(indicator==false)
+                {
+                    image_btn.setBackgroundResource(R.drawable.open_eye);
+                    indicator=true;
+                    pin1.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    pin2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    pin3.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    pin4.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    pin5.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    pin6.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+
+
+                }
+                else if (indicator==true)
+                {
+                    image_btn.setBackgroundResource(R.drawable.close_eye);
+                    indicator=false;
+                    pin1.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    pin2.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    pin3.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    pin4.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    pin5.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    pin6.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+
+                }
+
+            }
+        });
 
         agreementcheckbox = (CheckBox)findViewById(R.id.agreementcheckbox);
 
@@ -303,35 +339,7 @@ public class SignUpStep3 extends AppCompatActivity {
         });
 
 
-        showbtn.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View v, MotionEvent event) {
 
-                switch ( event.getAction() ) {
-
-                    case MotionEvent.ACTION_UP:
-                        pin1.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                        pin2.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                        pin3.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                        pin4.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                        pin5.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                        pin6.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                        break;
-
-                    case MotionEvent.ACTION_DOWN:
-
-                        pin1.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                        pin2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                        pin3.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                        pin4.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                        pin5.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                        pin6.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-
-                        break;
-
-                }
-                return true;
-            }
-        });
         agreementcheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

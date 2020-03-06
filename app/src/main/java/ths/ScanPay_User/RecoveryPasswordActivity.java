@@ -1,5 +1,6 @@
 package ths.ScanPay_User;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,17 +14,21 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import ths.ScanPay_User.PostFunction.PostLogin_Recover_LoginID_Password_Task;
+
 public class RecoveryPasswordActivity extends AppCompatActivity {
 
     ImageView backbtn;
     EditText code,loginid,email;
-    TextView checklogin,checkemail;
+    public static TextView checklogin,checkemail,password_recover_result;
     Button sendpasswordbtn;
+    Activity recoverypassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recoverypassword);
 
+        recoverypassword=this;
         backbtn = (ImageView)findViewById(R.id.backbtn);
 
         code = (EditText)findViewById(R.id.code);
@@ -40,6 +45,9 @@ public class RecoveryPasswordActivity extends AppCompatActivity {
         checkemail = (TextView)findViewById(R.id.checkemailresult);
         checkemail.setVisibility(View.INVISIBLE);
 
+        password_recover_result = (TextView)findViewById(R.id.password_recover_result);
+        password_recover_result.setVisibility(View.INVISIBLE);
+
         sendpasswordbtn = (Button)findViewById(R.id.sendpasswordbtn);
         sendpasswordbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +60,7 @@ public class RecoveryPasswordActivity extends AppCompatActivity {
                 {
                     if(checklogin.getVisibility()==View.INVISIBLE&&checkemail.getVisibility()==View.INVISIBLE)
                     {
-                        Toast.makeText(getApplicationContext()," send successfully",Toast.LENGTH_SHORT).show();
+                        new PostLogin_Recover_LoginID_Password_Task(recoverypassword).execute("60"+loginid.getText().toString(),email.getText().toString());
 
                     }
                     else

@@ -1,6 +1,7 @@
 package ths.ScanPay_User;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +51,19 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.MyViewHo
 
         holder.balance_type.setText(c.la_type);
         holder.balance_reference.setText(c.la_ref);
-        holder.balance_amount.setText(c.la_amount);
+
+        if(c.la_amount.contains("-"))
+        {
+            holder.balance_amount.setTextColor(Color.parseColor("#FF0000"));
+            String text=c.la_amount.replace("-","");
+            holder.balance_amount.setText(text);
+        }
+        else
+        {
+            holder.balance_amount.setTextColor(Color.parseColor("#1F45FC"));
+            holder.balance_amount.setText(c.la_amount);
+        }
+
     }
 
     @Override

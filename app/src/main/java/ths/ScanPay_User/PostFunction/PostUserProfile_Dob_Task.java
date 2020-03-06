@@ -4,6 +4,7 @@ package ths.ScanPay_User.PostFunction;
  * Created by Windows on 1/10/2016.
  */
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -24,14 +25,14 @@ import ths.ScanPay_User.NetworkUtil;
  */
 public class PostUserProfile_Dob_Task extends AsyncTask<String, Integer, String> {
 
-    public Context context = null;
+    public Activity context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
 
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
-    public PostUserProfile_Dob_Task(Context context){
+    public PostUserProfile_Dob_Task(Activity context){
         this.context = context;
 
 

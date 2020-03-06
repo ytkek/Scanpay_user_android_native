@@ -70,7 +70,9 @@
                 android:id="@+id/idbox"
                 android:layout_width="fill_parent"
                 android:layout_height="45dp"
-
+                android:inputType="phone"
+                android:digits="1234567890"
+                android:maxLength="10"
                 android:paddingLeft="10dp"
                 android:text=""
                 android:layout_marginLeft="10dp">

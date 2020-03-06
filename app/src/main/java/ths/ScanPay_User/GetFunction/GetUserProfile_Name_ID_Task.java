@@ -12,7 +12,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.provider.Settings;
-import android.util.Log;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,27 +22,21 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 import ths.ScanPay_User.ApiUrl;
 import ths.ScanPay_User.EditProfileActivity;
 import ths.ScanPay_User.EditProfilelist;
 import ths.ScanPay_User.GlobalVariable;
 import ths.ScanPay_User.MainActivity;
-import ths.ScanPay_User.MessageCentreActivity;
-import ths.ScanPay_User.MessageCentreAdapter;
-import ths.ScanPay_User.MessageCentrelist;
 import ths.ScanPay_User.NetworkUtil;
 import ths.ScanPay_User.SettingFragment;
 
 /**
  * Created by Windows on 20/9/2016.
  */
-public class GetUserProfileListTask extends AsyncTask<Void, Integer, ArrayList<EditProfilelist>> {
+public class GetUserProfile_Name_ID_Task extends AsyncTask<Void, Integer, ArrayList<EditProfilelist>> {
 
     public Activity context = null;
     public static ArrayList<EditProfilelist> listMockData;
@@ -52,7 +45,7 @@ public class GetUserProfileListTask extends AsyncTask<Void, Integer, ArrayList<E
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
-    public GetUserProfileListTask(Activity context)
+    public GetUserProfile_Name_ID_Task(Activity context)
     {
         this.context = context;
 
@@ -218,54 +211,15 @@ public class GetUserProfileListTask extends AsyncTask<Void, Integer, ArrayList<E
         if(result.isEmpty())
         {
 
-        }else {
-
-
-            // Collections.sort(result, Collections.reverseOrder());
-            EditProfileActivity.changefullname.setText(result.get(0).getMl_name() + " ");
-            GlobalVariable.OldName = result.get(0).getMl_name();
-            // SettingFragment.username.setText(result.get(0).getMl_name());
-
-            EditProfileActivity.changeid.setText(result.get(0).getMl_login() + " ");
-            //  SettingFragment.ID.setText(result.get(0).getMl_login());
-            EditProfileActivity.changepassword.setText(result.get(0).getMl_password() + " ");
-
-            EditProfileActivity.changeemail.setText(result.get(0).getMl_email() + " ");
-            GlobalVariable.OldEmail = result.get(0).getMl_email();
-
-            EditProfileActivity.changemobile.setText(result.get(0).getMl_hpno() + " ");
-            GlobalVariable.OldMobileNumber = result.get(0).getMl_hpno();
-
-            if (result.get(0).getMl_gender().equals("M")) {
-                EditProfileActivity.changegender.setText("male");
-                GlobalVariable.OldGender = "male";
-            } else if (result.get(0).getMl_gender().equals("F")) {
-                EditProfileActivity.changegender.setText("female");
-                GlobalVariable.OldGender = "female";
-            }
-
-            EditProfileActivity.changenickname.setText(result.get(0).getMl_nickname() + " ");
-            GlobalVariable.OldNickName = result.get(0).getMl_nickname();
-
-            EditProfileActivity.changeremark.setText(result.get(0).getMl_remarks() + " ");
-            GlobalVariable.OldRemarks = result.get(0).getMl_remarks();
-
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-            try {
-                Date date = format.parse(result.get(0).getMl_dob());
-                EditProfileActivity.changedob.setText(DateFormat.getDateInstance(DateFormat.SHORT).format(date) + " ");
-                GlobalVariable.OldDob = DateFormat.getDateInstance(DateFormat.SHORT).format(date);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-
-            EditProfileActivity.changepin.setText(result.get(0).getMl_paymentpin() + " ");
-            GlobalVariable.OldPin = result.get(0).getMl_paymentpin();
-
-
         }
+        else
+        {
+            SettingFragment.ID.setText(result.get(0).getMl_login());
+            SettingFragment.username.setText(result.get(0).getMl_name());
+        }
+
     }
+
 
     private void showDialog()
     {
@@ -280,12 +234,10 @@ public class GetUserProfileListTask extends AsyncTask<Void, Integer, ArrayList<E
                 .setNegativeButton("Quit", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
-                        context.finish();
                     }
                 });
         AlertDialog alert = builder.create();
         alert.show();
     }
-
 
 }

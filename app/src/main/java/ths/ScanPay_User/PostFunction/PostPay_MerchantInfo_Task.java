@@ -145,23 +145,25 @@ public class PostPay_MerchantInfo_Task extends AsyncTask<String, Integer, String
             }
             else
             {
-                String[] arrayString = result.split(",");
-
-
-
-                PaymentScanQRActivity.merchant_name.setText("Transaction with merchant "+arrayString[0]);
-                PaymentScanQRActivity.merchantname=arrayString[0];
-               if(arrayString[1].equals("cashier"))
+                if(result.isEmpty())
                 {
-                   PaymentScanQRActivity.amount_edit.setEnabled(true);
+
+                }else {
+
+
+                    String[] arrayString = result.split(",");
+
+
+                    PaymentScanQRActivity.merchant_name.setText("Transaction with merchant " + arrayString[0]);
+                    PaymentScanQRActivity.merchantname = arrayString[0];
+                    if (arrayString[1].equals("cashier")) {
+                        PaymentScanQRActivity.amount_edit.setEnabled(true);
+                    } else if (arrayString[1].equals("pay")) {
+                        PaymentScanQRActivity.amount_edit.setEnabled(false);
+                    }
+
+
                 }
-               else if (arrayString[1].equals("pay"))
-              {
-                   PaymentScanQRActivity.amount_edit.setEnabled(false);
-               }
-
-
-
 
             }
 

@@ -3,9 +3,14 @@ package ths.ScanPay_User.GetFunction;
 /**
  * Created by Windows on 1/10/2016.
  */
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.provider.Settings;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -29,14 +34,14 @@ import ths.ScanPay_User.NetworkUtil;
  */
 public class GetFindMerchantListTask extends AsyncTask<Void, Integer, ArrayList<FindMerchantlist>> {
 
-    public Context context = null;
+    public Activity context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
 
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
-    public GetFindMerchantListTask(Context context, RecyclerView list)
+    public GetFindMerchantListTask(Activity context, RecyclerView list)
     {
         this.context = context;
         this.list=list;
@@ -233,6 +238,15 @@ public class GetFindMerchantListTask extends AsyncTask<Void, Integer, ArrayList<
 
 
         }
+        else
+        {
+            context.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    showDialog();
+                }
+            });
+        }
 
         return listMockData;
     }
@@ -405,6 +419,25 @@ public class GetFindMerchantListTask extends AsyncTask<Void, Integer, ArrayList<
 
     }
 
+    private void showDialog()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("Connect to Internet or quit")
+                .setCancelable(false)
+                .setPositiveButton("Connect to Internet", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        context.startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
+                    }
+                })
+                .setNegativeButton("Quit", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                        context.finish();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 
 
 

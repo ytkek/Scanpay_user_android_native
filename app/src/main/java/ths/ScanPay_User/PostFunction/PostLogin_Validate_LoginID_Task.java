@@ -4,10 +4,14 @@ package ths.ScanPay_User.PostFunction;
  * Created by Windows on 1/10/2016.
  */
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.provider.Settings;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +21,8 @@ import java.util.HashMap;
 
 import ths.ScanPay_User.ApiUrl;
 import ths.ScanPay_User.FindMerchantlist;
+import ths.ScanPay_User.Generic.GenericAutologin;
+import ths.ScanPay_User.Login;
 import ths.ScanPay_User.MainActivity;
 import ths.ScanPay_User.NetworkUtil;
 import ths.ScanPay_User.SignUpStep2;
@@ -26,7 +32,7 @@ import ths.ScanPay_User.SignUpStep2;
  */
 public class PostLogin_Validate_LoginID_Task extends AsyncTask<String, Integer, String> {
 
-    public Context context = null;
+    public Activity context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
     String params1,params2;
@@ -34,7 +40,7 @@ public class PostLogin_Validate_LoginID_Task extends AsyncTask<String, Integer, 
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
-    public PostLogin_Validate_LoginID_Task(Context context){
+    public PostLogin_Validate_LoginID_Task(Activity context){
         this.context = context;
 
 
@@ -85,6 +91,16 @@ public class PostLogin_Validate_LoginID_Task extends AsyncTask<String, Integer, 
 
 
 
+        }else
+        {
+
+            context.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    showDialog();
+                }
+            });
+
         }
 
         return response;
@@ -100,6 +116,9 @@ public class PostLogin_Validate_LoginID_Task extends AsyncTask<String, Integer, 
 
         if(result.equals("Allow Login"))
         {
+            GenericAutologin.SaveLoginPassword(params1,params2,context);
+
+
             Intent mainactivity = new Intent(context, MainActivity.class);
             mainactivity.putExtra("LoginID",params1);
              context.startActivity(mainactivity);
@@ -107,10 +126,13 @@ public class PostLogin_Validate_LoginID_Task extends AsyncTask<String, Integer, 
         else if(result.equals("Not Allow Login"))
         {
             Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
+
         }
         else
         {
             Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
+
+
         }
 
 
@@ -125,7 +147,24 @@ public class PostLogin_Validate_LoginID_Task extends AsyncTask<String, Integer, 
     }
 
 
-
+    private void showDialog()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("Connect to Internet or quit")
+                .setCancelable(false)
+                .setPositiveButton("Connect to Internet", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        context.startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
+                    }
+                })
+                .setNegativeButton("Quit", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 
 
 }

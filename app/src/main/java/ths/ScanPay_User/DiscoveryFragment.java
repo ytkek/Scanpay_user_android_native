@@ -61,7 +61,7 @@ public class DiscoveryFragment extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                new GetAllDiscoveryListTask(getContext(),recyclerView).execute();
+                new GetAllDiscoveryListTask(MainActivity.mainactivity,recyclerView).execute();
             }
 
             @Override
@@ -76,7 +76,7 @@ public class DiscoveryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                indicator=true;
-                new GetAllDiscoveryListTask(getContext(),recyclerView).execute();
+                new GetAllDiscoveryListTask(MainActivity.mainactivity,recyclerView).execute();
             }
 
         });
@@ -86,7 +86,7 @@ public class DiscoveryFragment extends Fragment {
 
         recyclerView.setLayoutManager(layoutManager);
 
-        new GetAllDiscoveryListTask(getContext(),recyclerView).execute();
+        new GetAllDiscoveryListTask(MainActivity.mainactivity,recyclerView).execute();
        // List<Discoverylist> discoverylist = new ArrayList<>();
       //  discoverylist.add(new Discoverylist("https://f0.pngfuel.com/png/408/791/sticker-sales-hot-price-fire-sticker-white-hot-price-text-with-red-flame-background-illustration-png-clip-art-thumbnail.png","SCANPAY","SCANPAY ON SALES"));
       //  discoverylist.add(new Discoverylist("https://f0.pngfuel.com/png/408/791/sticker-sales-hot-price-fire-sticker-white-hot-price-text-with-red-flame-background-illustration-png-clip-art-thumbnail.png","SCANPAY","SCANPAY ON SALES"));

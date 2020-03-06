@@ -4,9 +4,14 @@ package ths.ScanPay_User.PostFunction;
  * Created by Windows on 1/10/2016.
  */
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Toast;
 
@@ -25,14 +30,14 @@ import ths.ScanPay_User.SignUpStep1;
  */
 public class PostSignUp_Send_OTP_Task extends AsyncTask<String, Integer, String> {
 
-    public Context context = null;
+    public Activity context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
 
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
-    public PostSignUp_Send_OTP_Task(Context context){
+    public PostSignUp_Send_OTP_Task(Activity context){
         this.context = context;
 
 
@@ -81,6 +86,16 @@ public class PostSignUp_Send_OTP_Task extends AsyncTask<String, Integer, String>
 
         }
 
+        else
+        {
+
+            context.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    showDialog();
+                }
+            });
+        }
         return response;
     }
 
@@ -111,7 +126,24 @@ public class PostSignUp_Send_OTP_Task extends AsyncTask<String, Integer, String>
     }
 
 
-
+    private void showDialog()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("Connect to Internet or quit")
+                .setCancelable(false)
+                .setPositiveButton("Connect to Internet", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        context.startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
+                    }
+                })
+                .setNegativeButton("Quit", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 
 
 }

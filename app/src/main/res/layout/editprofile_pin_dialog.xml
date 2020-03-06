@@ -43,14 +43,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="0dp"
         android:orientation="horizontal">
         <EditText
             android:id="@+id/pin1"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/textinputborder"
-            android:inputType="phone"
+            android:inputType="numberPassword"
             android:digits="1234567890"
             android:maxLength="1"
             android:hint=""
@@ -62,7 +62,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/textinputborder"
-            android:inputType="phone"
+            android:inputType="numberPassword"
             android:digits="1234567890"
             android:maxLength="1"
             android:hint=""
@@ -74,7 +74,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/textinputborder"
-            android:inputType="phone"
+            android:inputType="numberPassword"
             android:digits="1234567890"
             android:maxLength="1"
             android:hint=""
@@ -86,7 +86,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/textinputborder"
-            android:inputType="phone"
+            android:inputType="numberPassword"
             android:digits="1234567890"
             android:maxLength="1"
             android:hint=""
@@ -98,7 +98,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/textinputborder"
-            android:inputType="phone"
+            android:inputType="numberPassword"
             android:digits="1234567890"
             android:maxLength="1"
             android:hint=""
@@ -109,13 +109,22 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/textinputborder"
-            android:inputType="phone"
+            android:inputType="numberPassword"
             android:digits="1234567890"
             android:maxLength="1"
             android:hint=""
             android:paddingLeft="20dp"
             android:textSize="20dp"></EditText>
 
+        <ImageView
+            android:id="@+id/newpayment_image_btn"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="0dp"
+            android:background="@drawable/close_eye">
+
+        </ImageView>
 
 
     </LinearLayout>
@@ -138,14 +147,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="0dp"
         android:orientation="horizontal">
         <EditText
             android:id="@+id/oldpin1"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/textinputborder"
-            android:inputType="phone"
+            android:inputType="numberPassword"
             android:digits="1234567890"
             android:maxLength="1"
             android:hint=""
@@ -157,7 +166,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/textinputborder"
-            android:inputType="phone"
+            android:inputType="numberPassword"
             android:digits="1234567890"
             android:maxLength="1"
             android:hint=""
@@ -169,7 +178,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/textinputborder"
-            android:inputType="phone"
+            android:inputType="numberPassword"
             android:digits="1234567890"
             android:maxLength="1"
             android:hint=""
@@ -181,7 +190,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/textinputborder"
-            android:inputType="phone"
+            android:inputType="numberPassword"
             android:digits="1234567890"
             android:maxLength="1"
             android:hint=""
@@ -193,7 +202,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/textinputborder"
-            android:inputType="phone"
+            android:inputType="numberPassword"
             android:digits="1234567890"
             android:maxLength="1"
             android:hint=""
@@ -204,7 +213,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/textinputborder"
-            android:inputType="phone"
+            android:inputType="numberPassword"
             android:digits="1234567890"
             android:maxLength="1"
             android:hint=""
@@ -212,7 +221,15 @@
             android:textSize="20dp"></EditText>
 
 
+        <ImageView
+            android:id="@+id/oldpayment_image_btn"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="0dp"
+            android:background="@drawable/close_eye">
 
+        </ImageView>
     </LinearLayout>
     <TextView
         android:id="@+id/oldpayment_error_message_textview"
@@ -239,5 +256,11 @@
         android:textColor="#ffffff"
         android:text="Forget Pin"></Button>
 
-
+    <TextView
+        android:id="@+id/forgetpin_error_message_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#D81B60"
+        android:text="error message"
+        android:layout_marginLeft="10dp"></TextView>
 </LinearLayout>
