@@ -1,10 +1,12 @@
 package ths.ScanPay_User;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,20 +34,44 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
     @Override
     public void onBindViewHolder(LocationAdapter.MyViewHolder holder, int position) {
 
-        Locationlist c = locationList.get(position);
+        final Locationlist c = locationList.get(position);
 
         Glide.with(context)  //2
-                .load(c.getLocation_img()) //3
-                .placeholder(R.drawable.img_placeholder) //5
-                .error(R.drawable.img_broken) //6
-                .into(holder.location_img);
-        holder.location_companyname.setText(c.getLocation_companyname());
-        holder.location_address.setText(c.getLocation_address());
+                .load(c.getM_topup()) //3
+                .fitCenter()
+                .into(holder.topup);
+
         Glide.with(context)  //2
-                .load(c.getLocation_img()) //3
+                .load(ApiUrl.PicDomain+c.getM_profileimagepath()+c.getM_profilefilename()) //3
+                .fitCenter()
                 .placeholder(R.drawable.img_placeholder) //5
                 .error(R.drawable.img_broken) //6
-                .into(holder.location_topup);
+                .into(holder.findmerchant_shopimage);
+
+        holder.findmerchant_shopname.setText(c.getM_companyname());
+        holder.findmerchant_shopaddress.setText(c.getM_address1()+c.getM_address2()+c.getM_address3());
+        holder.shoplayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(v.getContext(),FindMerchantDetail.class);
+                a.putExtra("m_companyname",c.getM_companyname());
+                a.putExtra("m_address",c.getM_address1()+c.getM_address2()+c.getM_address3()+c.getM_address4());
+                a.putExtra("m_tel",c.getM_telcc()+c.getM_telac()+c.getM_telno());
+                a.putExtra("m_mobileno",c.getM_mobileno());
+                a.putExtra("m_email",c.getM_email());
+                a.putExtra("m_url",c.getM_url());
+                a.putExtra("m_topup",c.getM_topup());
+                a.putExtra("m_businesshour",c.getM_businesshour());
+                a.putExtra("m_remarks",c.getM_remarks());
+                a.putExtra("m_profilepic",ApiUrl.PicDomain+c.getM_profileimagepath()+c.getM_profilefilename());
+                a.putExtra("m_photofilename1",ApiUrl.PicDomain+c.getM_profileimagepath()+c.getM_photofilename1());
+                a.putExtra("m_photofilename2",ApiUrl.PicDomain+c.getM_profileimagepath()+c.getM_photofilename2());
+                a.putExtra("m_photofilename3",ApiUrl.PicDomain+c.getM_profileimagepath()+c.getM_photofilename3());
+                // a.putExtra("wtf2","wtf2");
+                v.getContext().startActivity(a);
+                //Toast.makeText(context,""+position,Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -56,7 +82,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
 
     @Override
     public LocationAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.location_list_row, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.findmerchant_list_row, parent, false);
 
         LocationAdapter.MyViewHolder viewHolder = new LocationAdapter.MyViewHolder(v);
         return viewHolder;
@@ -64,26 +90,22 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public ImageView location_img;
-        public TextView location_companyname;
-        public TextView location_address;
-        public ImageView location_topup;
-
+        public ImageView findmerchant_shopimage,topup;
+        public TextView findmerchant_shopname;
+        public TextView findmerchant_shopaddress;
+        public LinearLayout shoplayout;
 
         public MyViewHolder(View view) {
             super(view);
 
-            location_img = (ImageView) view.findViewById(R.id.location_img);
-            location_companyname = (TextView) view.findViewById(R.id.location_companyname);
-            location_address = (TextView) view.findViewById(R.id.location_address);
-            location_topup = (ImageView) view.findViewById(R.id.location_topup);
 
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(context, String.valueOf(getLayoutPosition()), Toast.LENGTH_SHORT).show();
-                }
-            });
+            findmerchant_shopimage = (ImageView) view.findViewById(R.id.shopimage);
+            topup=(ImageView)view.findViewById(R.id.topup);
+            findmerchant_shopname = (TextView) view.findViewById(R.id.shopname);
+            findmerchant_shopaddress = (TextView) view.findViewById(R.id.shopaddress);
+            shoplayout = (LinearLayout)view.findViewById(R.id.shoplayout);
+
+
         }
     }
 

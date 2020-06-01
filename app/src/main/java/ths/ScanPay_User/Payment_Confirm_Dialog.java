@@ -16,14 +16,14 @@ import ths.ScanPay_User.PostFunction.PostPay_Confirm_Pay_Task;
 public class Payment_Confirm_Dialog extends Dialog implements
         android.view.View.OnClickListener
 {
-    Context c;
+    Activity c;
     String merchantname,amount;
     TextView payment_textview;
     EditText payment_amount;
     Button confirmbtn;
     ImageView x_btn;
 
-    public Payment_Confirm_Dialog(Context a,String merchantname,String amount) {
+    public Payment_Confirm_Dialog(Activity a,String merchantname,String amount) {
         super(a);
         // TODO Auto-generated constructor stub
         this.c = a;

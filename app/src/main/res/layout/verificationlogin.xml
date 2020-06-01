@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:id="@+id/backbtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:layout_gravity="left"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_back3"></ImageView>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Reset Login Status"
+        android:textStyle="bold"
+        android:textSize="18dp">
+
+    </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Secure your own account."
+        ></TextView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#000000"></View>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login ID"
+        android:textSize="18dp"
+        android:layout_margin="10dp">
+
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/code"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:inputType="phone"
+            android:digits="1234567890"
+            android:maxLength="10"
+            android:hint="60">
+
+        </EditText>
+        <EditText
+            android:id="@+id/loginid_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:inputType="phone"
+            android:digits="1234567890"
+            android:maxLength="10"
+            android:hint="1121829875">
+
+        </EditText>
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/checkloginresult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="error message"
+        android:textColor="#ED1C24"
+        android:layout_marginLeft="10dp">
+
+    </TextView>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textSize="18dp"
+        android:layout_margin="10dp">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/emailedit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:inputType="textEmailAddress"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+    </EditText>
+
+    <TextView
+        android:id="@+id/checkemailresult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="error message"
+        android:textColor="#ED1C24"
+        android:layout_marginLeft="10dp">
+
+    </TextView>
+
+
+    <Button
+        android:id="@+id/sendotpbtn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/round_border"
+        android:layout_gravity="center"
+        android:textColor="#ffffff"
+        android:layout_margin="10dp"
+        android:text="Send OTP">
+
+    </Button>
+    <TextView
+        android:id="@+id/otp_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="error message"
+        android:textColor="#ED1C24"
+        android:layout_marginLeft="10dp">
+
+    </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OTP"
+        android:textSize="18dp"
+        android:layout_margin="10dp">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/otpedit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:inputType="number"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+    </EditText>
+
+    <Button
+        android:id="@+id/loginbtn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/round_border"
+        android:layout_gravity="center"
+        android:textColor="#ffffff"
+        android:layout_margin="10dp"
+        android:text="Reset">
+
+    </Button>
+
+
+
+</LinearLayout>

@@ -41,16 +41,6 @@ public class MessageCentreAdapter extends RecyclerView.Adapter<MessageCentreAdap
         final MessageCentrelist c = messagecentreList.get(position);
 
 
-            if(MessageCentreActivity.db.getAllMessage().get(position).getIndicator().equals("false"))
-            {
-                holder.indicator.setVisibility(View.VISIBLE);
-              //  Log.d("wtf",""+MessageCentreActivity.db.getAllMessage().get(position).getIndicator());
-            }
-            else if (MessageCentreActivity.db.getAllMessage().get(position).getIndicator().equals("true"))
-            {
-                holder.indicator.setVisibility(View.INVISIBLE);
-              //  Log.d("wtf",""+MessageCentreActivity.db.getAllMessage().get(position).getIndicator());
-            }
 
 
             // MessageCentreActivity.db.deleteNote(MessageCentreActivity.db.getAllMessage().get(i));
@@ -107,8 +97,7 @@ public class MessageCentreAdapter extends RecyclerView.Adapter<MessageCentreAdap
 
             messagecentre_title = (TextView) view.findViewById(R.id.title);
             messagecentre_message = (TextView) view.findViewById(R.id.message);
-            indicator = (ImageView)view.findViewById(R.id.indicator);
-            indicator.setVisibility(View.INVISIBLE);
+
             message_layout= (LinearLayout)view.findViewById(R.id.messagelayout);
 
         }

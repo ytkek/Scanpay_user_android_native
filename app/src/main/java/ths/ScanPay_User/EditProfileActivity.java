@@ -273,7 +273,7 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
-                {
+                    {
                     changegender.setEnabled(false);
                     Toast.makeText(getApplicationContext(),"save password",Toast.LENGTH_SHORT).show();
                 }

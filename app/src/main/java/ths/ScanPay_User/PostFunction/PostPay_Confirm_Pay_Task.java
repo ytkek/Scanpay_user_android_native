@@ -4,9 +4,14 @@ package ths.ScanPay_User.PostFunction;
  * Created by Windows on 1/10/2016.
  */
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -14,6 +19,7 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import ths.ScanPay_User.ApiUrl;
@@ -26,7 +32,7 @@ import ths.ScanPay_User.PaymentScanQRActivity;
  */
 public class PostPay_Confirm_Pay_Task extends AsyncTask<String, Integer, String> {
 
-    public Context context = null;
+    public Activity context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
 
@@ -34,7 +40,7 @@ public class PostPay_Confirm_Pay_Task extends AsyncTask<String, Integer, String>
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
-    public PostPay_Confirm_Pay_Task(Context context){
+    public PostPay_Confirm_Pay_Task(Activity context){
         this.context = context;
 
 
@@ -118,6 +124,15 @@ public class PostPay_Confirm_Pay_Task extends AsyncTask<String, Integer, String>
 
 
         }
+        else
+        {
+            context.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    showDialog();
+                }
+            });
+        }
 
         return response;
     }
@@ -133,6 +148,11 @@ public class PostPay_Confirm_Pay_Task extends AsyncTask<String, Integer, String>
         if(result.equals("payment success"))
         {
             PaymentScanQRActivity.payment_layout.setVisibility(View.GONE);
+
+
+            PaymentScanQRActivity.payment_result_amount.setText("Amount: "+PaymentScanQRActivity.amount_edit.getText().toString());
+            PaymentScanQRActivity.payment_result_date.setText("Date: "+java.text.DateFormat.getDateTimeInstance().format(new Date()));
+            PaymentScanQRActivity.payment_result_merchant.setText(PaymentScanQRActivity.merchantname);
             PaymentScanQRActivity.payment_result_layout.setVisibility(View.VISIBLE);
         }
         else
@@ -152,6 +172,25 @@ public class PostPay_Confirm_Pay_Task extends AsyncTask<String, Integer, String>
 
        // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
+    }
+    private void showDialog()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("Connect to Internet or quit")
+                .setCancelable(false)
+                .setPositiveButton("Connect to Internet", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        context.startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
+                    }
+                })
+                .setNegativeButton("Quit", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                        context.finish();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
 

@@ -1,7 +1,9 @@
 package ths.ScanPay_User;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
@@ -228,13 +230,14 @@ public class EditProfileDialog extends Dialog implements
             setContentView(R.layout.editprofile_email_dialog);
             emailbind = (EditText)findViewById(R.id.emailbind);
             emailbind.setEnabled(false);
-
+            emailbind.setText(GlobalVariable.OldEmail);
             emailink = (TextView)findViewById(R.id.emaillink);
             emailink.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                             "mailto","support@myscanpay.my", null));
+                    emailIntent.putExtra(Intent.EXTRA_EMAIL,GlobalVariable.OldEmail);
                     emailIntent.putExtra(Intent.EXTRA_SUBJECT, "");
                     emailIntent.putExtra(Intent.EXTRA_TEXT, "");
                     c.startActivity(Intent.createChooser(emailIntent, "Send email..."));
@@ -251,7 +254,46 @@ public class EditProfileDialog extends Dialog implements
 
             genderedit = (EditText)findViewById(R.id.genderedit);
             genderedit.setText(GlobalVariable.OldGender);
-            genderedit.addTextChangedListener(new TextWatcher() {
+            genderedit.setFocusable(false);
+            genderedit.setClickable(true);
+            genderedit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                  //  EditProfileGenderDialog cdd=new EditProfileGenderDialog(c);
+
+                   // cdd.show();
+                  //  Window window = cdd.getWindow();
+                  //  window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+                    builder1.setMessage("Please choose your gender");
+                    builder1.setCancelable(true);
+
+                    builder1.setPositiveButton("Male", new OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            genderedit.setText("male");
+                        }
+                    });
+                    builder1.setNegativeButton("Female", new OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            genderedit.setText("female");
+                        }
+                    });
+
+                    AlertDialog alertDialog = builder1.create();
+                    alertDialog.show();
+                }
+            });
+            genderedit.addTextChangedListener(new TextWatcher() {{
+
+               // EditProfileDialog cdd=new EditProfileDialog(c,"gender");
+
+               // cdd.show();
+             //   Window window = cdd.getWindow();
+              //  window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            }
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 

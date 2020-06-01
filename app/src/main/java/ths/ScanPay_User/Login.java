@@ -1,6 +1,8 @@
 package ths.ScanPay_User;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,12 +20,15 @@ public class Login extends AppCompatActivity {
 
     Button signup,login;
     EditText postalcode,idbox,passwordbox;
-    TextView recoverypasswordbtn;
+    TextView recoverypasswordbtn,verificationloginbtn;
     Activity loginactivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+
+
 
         loginactivity=this;
         idbox=(EditText)findViewById(R.id.idbox);
@@ -58,6 +63,15 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent lol = new Intent(getApplicationContext(),RecoveryPasswordActivity.class);
+                startActivity(lol);
+            }
+        });
+
+        verificationloginbtn = (TextView)findViewById(R.id.verification_login);
+        verificationloginbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent lol = new Intent(getApplicationContext(),Verification_LoginPage.class);
                 startActivity(lol);
             }
         });

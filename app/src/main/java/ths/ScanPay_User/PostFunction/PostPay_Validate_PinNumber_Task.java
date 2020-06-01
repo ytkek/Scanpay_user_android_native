@@ -4,9 +4,14 @@ package ths.ScanPay_User.PostFunction;
  * Created by Windows on 1/10/2016.
  */
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.provider.Settings;
 import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
@@ -24,13 +29,14 @@ import ths.ScanPay_User.MainActivity;
 import ths.ScanPay_User.NetworkUtil;
 import ths.ScanPay_User.PaymentScanQRActivity;
 import ths.ScanPay_User.Payment_Confirm_Dialog;
+import ths.ScanPay_User.Verification_LoginPage;
 
 /**
  * Created by Windows on 20/9/2016.
  */
 public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, String> {
 
-    public Context context = null;
+    public Activity context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
     String params1,params2;
@@ -38,7 +44,7 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
-    public PostPay_Validate_PinNumber_Task(Context context){
+    public PostPay_Validate_PinNumber_Task(Activity context){
         this.context = context;
 
 
@@ -90,6 +96,15 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
 
 
         }
+        else
+        {
+            context.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    showDialog();
+                }
+            });
+        }
 
         return response;
     }
@@ -103,11 +118,93 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
 
         if(result.equals("Valid Pin Number"))
         {
-            Payment_Confirm_Dialog cdd=new Payment_Confirm_Dialog(context,PaymentScanQRActivity.merchantname,PaymentScanQRActivity.amount_edit.getText().toString());
 
-            cdd.show();
-            Window window = cdd.getWindow();
-            window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            double a ;
+            double b;
+            double c;
+
+            a = Double.parseDouble(PaymentScanQRActivity.credit_balance);
+            b= Double.parseDouble(PaymentScanQRActivity.qr_amount);
+            c = Double.parseDouble(PaymentScanQRActivity.dailyexp);
+            if (b>a)
+
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("Not Enough Credit")
+                        .setCancelable(false)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                PaymentScanQRActivity.PaymentScanQRActivityactivity.finish();
+                            }
+                        });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+
+            }
+            else if ((b +c)>200.00)
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("Exceed Daily Limit 1")
+                        .setCancelable(false)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                PaymentScanQRActivity.PaymentScanQRActivityactivity.finish();
+                            }
+                        });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+            else if (b>(200.00))
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("Exceed Daily Limit 2")
+                        .setCancelable(false)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                PaymentScanQRActivity.PaymentScanQRActivityactivity.finish();
+                            }
+                        });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+            else if (b>(200.00+c))
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("Exceed Daily Limit 3")
+                        .setCancelable(false)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                PaymentScanQRActivity.PaymentScanQRActivityactivity.finish();
+                            }
+                        });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+            else
+
+            {
+
+                Payment_Confirm_Dialog cdd=new Payment_Confirm_Dialog(context,PaymentScanQRActivity.merchantname,PaymentScanQRActivity.amount_edit.getText().toString());
+
+                cdd.show();
+                Window window = cdd.getWindow();
+                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+
+
+            }
+
+
+
+
+
+
+
            // new PostPay_Confirm_Pay_Task(context).execute(MainActivity.LoginID,PaymentScanQRActivity.merchantid,PaymentScanQRActivity.merchantname,PaymentScanQRActivity.type,PaymentScanQRActivity.amount_edit.getText().toString(),PaymentScanQRActivity.qrcode,PaymentScanQRActivity.lqrcode);
         }
         else if(result.equals("Invalid Pin Number"))
@@ -130,6 +227,25 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
 
        // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
+    }
+    private void showDialog()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("Connect to Internet or quit")
+                .setCancelable(false)
+                .setPositiveButton("Connect to Internet", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        context.startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
+                    }
+                })
+                .setNegativeButton("Quit", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                        context.finish();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
 

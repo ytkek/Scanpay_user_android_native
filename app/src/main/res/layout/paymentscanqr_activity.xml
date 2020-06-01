@@ -21,13 +21,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="138dp"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:textStyle="bold"
+            android:layout_marginBottom="10dp"
             android:text="Check OTP"
-            android:layout_marginBottom="10dp"></TextView>
+            android:textSize="20dp"
+            android:textStyle="bold"></TextView>
         <TextView
             android:id="@+id/otp_empty_textview"
             android:layout_width="wrap_content"
@@ -360,20 +361,72 @@ Why you receive this message :\n 1.) Change of device\n 2.) Change of credential
             android:layout_height="wrap_content"
             android:textSize="24dp"
             android:textStyle="bold"
-            android:text="PAYMENT SUCCESSFULLY"
-            android:layout_gravity="center">
+            android:text="PAYMENT"
+            android:layout_gravity="left">
 
         </TextView>
 
-        <Button
-            android:id="@+id/payment_close_btn"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/round_border"
-            android:layout_marginTop="20dp"
-            android:text="OK"
-            android:textColor="#ffffff"
-            ></Button>
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/pay_successful"
+            android:layout_gravity="center_horizontal">
+
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transaction successful."
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/amount_success"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Amount: 1.00"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp">
+
+        </TextView>
+        <TextView
+            android:id="@+id/date_success"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Date: 19/05/2020 10:27:27"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp">
+
+        </TextView>
+        <TextView
+            android:id="@+id/merchant_success"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="MyScanAss"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp">
+
+        </TextView>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/myscanpay_appicon"
+            android:layout_gravity="center_horizontal">
+
+        </ImageView>
+
     </LinearLayout>
 
 </LinearLayout>

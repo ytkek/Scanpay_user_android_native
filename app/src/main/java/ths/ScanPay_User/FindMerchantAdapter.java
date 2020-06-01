@@ -3,6 +3,8 @@ package ths.ScanPay_User;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +36,17 @@ public class FindMerchantAdapter extends RecyclerView.Adapter<FindMerchantAdapte
     @Override
     public void onBindViewHolder(FindMerchantAdapter.MyViewHolder holder, final int position) {
 
+
+
         final FindMerchantlist c = findmerchantlist.get(position);
+
+
+
+            Glide.with(context)  //2
+                    .load(c.getM_topup()) //3
+                    .fitCenter()
+                    .into(holder.topup);
+
 
         Glide.with(context)  //2
                 .load(ApiUrl.PicDomain+c.getM_profileimagepath()+c.getM_profilefilename()) //3
@@ -55,6 +67,7 @@ public class FindMerchantAdapter extends RecyclerView.Adapter<FindMerchantAdapte
                 a.putExtra("m_mobileno",c.getM_mobileno());
                 a.putExtra("m_email",c.getM_email());
                 a.putExtra("m_url",c.getM_url());
+                a.putExtra("m_topup",c.getM_topup());
                 a.putExtra("m_businesshour",c.getM_businesshour());
                 a.putExtra("m_remarks",c.getM_remarks());
                 a.putExtra("m_profilepic",ApiUrl.PicDomain+c.getM_profileimagepath()+c.getM_profilefilename());
@@ -85,7 +98,7 @@ public class FindMerchantAdapter extends RecyclerView.Adapter<FindMerchantAdapte
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
 
-        public ImageView findmerchant_shopimage;
+        public ImageView findmerchant_shopimage,topup;
         public TextView findmerchant_shopname;
         public TextView findmerchant_shopaddress;
         public LinearLayout shoplayout;
@@ -95,6 +108,7 @@ public class FindMerchantAdapter extends RecyclerView.Adapter<FindMerchantAdapte
 
 
             findmerchant_shopimage = (ImageView) view.findViewById(R.id.shopimage);
+            topup=(ImageView)view.findViewById(R.id.topup);
             findmerchant_shopname = (TextView) view.findViewById(R.id.shopname);
             findmerchant_shopaddress = (TextView) view.findViewById(R.id.shopaddress);
             shoplayout = (LinearLayout)view.findViewById(R.id.shoplayout);

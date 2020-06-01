@@ -200,7 +200,11 @@ public class GetFindMerchantListTask extends AsyncTask<Void, Integer, ArrayList<
                     }
                     if (tmp.has("m_topup"))
                     {
-                        newsData.setM_topup(tmp.getString("m_topup"));
+                        if(tmp.getBoolean("m_topup")==true)
+                        {
+                            newsData.setM_topup("https://www.myscanpay.com/V4/mobile/image/Topupmark.jpg");
+                        }
+
 
                     }
                     if (tmp.has("m_businesshour"))

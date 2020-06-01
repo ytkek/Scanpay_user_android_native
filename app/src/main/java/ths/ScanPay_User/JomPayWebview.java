@@ -30,7 +30,7 @@ public class JomPayWebview extends AppCompatActivity {
 
         if(NetworkUtil.isNetworkAvailable(this))
         {
-            webView.loadUrl("https://www.myscanpay.com/v4/mobile/myjompay.aspx?LoginID="+MainActivity.LoginID);
+            webView.loadUrl("https://www.myscanpay.com/v4/mobile_native_api/myjompay.aspx?LoginID="+MainActivity.LoginID);
         }
         else
         {

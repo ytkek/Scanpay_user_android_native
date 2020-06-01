@@ -1,5 +1,6 @@
 package ths.ScanPay_User;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -16,14 +17,14 @@ import ths.ScanPay_User.PostFunction.PostTopup_Confirm_Topup_Task;
 public class TopUp_Confirm_Dialog extends Dialog implements
         View.OnClickListener
 {
-    Context c;
+    Activity c;
     String merchantname,amount;
     TextView payment_textview;
     EditText payment_amount;
     Button confirmbtn;
     ImageView x_btn;
 
-    public TopUp_Confirm_Dialog(Context a, String merchantname, String amount) {
+    public TopUp_Confirm_Dialog(Activity a, String merchantname, String amount) {
         super(a);
         // TODO Auto-generated constructor stub
         this.c = a;

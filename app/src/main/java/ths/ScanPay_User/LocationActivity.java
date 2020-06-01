@@ -11,11 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import ths.ScanPay_User.GetFunction.GetScanPayMerchantListTask;
+
 public class LocationActivity extends AppCompatActivity {
 
     ImageView back;
-    RecyclerView recyclerView;
-    RecyclerView.Adapter mAdapter;
+    public static RecyclerView recyclerView;
+    public static RecyclerView.Adapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +30,8 @@ public class LocationActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(layoutManager);
 
+        new GetScanPayMerchantListTask(this,recyclerView).execute();
 
-        List<Locationlist> locationlist = new ArrayList<>();
-        locationlist.add(new Locationlist("https://f0.pngfuel.com/png/408/791/sticker-sales-hot-price-fire-sticker-white-hot-price-text-with-red-flame-background-illustration-png-clip-art-thumbnail.png","SCANPAY","SCANPAY ON SALES","https://f0.pngfuel.com/png/408/791/sticker-sales-hot-price-fire-sticker-white-hot-price-text-with-red-flame-background-illustration-png-clip-art-thumbnail.png"));
-        locationlist.add(new Locationlist("https://f0.pngfuel.com/png/408/791/sticker-sales-hot-price-fire-sticker-white-hot-price-text-with-red-flame-background-illustration-png-clip-art-thumbnail.png","SCANPAY","SCANPAY ON SALES","https://f0.pngfuel.com/png/408/791/sticker-sales-hot-price-fire-sticker-white-hot-price-text-with-red-flame-background-illustration-png-clip-art-thumbnail.png"));
-        mAdapter = new LocationAdapter(this,locationlist);
-
-        recyclerView.setAdapter(mAdapter);
 
         back = (ImageView) findViewById(R.id.backbtn);
         back.setOnClickListener(new View.OnClickListener() {

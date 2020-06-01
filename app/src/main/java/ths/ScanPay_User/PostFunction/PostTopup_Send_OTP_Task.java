@@ -4,9 +4,14 @@ package ths.ScanPay_User.PostFunction;
  * Created by Windows on 1/10/2016.
  */
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -28,14 +33,14 @@ import ths.ScanPay_User.TopUpScanQRActivity;
  */
 public class PostTopup_Send_OTP_Task extends AsyncTask<String, Integer, String> {
 
-    public Context context = null;
+    public Activity context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
 
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
-    public PostTopup_Send_OTP_Task(Context context){
+    public PostTopup_Send_OTP_Task(Activity context){
         this.context = context;
 
 
@@ -83,6 +88,17 @@ public class PostTopup_Send_OTP_Task extends AsyncTask<String, Integer, String> 
 
 
         }
+        else
+
+        {
+            context.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    showDialog();
+                }
+            });
+        }
+
 
         return response;
     }
@@ -95,7 +111,12 @@ public class PostTopup_Send_OTP_Task extends AsyncTask<String, Integer, String> 
         progDailog.dismiss();
 
         TopUpScanQRActivity.set_new_Otp_layout.setVisibility(View.VISIBLE);
-        TopUpScanQRActivity.user_number.setText(MainActivity.LoginID);
+        String last = MainActivity.LoginID.substring(MainActivity.LoginID.length()-4,MainActivity.LoginID.length());
+        String first = MainActivity.LoginID.replaceAll("[0-9]","*");
+        String firstremove = first.substring(0,first.length() - 4);
+
+        TopUpScanQRActivity.user_number.setText(firstremove+""+last);
+        TopUpScanQRActivity.countresend();
         TopUpScanQRActivity.resendotpbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,6 +168,25 @@ public class PostTopup_Send_OTP_Task extends AsyncTask<String, Integer, String> 
 
     }
 
+    private void showDialog()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("Connect to Internet or quit")
+                .setCancelable(false)
+                .setPositiveButton("Connect to Internet", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        context.startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
+                    }
+                })
+                .setNegativeButton("Quit", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                        context.finish();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 
 
 

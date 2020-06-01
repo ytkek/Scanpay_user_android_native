@@ -63,7 +63,7 @@
         android:id="@+id/emailbind"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="strew8911@gmail.com"
+        android:text="xxxxx.com"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
 

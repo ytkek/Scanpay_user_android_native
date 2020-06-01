@@ -10,18 +10,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ffffff"
+        android:weightSum="5"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/shopimage"
             android:layout_width="100dp"
             android:layout_height="100dp"
+
             android:scaleType="fitXY">
 
         </ImageView>
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:orientation="vertical">
 
             <TextView
@@ -36,13 +39,21 @@
             </TextView>
             <TextView
                 android:id="@+id/shopaddress"
-                android:layout_width="wrap_content"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="121,jalan impian emas,taman saleng">
+                android:text="121,jalan xxxxxxxxxxxx">
 
             </TextView>
         </LinearLayout>
+        <ImageView
+            android:id="@+id/topup"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            android:layout_gravity="center"
+
+            ></ImageView>
     </LinearLayout>
 
 

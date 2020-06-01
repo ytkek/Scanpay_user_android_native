@@ -1,9 +1,13 @@
 package ths.ScanPay_User;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
@@ -26,8 +30,11 @@ import com.google.zxing.client.android.Intents;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.concurrent.TimeUnit;
+
 import ths.ScanPay_User.Generic.Generic;
 import ths.ScanPay_User.PostFunction.PostPay_CreditBalance_Task;
+import ths.ScanPay_User.PostFunction.PostPay_DailyExp_Task;
 import ths.ScanPay_User.PostFunction.PostPay_Get_OTP_Task;
 import ths.ScanPay_User.PostFunction.PostPay_MerchantInfo_Task;
 import ths.ScanPay_User.PostFunction.PostPay_Validate_PinNumber_Task;
@@ -39,12 +46,15 @@ public class PaymentScanQRActivity extends AppCompatActivity {
     public static boolean creditbalance_indicator,merchantinfo_indicator,dailyexplimit_indicator;
 
     public static String qr_amount;
+    public static String credit_balance;
+    public static String dailyexp;
     EditText pin1,pin2,pin3,pin4,pin5,pin6;
     public static TextView checkdailylimit,merchant_name;
     public static EditText amount_edit,new_otp_edit;
 
     public static LinearLayout payment_layout,OTPlayout,set_new_Otp_layout,payment_result_layout;
     public static TextView otp_empty,otp_different;
+    public static TextView payment_result_amount,payment_result_date,payment_result_merchant;
 
     public static Button getnewotpbtn,resendotpbtn,saveotpbtn,payment_close_btn;
     public static TextView error_message,user_number;
@@ -52,8 +62,8 @@ public class PaymentScanQRActivity extends AppCompatActivity {
     ImageView back_btn,image_btn;
     public boolean indicator;
     Button confirm_btn;
-
-    Activity PaymentScanQRActivityactivity;
+    IntentResult result;
+    public static Activity PaymentScanQRActivityactivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,12 +71,13 @@ public class PaymentScanQRActivity extends AppCompatActivity {
 
         PaymentScanQRActivityactivity=this;
         IntentIntegrator integrator = new IntentIntegrator(this);
-        integrator.setPrompt("Scan a barcode");
+        integrator.setPrompt("Scan a QRcode");
         integrator.setCameraId(0);  // Use a specific camera of the device
         integrator.setOrientationLocked(true);
         integrator.setBeepEnabled(true);
         integrator.setCaptureActivity(CaptureActivityPortrait.class);
         integrator.initiateScan();
+
 
 
 
@@ -398,8 +409,26 @@ public class PaymentScanQRActivity extends AppCompatActivity {
         confirm_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (PaymentScanQRActivity.amount_edit.getText().toString().equals(""))
+                {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(PaymentScanQRActivityactivity);
+                    builder.setMessage("Amount must not be empty")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
 
-          new PostPay_Validate_PinNumber_Task(PaymentScanQRActivityactivity).execute(MainActivity.LoginID,pin1.getText().toString()+pin2.getText().toString()+pin3.getText().toString()+pin4.getText().toString()+pin5.getText().toString()+pin6.getText().toString());
+                                }
+                            });
+
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+                else
+                {
+                    qr_amount = PaymentScanQRActivity.amount_edit.getText().toString();
+                    new PostPay_Validate_PinNumber_Task(PaymentScanQRActivityactivity).execute(MainActivity.LoginID,pin1.getText().toString()+pin2.getText().toString()+pin3.getText().toString()+pin4.getText().toString()+pin5.getText().toString()+pin6.getText().toString());
+
+                }
 
             }
         });
@@ -407,14 +436,33 @@ public class PaymentScanQRActivity extends AppCompatActivity {
         payment_result_layout=(LinearLayout)findViewById(R.id.payment_result_layout);
         payment_result_layout.setVisibility(View.GONE);
 
-        payment_close_btn=(Button)findViewById(R.id.payment_close_btn);
-        payment_close_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                clear();
-            }
-        });
+        payment_result_amount = (TextView)findViewById(R.id.amount_success);
+        payment_result_date = (TextView)findViewById(R.id.date_success);
+        payment_result_merchant = (TextView)findViewById(R.id.merchant_success);
+
+
+
+      //  final Handler handler = new Handler();
+      //  handler.postDelayed(new Runnable() {
+       //     @Override
+      //      public void run() {
+                // Do something after 5s = 5000ms
+       //         if ( otp_empty.getVisibility() == View.GONE && result.getContents() == nullresult.getContents() == null)
+         //             {
+       //              finish();
+        //         }
+
+
+      //      }
+     //   }, 1000);
+
+
+
+
+
+
+
+
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -432,39 +480,68 @@ public class PaymentScanQRActivity extends AppCompatActivity {
                 break;
         }
 
-        IntentResult result = IntentIntegrator.parseActivityResult(resultCode, data);
+        result = IntentIntegrator.parseActivityResult(resultCode, data);
 
         if(result.getContents() == null) {
 
         } else {
 
-            new PostPay_Get_OTP_Task(PaymentScanQRActivityactivity).execute(MainActivity.LoginID);
 
-            new PostPay_CreditBalance_Task(this).execute(MainActivity.LoginID);
             try{
                 String[] arrayString = result.getContents().split("\\|\\|");
-                for (int a=0; a<arrayString.length;a++)
-                {
-                    if(arrayString.length==3)
-                    {
-                        type="pay";
-                        merchantid=arrayString[0];
-                        amount=arrayString[1];
-                        qr_amount=amount;
-                        lqrcode = arrayString[2];
-                        new PostPay_MerchantInfo_Task(this).execute(type,merchantid,amount,lqrcode,qrcode);
-                        Log.d("Scanned: " , "pay"+arrayString[a] );
-                    }
-                    else if(arrayString.length==2)
-                    {
-                        type="pay_cashier";
-                        merchantid = arrayString[0];
-                        qrcode=arrayString[1];
-                        new PostPay_MerchantInfo_Task(this).execute(type,merchantid,amount,lqrcode,qrcode);
-                        Log.d("Scanned: " , "cashier"+arrayString[a] );
-                    }
 
+                if (arrayString.length <=1 || arrayString.length >3)
+                {
+                    OTPlayout.setVisibility(View.GONE);
+                    set_new_Otp_layout.setVisibility(View.GONE);
+                    otp_empty.setVisibility(View.GONE);
+                    otp_different.setVisibility(View.GONE);
+                    PaymentScanQRActivity.payment_layout.setVisibility(View.GONE);
+                    PaymentScanQRActivity.error_message.setText("INVALID MERCHANT!!!!");
+                    PaymentScanQRActivity.error_message.setVisibility(View.VISIBLE);
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(PaymentScanQRActivityactivity);
+                    builder.setMessage("INVALID MERCHANT!!!!")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    PaymentScanQRActivity.PaymentScanQRActivityactivity.finish();
+                                }
+                            });
+
+                    AlertDialog alert = builder.create();
+                    alert.show();
                 }
+                else
+                    {
+                    new PostPay_Get_OTP_Task(PaymentScanQRActivityactivity).execute(MainActivity.LoginID);
+                    new PostPay_DailyExp_Task(this).execute(MainActivity.LoginID);
+                    new PostPay_CreditBalance_Task(this).execute(MainActivity.LoginID);
+
+                    for (int a=0; a<arrayString.length;a++)
+                    {
+                        if(arrayString.length==3)
+                        {
+                            type="pay";
+                            merchantid=arrayString[0];
+                            amount=arrayString[1];
+                            qr_amount=amount;
+                            lqrcode = arrayString[2];
+                            new PostPay_MerchantInfo_Task(this).execute(type,merchantid,amount,lqrcode,qrcode);
+                            Log.d("Scanned: " , "pay"+arrayString[a] );
+                        }
+                        else if(arrayString.length==2)
+                        {
+                            type="pay_cashier";
+                            merchantid = arrayString[0];
+                            qrcode=arrayString[1];
+                            new PostPay_MerchantInfo_Task(this).execute(type,merchantid,amount,lqrcode,qrcode);
+                            Log.d("Scanned: " , "cashier"+arrayString[a] );
+                        }
+
+                    }
+                }
+
             }
             catch (Exception ex)
             {
@@ -505,7 +582,42 @@ public class PaymentScanQRActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
+
         finish();
+        clear();
+
+    }
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+
+        if(CaptureActivityPortrait.quitQR_indicator==true)
+        {
+            finish();
+            clear();
+            CaptureActivityPortrait.quitQR_indicator=false;
+        }
+    }
+
+    public static void countresend()
+    {
+        new CountDownTimer(30000, 1000) { // adjust the milli seconds here
+
+            public void onTick(long millisUntilFinished) {
+
+                resendotpbtn.setText( String.valueOf(TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)) );
+                resendotpbtn.setEnabled(false);
+            }
+
+            public void onFinish() {
+                resendotpbtn.setText("RESEND");
+                resendotpbtn.setEnabled(true);
+            }
+        }.start();
+
+
     }
 
 }

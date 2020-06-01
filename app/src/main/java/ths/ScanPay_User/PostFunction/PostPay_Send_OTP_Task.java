@@ -113,10 +113,17 @@ public class PostPay_Send_OTP_Task extends AsyncTask<String, Integer, String> {
         progDailog.dismiss();
 
         PaymentScanQRActivity.set_new_Otp_layout.setVisibility(View.VISIBLE);
-        PaymentScanQRActivity.user_number.setText(MainActivity.LoginID);
+
+        String last = MainActivity.LoginID.substring(MainActivity.LoginID.length()-4,MainActivity.LoginID.length());
+        String first = MainActivity.LoginID.replaceAll("[0-9]","*");
+        String firstremove = first.substring(0,first.length() - 4);
+        PaymentScanQRActivity.user_number.setText(firstremove+""+last);
+
+        PaymentScanQRActivity.countresend();
         PaymentScanQRActivity.resendotpbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 new PostPay_Send_OTP_Task(context).execute(MainActivity.LoginID);
             }
         });

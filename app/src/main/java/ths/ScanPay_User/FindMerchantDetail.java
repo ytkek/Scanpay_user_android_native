@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -36,7 +37,8 @@ public class FindMerchantDetail extends AppCompatActivity {
     public String m_photofilename1;
     public String m_photofilename2;
     public String m_photofilename3;
-    public ImageView profilepic,photofilename1,photofilename2,photofilename3,back,location,hp,email,website;
+    public String m_topup;
+    public ImageView profilepic,photofilename1,photofilename2,photofilename3,back,location,hp,email,website,topup;
     public TextView companyname,time,information;
     Activity findmerchantdetail;
     @Override
@@ -59,7 +61,7 @@ public class FindMerchantDetail extends AppCompatActivity {
         m_photofilename1 = intent.getStringExtra("m_photofilename1");
         m_photofilename2 = intent.getStringExtra("m_photofilename2");
         m_photofilename3 = intent.getStringExtra("m_photofilename3");
-
+        m_topup= intent.getStringExtra("m_topup");
 
         back = (ImageView) findViewById(R.id.backbtn);
         back.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +72,17 @@ public class FindMerchantDetail extends AppCompatActivity {
             }
         });
 
+       // topup=(ImageView)findViewById(R.id.topup);
+      //  topup.setVisibility(View.GONE);
+      //  if(m_topup!="")
+       // {
+       //     topup.setVisibility(View.VISIBLE);
+       //     Glide.with(this)  //2
+       //             .load(m_topup) //3
+       //             .fitCenter()
+       //             .into(topup);
+
+      //  }
 
         profilepic = (ImageView)findViewById(R.id.profilepic);
         Glide.with(this)  //2

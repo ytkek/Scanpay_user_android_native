@@ -4,15 +4,21 @@ package ths.ScanPay_User.PostFunction;
  * Created by Windows on 1/10/2016.
  */
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import ths.ScanPay_User.ApiUrl;
@@ -26,7 +32,7 @@ import ths.ScanPay_User.TopUpScanQRActivity;
  */
 public class PostTopup_Confirm_Topup_Task extends AsyncTask<String, Integer, String> {
 
-    public Context context = null;
+    public Activity context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
 
@@ -34,7 +40,7 @@ public class PostTopup_Confirm_Topup_Task extends AsyncTask<String, Integer, Str
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
-    public PostTopup_Confirm_Topup_Task(Context context){
+    public PostTopup_Confirm_Topup_Task(Activity context){
         this.context = context;
 
 
@@ -118,6 +124,17 @@ public class PostTopup_Confirm_Topup_Task extends AsyncTask<String, Integer, Str
 
 
         }
+        else
+        {
+
+            context.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    showDialog();
+                }
+            });
+        }
+
 
         return response;
     }
@@ -134,6 +151,9 @@ public class PostTopup_Confirm_Topup_Task extends AsyncTask<String, Integer, Str
         if(result.equals("payment success"))
         {
             TopUpScanQRActivity.topup_layout.setVisibility(View.GONE);
+            TopUpScanQRActivity.topup_result_amount.setText("Amount: "+TopUpScanQRActivity.amount_edit.getText().toString());
+            TopUpScanQRActivity.topup_result_date.setText("Date: "+java.text.DateFormat.getDateTimeInstance().format(new Date()));
+            TopUpScanQRActivity.topup_result_merchant.setText(TopUpScanQRActivity.merchantname);
             TopUpScanQRActivity.topup_result_layout.setVisibility(View.VISIBLE);
         }
         else
@@ -155,7 +175,24 @@ public class PostTopup_Confirm_Topup_Task extends AsyncTask<String, Integer, Str
 
     }
 
-
+    private void showDialog()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("Connect to Internet or quit")
+                .setCancelable(false)
+                .setPositiveButton("Connect to Internet", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        context.startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
+                    }
+                })
+                .setNegativeButton("Quit", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 
 
 

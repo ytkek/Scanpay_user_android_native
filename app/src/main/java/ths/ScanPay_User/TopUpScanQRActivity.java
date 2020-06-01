@@ -3,6 +3,7 @@ package ths.ScanPay_User;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -17,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import java.util.concurrent.TimeUnit;
 
 import ths.ScanPay_User.PostFunction.PostPay_CreditBalance_Task;
 import ths.ScanPay_User.PostFunction.PostPay_Get_OTP_Task;
@@ -34,6 +37,7 @@ public class TopUpScanQRActivity extends AppCompatActivity {
 
     public static LinearLayout topup_layout,OTPlayout,set_new_Otp_layout,topup_result_layout;
     public static TextView otp_empty,otp_different;
+    public static TextView topup_result_amount,topup_result_date,topup_result_merchant;
 
     public static Button getnewotpbtn,resendotpbtn,saveotpbtn,topup_close_btn;
 
@@ -50,7 +54,7 @@ public class TopUpScanQRActivity extends AppCompatActivity {
         TopUpScanQR = this;
         setContentView(R.layout.topupscanqr_activity);
         IntentIntegrator integrator = new IntentIntegrator(this);
-        integrator.setPrompt("Scan a barcode");
+        integrator.setPrompt("Scan a QRcode");
         integrator.setCameraId(0);  // Use a specific camera of the device
         integrator.setOrientationLocked(true);
         integrator.setBeepEnabled(true);
@@ -119,14 +123,9 @@ public class TopUpScanQRActivity extends AppCompatActivity {
         topup_result_layout=(LinearLayout)findViewById(R.id.topup_result_layout);
         topup_result_layout.setVisibility(View.GONE);
 
-        topup_close_btn=(Button)findViewById(R.id.topup_close_btn);
-        topup_close_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                clear();
-            }
-        });
+        topup_result_amount = (TextView)findViewById(R.id.amount_success);
+        topup_result_date = (TextView)findViewById(R.id.date_success);
+        topup_result_merchant = (TextView)findViewById(R.id.merchant_success);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -149,24 +148,35 @@ public class TopUpScanQRActivity extends AppCompatActivity {
         if(result.getContents() == null) {
 
         } else {
-            new PostTopup_Get_OTP_Task(this).execute(MainActivity.LoginID);
 
-            new PostTopup_CreditBalance_Task(this).execute(MainActivity.LoginID);
-            try{
+            try {
+
                 String[] arrayString = result.getContents().split("\\|\\|");
-                for (int a=0; a<arrayString.length;a++)
-                {
-                    if(arrayString.length==3)
-                    {
-                        type="topup";
-                        merchantid=arrayString[0];
-                        amount=arrayString[1];
-                        qr_amount=amount;
-                        lqrcode = arrayString[2];
-                        new PostTopUp_MerchantInfo_Task(this).execute(type,merchantid,amount,lqrcode,qrcode);
-                        Log.d("Scanned: " , "pay"+arrayString[a] );
-                    }
+                if (arrayString.length <= 2 || arrayString.length > 3) {
+                    OTPlayout.setVisibility(View.GONE);
+                    set_new_Otp_layout.setVisibility(View.GONE);
+                    otp_empty.setVisibility(View.GONE);
+                    otp_different.setVisibility(View.GONE);
+                    TopUpScanQRActivity.topup_layout.setVisibility(View.GONE);
+                    TopUpScanQRActivity.error_message.setText("INVALID MERCHANT!!!!");
+                    TopUpScanQRActivity.error_message.setVisibility(View.VISIBLE);
+                } else {
+                    new PostTopup_Get_OTP_Task(this).execute(MainActivity.LoginID);
 
+                    new PostTopup_CreditBalance_Task(this).execute(MainActivity.LoginID);
+
+                    for (int a = 0; a < arrayString.length; a++) {
+                        if (arrayString.length == 3) {
+                            type = "topup";
+                            merchantid = arrayString[0];
+                            amount = arrayString[1];
+                            qr_amount = amount;
+                            lqrcode = arrayString[2];
+                            new PostTopUp_MerchantInfo_Task(this).execute(type, merchantid, amount, lqrcode, qrcode);
+                            Log.d("Scanned: ", "pay" + arrayString[a]);
+                        }
+
+                    }
                 }
             }
             catch (Exception ex)
@@ -192,5 +202,33 @@ public class TopUpScanQRActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onResume()
+    {
+        super.onResume();
 
+        if(CaptureActivityPortrait.quitQR_indicator==true)
+        {
+            finish();
+            CaptureActivityPortrait.quitQR_indicator=false;
+        }
+    }
+    public static void countresend()
+    {
+        new CountDownTimer(30000, 1000) { // adjust the milli seconds here
+
+            public void onTick(long millisUntilFinished) {
+
+                resendotpbtn.setText( String.valueOf(TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)) );
+                resendotpbtn.setEnabled(false);
+            }
+
+            public void onFinish() {
+                resendotpbtn.setText("RESEND");
+                resendotpbtn.setEnabled(true);
+            }
+        }.start();
+
+
+    }
 }

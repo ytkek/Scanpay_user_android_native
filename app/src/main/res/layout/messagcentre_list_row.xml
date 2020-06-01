@@ -57,20 +57,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="2"
-            android:gravity="center">
-        <ImageView
-            android:id="@+id/indicator"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/reddot"
-            android:layout_gravity="center"
-            android:visibility="invisible"></ImageView>
-        </LinearLayout>
+
 
 
     </LinearLayout>

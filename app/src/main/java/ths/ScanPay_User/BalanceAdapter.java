@@ -28,7 +28,6 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.MyViewHo
         this.context = context;
         this.balanceList = balanceList;
     }
-
     @Override
     public void onBindViewHolder(BalanceAdapter.MyViewHolder holder, int position) {
 
