@@ -154,8 +154,20 @@ public class PostTopUp_MerchantInfo_Task extends AsyncTask<String, Integer, Stri
             {
 
                 TopUpScanQRActivity.topup_layout.setVisibility(View.GONE);
-                TopUpScanQRActivity.error_message.setText("INVALID MERCHANT!!!!");
+                TopUpScanQRActivity.error_message.setText("INVALID MERCHANT");
                 TopUpScanQRActivity.error_message.setVisibility(View.VISIBLE);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("Error #B0041 Invalid Merchant")
+                        .setCancelable(false)
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                               dialog.dismiss();
+                            }
+                        });
+
+                AlertDialog alert = builder.create();
+                alert.show();
             }
             else
             {
@@ -183,7 +195,7 @@ public class PostTopUp_MerchantInfo_Task extends AsyncTask<String, Integer, Stri
     private void showDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Connect to Internet or quit")
+        builder.setMessage("Error #B0090 Internet Connection Failed")
                 .setCancelable(false)
                 .setPositiveButton("Connect to Internet", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

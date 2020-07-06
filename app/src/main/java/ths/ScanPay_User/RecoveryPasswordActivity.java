@@ -54,7 +54,7 @@ public class RecoveryPasswordActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (loginid.getText().toString().equals("")||email.getText().toString().equals(""))
                 {
-                    Toast.makeText(getApplicationContext(),"cant send data because loginid or email field is empty ",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Loginid or Email field is empty ",Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
@@ -66,7 +66,7 @@ public class RecoveryPasswordActivity extends AppCompatActivity {
                     else
                     {
 
-                        Toast.makeText(getApplicationContext()," fail , still have error message",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Remain Error Message",Toast.LENGTH_SHORT).show();
                     }
                 }
             }

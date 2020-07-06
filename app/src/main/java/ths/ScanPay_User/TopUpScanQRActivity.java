@@ -1,9 +1,12 @@
 package ths.ScanPay_User;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -158,8 +161,22 @@ public class TopUpScanQRActivity extends AppCompatActivity {
                     otp_empty.setVisibility(View.GONE);
                     otp_different.setVisibility(View.GONE);
                     TopUpScanQRActivity.topup_layout.setVisibility(View.GONE);
-                    TopUpScanQRActivity.error_message.setText("INVALID MERCHANT!!!!");
+                    TopUpScanQRActivity.error_message.setText("INVALID MERCHANT");
                     TopUpScanQRActivity.error_message.setVisibility(View.VISIBLE);
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(TopUpScanQR);
+                    builder.setMessage("Error #B0041 Invalid Merchant")
+                            .setCancelable(false)
+                            .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.dismiss();
+                                }
+                            });
+
+                    AlertDialog alert = builder.create();
+                    alert.show();
+
+
                 } else {
                     new PostTopup_Get_OTP_Task(this).execute(MainActivity.LoginID);
 

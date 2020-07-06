@@ -1062,7 +1062,7 @@ public class EditProfileDialog extends Dialog implements
                         indicator_newpin=true;
                         if(indicator_newpin==true&&indicator_oldpin==true)
                         {
-                            Toast.makeText(c,"save success",Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(c,"save success",Toast.LENGTH_SHORT).show();
                             new PostUserProfile_Pin_Payment_Task(c).execute(MainActivity.LoginID,pin1.getText().toString()+pin2.getText().toString()+pin3.getText().toString()+ pin4.getText().toString()+pin5.getText().toString()+pin6.getText().toString());
                             indicator_oldpin=false;
                             indicator_newpin=false;
@@ -1084,7 +1084,7 @@ public class EditProfileDialog extends Dialog implements
                             if(indicator_newpin==true&&indicator_oldpin==true)
                             {
                                 new PostUserProfile_Pin_Payment_Task(c).execute(MainActivity.LoginID,pin1.getText().toString()+pin2.getText().toString()+pin3.getText().toString()+ pin4.getText().toString()+pin5.getText().toString()+pin6.getText().toString());
-                                Toast.makeText(c,"save success",Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(c,"save success",Toast.LENGTH_SHORT).show();
                                 indicator_oldpin=false;
                                 indicator_newpin=false;
                             }

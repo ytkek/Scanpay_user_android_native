@@ -60,7 +60,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 if(!hasFocus)
                 {
                     changefullname.setEnabled(false);
-                    Toast.makeText(getApplicationContext(),"save full name",Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getApplicationContext(),"save full name",Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -103,7 +103,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 if(!hasFocus)
                 {
                     changepassword.setEnabled(false);
-                    Toast.makeText(getApplicationContext(),"save password",Toast.LENGTH_SHORT).show();
+                //    Toast.makeText(getApplicationContext(),"save password",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -275,7 +275,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 if(!hasFocus)
                     {
                     changegender.setEnabled(false);
-                    Toast.makeText(getApplicationContext(),"save password",Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getApplicationContext(),"save password",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -314,7 +314,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 if(!hasFocus)
                 {
                     changenickname.setEnabled(false);
-                    Toast.makeText(getApplicationContext(),"save password",Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(getApplicationContext(),"save password",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -348,7 +348,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 if(!hasFocus)
                 {
                     changeremark.setEnabled(false);
-                    Toast.makeText(getApplicationContext(),"save password",Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(getApplicationContext(),"save password",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -381,7 +381,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 if(!hasFocus)
                 {
                     changedob.setEnabled(false);
-                    Toast.makeText(getApplicationContext(),"save password",Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(getApplicationContext(),"save password",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -418,7 +418,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 if(!hasFocus)
                 {
                     changepin.setEnabled(false);
-                    Toast.makeText(getApplicationContext(),"save password",Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(getApplicationContext(),"save password",Toast.LENGTH_SHORT).show();
                 }
             }
         });

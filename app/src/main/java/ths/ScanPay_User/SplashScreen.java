@@ -43,7 +43,7 @@ public class SplashScreen  extends AppCompatActivity {
         if (RootUtil.isDeviceRooted() ==true)
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("ScanPay did not run on root device")
+            builder.setMessage("Error #B0061 MyScanPay,will not run on jailbreak/root device")
                     .setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {

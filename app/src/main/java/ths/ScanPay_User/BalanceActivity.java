@@ -44,7 +44,7 @@ public class BalanceActivity extends AppCompatActivity {
 
         totalbalance_textview=(TextView)findViewById(R.id.totalbalance_textview);
         daily_limit_textview = (TextView)findViewById(R.id.daily_limit_textview);
-        daily_exp_textview = (TextView)findViewById(R.id.daily_exp_textview);
+       // daily_exp_textview = (TextView)findViewById(R.id.daily_exp_textview);
 
         new PostBalance_TotalCredit_Task(balanceactivity).execute(MainActivity.LoginID);
 

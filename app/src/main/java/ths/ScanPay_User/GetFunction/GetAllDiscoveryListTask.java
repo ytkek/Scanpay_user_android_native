@@ -177,7 +177,7 @@ public class GetAllDiscoveryListTask extends AsyncTask<Void, Integer, ArrayList<
         {
             if (num==0)
             {
-                code="0";
+                code="5";
                 for (int i=0; i<result.size();i++)
                 {
                     if(code.equals(result.get(i).getDiscovery_groupid()))
@@ -261,7 +261,7 @@ public class GetAllDiscoveryListTask extends AsyncTask<Void, Integer, ArrayList<
             }
             if (num==4)
             {
-                code="4";
+                code="6";
                 for (int i=0; i<result.size();i++)
                 {
                     if(code.equals(result.get(i).getDiscovery_groupid()))
@@ -282,7 +282,7 @@ public class GetAllDiscoveryListTask extends AsyncTask<Void, Integer, ArrayList<
             }
             if (num==5)
             {
-                code="5";
+                code="7";
                 for (int i=0; i<result.size();i++)
                 {
                     if(code.equals(result.get(i).getDiscovery_groupid()))
@@ -304,7 +304,7 @@ public class GetAllDiscoveryListTask extends AsyncTask<Void, Integer, ArrayList<
 
             if (num==6)
             {
-                code="6";
+                code="4";
                 for (int i=0; i<result.size();i++)
                 {
                     if(code.equals(result.get(i).getDiscovery_groupid()))
@@ -345,7 +345,7 @@ public class GetAllDiscoveryListTask extends AsyncTask<Void, Integer, ArrayList<
     private void showDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Connect to Internet or quit")
+        builder.setMessage("Error #B0090 Internet Connection Failed")
                 .setCancelable(false)
                 .setPositiveButton("Connect to Internet", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

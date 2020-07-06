@@ -122,15 +122,18 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
             double a ;
             double b;
             double c;
+            double d;
+
 
             a = Double.parseDouble(PaymentScanQRActivity.credit_balance);
             b= Double.parseDouble(PaymentScanQRActivity.qr_amount);
             c = Double.parseDouble(PaymentScanQRActivity.dailyexp);
+            d = Double.parseDouble(PaymentScanQRActivity.monthlyexp);
             if (b>a)
 
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setMessage("Not Enough Credit")
+                builder.setMessage("Error #B0035 Not Enough Credit")
                         .setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -143,10 +146,10 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
 
 
             }
-            else if ((b +c)>200.00)
+            else if (b > c)
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setMessage("Exceed Daily Limit 1")
+                builder.setMessage("Error #B0036 Not allow to exceed daily limit")
                         .setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -160,7 +163,7 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
             else if (b>(200.00))
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setMessage("Exceed Daily Limit 2")
+                builder.setMessage("Error #B0037 Not allow to exceed purse limit")
                         .setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -171,10 +174,10 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
                 AlertDialog alert = builder.create();
                 alert.show();
             }
-            else if (b>(200.00+c))
+            else if (b > d)
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setMessage("Exceed Daily Limit 3")
+                builder.setMessage("Error #B0038 Not allow to exceed monthly limit")
                         .setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -209,7 +212,17 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
         }
         else if(result.equals("Invalid Pin Number"))
         {
-            Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage("Error #B0031 Invalid Pin Number")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            PaymentScanQRActivity.PaymentScanQRActivityactivity.finish();
+                        }
+                    });
+
+            AlertDialog alert = builder.create();
+            alert.show();
         }
 
 
@@ -231,7 +244,7 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
     private void showDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Connect to Internet or quit")
+        builder.setMessage("Error #B0090 Internet Connection Failed")
                 .setCancelable(false)
                 .setPositiveButton("Connect to Internet", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

@@ -109,6 +109,18 @@ public class PostVerification_Validate_Email extends AsyncTask<String, Integer, 
         {
             Verification_LoginPage.checkemailresult.setVisibility(View.VISIBLE);
             Verification_LoginPage.checkemailresult.setText("This Email not available");
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage("Error #B0053 This Email not available")
+                    .setCancelable(false)
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+
+            AlertDialog alert = builder.create();
+            alert.show();
         }
 
     }
@@ -117,7 +129,7 @@ public class PostVerification_Validate_Email extends AsyncTask<String, Integer, 
     private void showDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Connect to Internet or quit")
+        builder.setMessage("Error #B0090 Internet Connection Failed")
                 .setCancelable(false)
                 .setPositiveButton("Connect to Internet", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

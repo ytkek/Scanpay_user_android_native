@@ -37,6 +37,7 @@ import ths.ScanPay_User.PostFunction.PostPay_CreditBalance_Task;
 import ths.ScanPay_User.PostFunction.PostPay_DailyExp_Task;
 import ths.ScanPay_User.PostFunction.PostPay_Get_OTP_Task;
 import ths.ScanPay_User.PostFunction.PostPay_MerchantInfo_Task;
+import ths.ScanPay_User.PostFunction.PostPay_MonthlyExp_Task;
 import ths.ScanPay_User.PostFunction.PostPay_Validate_PinNumber_Task;
 
 public class PaymentScanQRActivity extends AppCompatActivity {
@@ -48,6 +49,7 @@ public class PaymentScanQRActivity extends AppCompatActivity {
     public static String qr_amount;
     public static String credit_balance;
     public static String dailyexp;
+    public static String monthlyexp;
     EditText pin1,pin2,pin3,pin4,pin5,pin6;
     public static TextView checkdailylimit,merchant_name;
     public static EditText amount_edit,new_otp_edit;
@@ -412,11 +414,11 @@ public class PaymentScanQRActivity extends AppCompatActivity {
                 if (PaymentScanQRActivity.amount_edit.getText().toString().equals(""))
                 {
                     AlertDialog.Builder builder = new AlertDialog.Builder(PaymentScanQRActivityactivity);
-                    builder.setMessage("Amount must not be empty")
+                    builder.setMessage("Error #B0039 Amount cant be empty")
                             .setCancelable(false)
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-
+                                    dialog.dismiss();
                                 }
                             });
 
@@ -490,18 +492,18 @@ public class PaymentScanQRActivity extends AppCompatActivity {
             try{
                 String[] arrayString = result.getContents().split("\\|\\|");
 
-                if (arrayString.length <=1 || arrayString.length >3)
+                if (arrayString.length <=0 || arrayString.length >3)
                 {
                     OTPlayout.setVisibility(View.GONE);
                     set_new_Otp_layout.setVisibility(View.GONE);
                     otp_empty.setVisibility(View.GONE);
                     otp_different.setVisibility(View.GONE);
                     PaymentScanQRActivity.payment_layout.setVisibility(View.GONE);
-                    PaymentScanQRActivity.error_message.setText("INVALID MERCHANT!!!!");
+                    PaymentScanQRActivity.error_message.setText("INVALID MERCHANT");
                     PaymentScanQRActivity.error_message.setVisibility(View.VISIBLE);
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(PaymentScanQRActivityactivity);
-                    builder.setMessage("INVALID MERCHANT!!!!")
+                    builder.setMessage("Error #B0034 Invalid Merchant")
                             .setCancelable(false)
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -516,6 +518,7 @@ public class PaymentScanQRActivity extends AppCompatActivity {
                     {
                     new PostPay_Get_OTP_Task(PaymentScanQRActivityactivity).execute(MainActivity.LoginID);
                     new PostPay_DailyExp_Task(this).execute(MainActivity.LoginID);
+                    new PostPay_MonthlyExp_Task(this).execute(MainActivity.LoginID);
                     new PostPay_CreditBalance_Task(this).execute(MainActivity.LoginID);
 
                     for (int a=0; a<arrayString.length;a++)
@@ -535,6 +538,13 @@ public class PaymentScanQRActivity extends AppCompatActivity {
                             type="pay_cashier";
                             merchantid = arrayString[0];
                             qrcode=arrayString[1];
+                            new PostPay_MerchantInfo_Task(this).execute(type,merchantid,amount,lqrcode,qrcode);
+                            Log.d("Scanned: " , "cashier"+arrayString[a] );
+                        }
+                        else if(arrayString.length==1)
+                        {
+                            type="pay_cashier";
+                            merchantid = arrayString[0];
                             new PostPay_MerchantInfo_Task(this).execute(type,merchantid,amount,lqrcode,qrcode);
                             Log.d("Scanned: " , "cashier"+arrayString[a] );
                         }

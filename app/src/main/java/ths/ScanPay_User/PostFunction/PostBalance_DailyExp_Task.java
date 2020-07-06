@@ -110,7 +110,7 @@ public class PostBalance_DailyExp_Task extends AsyncTask<String, Integer, String
 
         progDailog.dismiss();
 
-       BalanceActivity.daily_exp_textview.setText("RM "+result);
+      // BalanceActivity.daily_exp_textview.setText("RM "+result);
         new PostBalance_CurrentDate_Statement_Task(context).execute();
 
     }
@@ -118,7 +118,7 @@ public class PostBalance_DailyExp_Task extends AsyncTask<String, Integer, String
     private void showDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Connect to Internet or quit")
+        builder.setMessage("Error #B0090 Internet Connection Failed")
                 .setCancelable(false)
                 .setPositiveButton("Connect to Internet", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

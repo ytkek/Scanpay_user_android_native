@@ -136,7 +136,7 @@ public class PostPay_Get_OTP_Task extends AsyncTask<String, Integer, String> {
         }
         else if (result.equals(otp))
         {
-            Toast.makeText(context,"correct OTP",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context,"correct OTP",Toast.LENGTH_SHORT).show();
             PaymentScanQRActivity.payment_layout.setVisibility(View.VISIBLE);
         }
 
@@ -153,7 +153,7 @@ public class PostPay_Get_OTP_Task extends AsyncTask<String, Integer, String> {
     private void showDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Connect to Internet or quit")
+        builder.setMessage("Error #B0090 Internet Connection Failed")
                 .setCancelable(false)
                 .setPositiveButton("Connect to Internet", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

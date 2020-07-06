@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -46,21 +47,42 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.MyViewHo
         }
 
 
+        if (c.la_type.equals("pay"))
+        {
+            holder.balance_type.setText("Payment");
+        }
+        else if (c.la_type.equals("revpay"))
+        {
+            holder.balance_type.setText("Reversal Payment");
+        }
+        else if (c.la_type.equals("topup"))
+        {
+            holder.balance_type.setText("Top Up");
+        }
+        else if (c.la_type.equals("revtopup"))
+        {
+            holder.balance_type.setText("Reversal Top Up");
+        }
 
-
-        holder.balance_type.setText(c.la_type);
+        //holder.balance_type.setText(c.la_type);
         holder.balance_reference.setText(c.la_ref);
 
         if(c.la_amount.contains("-"))
         {
             holder.balance_amount.setTextColor(Color.parseColor("#FF0000"));
+
             String text=c.la_amount.replace("-","");
-            holder.balance_amount.setText(text);
+            Double lol ;
+            lol=Double.parseDouble(text);
+            holder.balance_amount.setText(String.format("%.2f",lol));
         }
         else
         {
             holder.balance_amount.setTextColor(Color.parseColor("#1F45FC"));
-            holder.balance_amount.setText(c.la_amount);
+          //  DecimalFormat form = new DecimalFormat("0.00");
+            Double lol ;
+            lol=Double.parseDouble(c.la_amount);
+            holder.balance_amount.setText(String.format("%.2f",lol));
         }
 
     }
@@ -95,12 +117,12 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.MyViewHo
             balance_type = (TextView) view.findViewById(R.id.type);
             balance_reference = (TextView) view.findViewById(R.id.reference);
             balance_amount = (TextView) view.findViewById(R.id.amount);
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(context, String.valueOf(getLayoutPosition()),Toast.LENGTH_SHORT).show();
-                }
-            });
+           // view.setOnClickListener(new View.OnClickListener() {
+            //    @Override
+            //    public void onClick(View view) {
+            //        Toast.makeText(context, String.valueOf(getLayoutPosition()),Toast.LENGTH_SHORT).show();
+            //    }
+            //});
         }
     }
 

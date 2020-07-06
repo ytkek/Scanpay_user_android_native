@@ -118,7 +118,7 @@ public class PostPay_CheckDailyExpLimit_Task extends AsyncTask<String, Integer, 
             PaymentScanQRActivity.error_message.setVisibility(View.VISIBLE);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setMessage("Exceed Daily Limit")
+            builder.setMessage("Error #B0032 Exceed Daily Limit")
                     .setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
@@ -153,7 +153,7 @@ public class PostPay_CheckDailyExpLimit_Task extends AsyncTask<String, Integer, 
     private void showDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Connect to Internet or quit")
+        builder.setMessage("Error #B0090 Internet Connection Failed")
                 .setCancelable(false)
                 .setPositiveButton("Connect to Internet", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

@@ -152,79 +152,79 @@ public class GetMessageListTask extends AsyncTask<Void, Integer, ArrayList<Messa
         Collections.sort(result, new Comparator<MessageCentrelist>() {
             @Override
             public int compare(MessageCentrelist lhs, MessageCentrelist rhs) {
-                return rhs.getId().compareTo(lhs.getId());
+                return lhs.getId().compareTo(rhs.getId());
             }
         });
 
 
-        List<Integer> num = new ArrayList<>();
-        Log.d("wtf2",""+result.size() + "" + MessageCentreActivity.db.getAllMessage().size());
-        if(result.size()==MessageCentreActivity.db.getAllMessage().size())
-        {
+        //List<Integer> num = new ArrayList<>();
+       // Log.d("wtf2",""+result.size() + "" + MessageCentreActivity.db.getAllMessage().size());
+       // if(result.size()==MessageCentreActivity.db.getAllMessage().size())
+       // {
              //refreshdatabase(result);
             MessageCentreActivity.mAdapter = new MessageCentreAdapter(context,result);
 
             MessageCentreActivity.recyclerView.setAdapter(MessageCentreActivity.mAdapter);
 
-        }
-        else if (MessageCentreActivity.db.getAllMessage().size()==0)
-        {
-            for (int j=0;j<result.size();j++)
-            {
-                MessageCentreActivity.db.insertIndicator("false",result.get(j).getId());
+        //}
+        //else if (MessageCentreActivity.db.getAllMessage().size()==0)
+       // {
+        //    for (int j=0;j<result.size();j++)
+         //   {
+         //       MessageCentreActivity.db.insertIndicator("false",result.get(j).getId());
 
-                if(j+1==result.size())
-                {
-                    MessageCentreActivity.mAdapter = new MessageCentreAdapter(context,result);
+          //      if(j+1==result.size())
+         //       {
+          //          MessageCentreActivity.mAdapter = new MessageCentreAdapter(context,result);
+//
+          //          MessageCentreActivity.recyclerView.setAdapter(MessageCentreActivity.mAdapter);
+          //     }
+          //  }
 
-                    MessageCentreActivity.recyclerView.setAdapter(MessageCentreActivity.mAdapter);
-               }
-            }
+        //}
+       // else if(result.size()>MessageCentreActivity.db.getAllMessage().size()&&MessageCentreActivity.db.getAllMessage().size()!=0)
+       // {
 
-        }
-        else if(result.size()>MessageCentreActivity.db.getAllMessage().size()&&MessageCentreActivity.db.getAllMessage().size()!=0)
-        {
+        //    for (int a = 0; a<result.size(); a++)
+        //   {
+        //        for(int b=0; b<MessageCentreActivity.db.getAllMessage().size(); b++)
+        //        {
+         //           if(result.get(a).getId().equals(MessageCentreActivity.db.getAllMessage().get(b).getNob_id()))
+          //          {
+          //              num.add(a);
+           //         }
+           //         else
+            //        {
+//
+            //        }
 
-            for (int a = 0; a<result.size(); a++)
-           {
-                for(int b=0; b<MessageCentreActivity.db.getAllMessage().size(); b++)
-                {
-                    if(result.get(a).getId().equals(MessageCentreActivity.db.getAllMessage().get(b).getNob_id()))
-                    {
-                        num.add(a);
-                    }
-                    else
-                    {
+            //    }
 
-                    }
-
-                }
-
-                if(a+1==result.size())
-                {
+          //      if(a+1==result.size())
+          //      {
 
 
                    // MessageCentreActivity.arraylist_messagedb.clear();
                    // MessageCentreActivity.arraylist_messagedb.addAll(MessageCentreActivity.db.getAllMessage());
-                    for (int i = 0; i < result.size(); i++){
+            //        for (int i = 0; i < result.size(); i++){
 
 
-                        if (!num.contains(i)) {
-                            MessageCentreActivity.db.insertIndicator("false", result.get(i).getId());
-                        }
+             //           if (!num.contains(i)) {
+             //               MessageCentreActivity.db.insertIndicator("false", result.get(i).getId());
+             //           }
 
 
-                               if(i+1==MessageCentreActivity.db.getAllMessage().size())
-                                {
-                                    MessageCentreActivity.mAdapter = new MessageCentreAdapter(context,result);
+               //                if(i+1==MessageCentreActivity.db.getAllMessage().size())
+               //                 {
+                //                    MessageCentreActivity.mAdapter = new MessageCentreAdapter(context,result);
 
-                                    MessageCentreActivity.recyclerView.setAdapter(MessageCentreActivity.mAdapter);
-                                }
-                            }
+                //                    MessageCentreActivity.recyclerView.setAdapter(MessageCentreActivity.mAdapter);
+                //                }
+                //            }
 
-                        }
-                    }
-       }
+                 //       }
+                 //   }
+      // }
 
 
 
@@ -261,7 +261,7 @@ public class GetMessageListTask extends AsyncTask<Void, Integer, ArrayList<Messa
     private void showDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Connect to Internet or quit")
+        builder.setMessage("Error #B0090 Internet Connection Failed")
                 .setCancelable(false)
                 .setPositiveButton("Connect to Internet", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

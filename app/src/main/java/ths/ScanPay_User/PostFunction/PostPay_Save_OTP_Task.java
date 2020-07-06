@@ -115,13 +115,24 @@ public class PostPay_Save_OTP_Task extends AsyncTask<String, Integer, String> {
         if(result.equals("SAVE OTP BACKEND SYSTEM SUCCESS"))
         {
             Generic.SaveOtp(param2,context);
-            Toast.makeText(context,"You Have Save New Otp",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context,"You Have Save New Otp",Toast.LENGTH_SHORT).show();
             PaymentScanQRActivity.set_new_Otp_layout.setVisibility(View.GONE);
             PaymentScanQRActivity.payment_layout.setVisibility(View.VISIBLE);
         }
         else if(result.equals("SAVE OTP BACKEND SYSTEM FAIL"))
         {
-            Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage("Error Save Otp Backend System Fail")
+                    .setCancelable(false)
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+
+            AlertDialog alert = builder.create();
+            alert.show();
         }
 
 
@@ -130,7 +141,7 @@ public class PostPay_Save_OTP_Task extends AsyncTask<String, Integer, String> {
     private void showDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Connect to Internet or quit")
+        builder.setMessage("Error #B0090 Internet Connection Failed")
                 .setCancelable(false)
                 .setPositiveButton("Connect to Internet", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

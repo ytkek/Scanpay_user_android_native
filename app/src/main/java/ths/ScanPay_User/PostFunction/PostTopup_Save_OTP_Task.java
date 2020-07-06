@@ -113,13 +113,24 @@ public class PostTopup_Save_OTP_Task extends AsyncTask<String, Integer, String> 
         if(result.equals("SAVE OTP BACKEND SYSTEM SUCCESS"))
         {
             Generic.SaveOtp(param2,context);
-            Toast.makeText(context,"You Have Save New Otp",Toast.LENGTH_SHORT).show();
+           // Toast.makeText(context,"You Have Save New Otp",Toast.LENGTH_SHORT).show();
             TopUpScanQRActivity.set_new_Otp_layout.setVisibility(View.GONE);
             TopUpScanQRActivity.topup_layout.setVisibility(View.VISIBLE);
         }
         else if(result.equals("SAVE OTP BACKEND SYSTEM FAIL"))
         {
-            Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage("Error SAVE OTP BACKEND SYSTEM FAIL")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                           dialog.dismiss();
+                        }
+                    });
+
+            AlertDialog alert = builder.create();
+            alert.show();
         }
 
 
@@ -127,7 +138,7 @@ public class PostTopup_Save_OTP_Task extends AsyncTask<String, Integer, String> 
     private void showDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Connect to Internet or quit")
+        builder.setMessage("Error #B0090 Internet Connection Failed ")
                 .setCancelable(false)
                 .setPositiveButton("Connect to Internet", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

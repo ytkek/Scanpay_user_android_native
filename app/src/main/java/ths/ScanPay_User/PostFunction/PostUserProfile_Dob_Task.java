@@ -110,7 +110,18 @@ public class PostUserProfile_Dob_Task extends AsyncTask<String, Integer, String>
         if(result.equals("SAVE PROFILE DOB SUCCESS"))
         {
             new GetUserProfileListTask(context).execute();
-            Toast.makeText(context,"Save Success",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context,"Save Success",Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage("Alert Save Profile Dob Success")
+                    .setCancelable(false)
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+
+            AlertDialog alert = builder.create();
+            alert.show();
         }
 
         // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
@@ -121,7 +132,7 @@ public class PostUserProfile_Dob_Task extends AsyncTask<String, Integer, String>
     private void showDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Connect to Internet or quit")
+        builder.setMessage("Error #B0090 Internet Connection Failed")
                 .setCancelable(false)
                 .setPositiveButton("Connect to Internet", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

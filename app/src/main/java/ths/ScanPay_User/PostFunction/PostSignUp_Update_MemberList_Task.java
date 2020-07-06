@@ -110,7 +110,7 @@ public class PostSignUp_Update_MemberList_Task extends AsyncTask<String, Integer
 
         progDailog.dismiss();
 
-        Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
+
       if(result.equals("User Register Success"))
       {
           Intent lol = new Intent(context, Login.class);
@@ -134,7 +134,7 @@ public class PostSignUp_Update_MemberList_Task extends AsyncTask<String, Integer
     private void showDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Connect to Internet or quit")
+        builder.setMessage("Error #B0090 Internet Connection Failed")
                 .setCancelable(false)
                 .setPositiveButton("Connect to Internet", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

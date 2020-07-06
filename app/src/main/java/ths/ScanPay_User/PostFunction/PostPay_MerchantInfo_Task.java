@@ -155,11 +155,11 @@ public class PostPay_MerchantInfo_Task extends AsyncTask<String, Integer, String
             {
 
                 PaymentScanQRActivity.payment_layout.setVisibility(View.GONE);
-                PaymentScanQRActivity.error_message.setText("INVALID MERCHANT!!!!");
+                PaymentScanQRActivity.error_message.setText("INVALID MERCHANT");
                 PaymentScanQRActivity.error_message.setVisibility(View.VISIBLE);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setMessage("INVALID MERCHANT!!!!")
+                builder.setMessage("Error #B0034 Invalid Merchant")
                         .setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -212,7 +212,7 @@ public class PostPay_MerchantInfo_Task extends AsyncTask<String, Integer, String
     private void showDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Connect to Internet or quit")
+        builder.setMessage("Error #B0090 Internet Connection Failed")
                 .setCancelable(false)
                 .setPositiveButton("Connect to Internet", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

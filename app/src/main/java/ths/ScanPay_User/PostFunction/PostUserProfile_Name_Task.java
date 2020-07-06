@@ -114,8 +114,20 @@ public class PostUserProfile_Name_Task extends AsyncTask<String, Integer, String
         if(result.equals("SAVE PROFILE NAME SUCCESS"))
         {
             new GetUserProfileListTask(context).execute();
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage("Alert Save Profile Name Success")
+                    .setCancelable(false)
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+
+            AlertDialog alert = builder.create();
+            alert.show();
         }
-        Toast.makeText(context,"Save Success",Toast.LENGTH_SHORT).show();
+       // Toast.makeText(context,"Save Success",Toast.LENGTH_SHORT).show();
         // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
 
        // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
@@ -124,7 +136,7 @@ public class PostUserProfile_Name_Task extends AsyncTask<String, Integer, String
     private void showDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Connect to Internet or quit")
+        builder.setMessage("Error #B0090 Internet Connection Failed")
                 .setCancelable(false)
                 .setPositiveButton("Connect to Internet", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

@@ -109,6 +109,17 @@ public class PostUserProfile_Pin_Payment_Task extends AsyncTask<String, Integer,
         if(result.equals("SAVE PROFILE PIN PAYMENT SUCCESS"))
         {
             new GetUserProfileListTask(context).execute();
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage("Alert Save Profile Pin Payment Success")
+                    .setCancelable(false)
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+
+            AlertDialog alert = builder.create();
+            alert.show();
            // Toast.makeText(context,"Save Success",Toast.LENGTH_SHORT).show();
         }
 
@@ -121,7 +132,7 @@ public class PostUserProfile_Pin_Payment_Task extends AsyncTask<String, Integer,
     private void showDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Connect to Internet or quit")
+        builder.setMessage("Error #B0090 Internet Connection Failed")
                 .setCancelable(false)
                 .setPositiveButton("Connect to Internet", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
