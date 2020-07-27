@@ -476,14 +476,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
 
-        profile_img = (ImageView)findViewById(R.id.profile_img);
-        Glide.with(this)  //2
-                .load("https://simg.nicepng.com/png/small/128-1280406_view-user-icon-png-user-circle-icon-png.png") //3
-                //.apply(RequestOptions.bitmapTransform(new RoundedCorners(14)))
-                .apply(RequestOptions.circleCropTransform())
-                .placeholder(R.drawable.usericon) //5
-                .error(R.drawable.usericon) //6
-                .into(profile_img) ;
+
 
 
         back = (ImageView) findViewById(R.id.backbtn);

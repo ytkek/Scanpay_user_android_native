@@ -106,7 +106,7 @@ public class PostUserProfile_OldPassword_Task extends AsyncTask<String, Integer,
         progDailog.dismiss();
 
         GlobalVariable.OldPassword= result;
-       // Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
         // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
 
        // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);

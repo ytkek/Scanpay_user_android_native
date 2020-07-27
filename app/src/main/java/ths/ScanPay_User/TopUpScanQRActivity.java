@@ -24,6 +24,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 import java.util.concurrent.TimeUnit;
 
+import ths.ScanPay_User.PostFunction.PostApp_Error_Message_Task;
 import ths.ScanPay_User.PostFunction.PostPay_CreditBalance_Task;
 import ths.ScanPay_User.PostFunction.PostPay_Get_OTP_Task;
 import ths.ScanPay_User.PostFunction.PostPay_Validate_PinNumber_Task;
@@ -170,6 +171,7 @@ public class TopUpScanQRActivity extends AppCompatActivity {
                             .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     dialog.dismiss();
+                                    new PostApp_Error_Message_Task(TopUpScanQR).execute(MainActivity.LoginID,"unsuccessful topup Error #B0041 Invalid Merchant");
                                 }
                             });
 

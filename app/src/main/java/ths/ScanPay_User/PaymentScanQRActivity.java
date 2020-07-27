@@ -33,6 +33,7 @@ import com.google.zxing.integration.android.IntentResult;
 import java.util.concurrent.TimeUnit;
 
 import ths.ScanPay_User.Generic.Generic;
+import ths.ScanPay_User.PostFunction.PostApp_Error_Message_Task;
 import ths.ScanPay_User.PostFunction.PostPay_CreditBalance_Task;
 import ths.ScanPay_User.PostFunction.PostPay_DailyExp_Task;
 import ths.ScanPay_User.PostFunction.PostPay_Get_OTP_Task;
@@ -413,12 +414,14 @@ public class PaymentScanQRActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (PaymentScanQRActivity.amount_edit.getText().toString().equals(""))
                 {
+
                     AlertDialog.Builder builder = new AlertDialog.Builder(PaymentScanQRActivityactivity);
                     builder.setMessage("Error #B0039 Amount cant be empty")
                             .setCancelable(false)
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     dialog.dismiss();
+                                    new PostApp_Error_Message_Task(PaymentScanQRActivityactivity).execute(MainActivity.LoginID,"unsuccessful payment Error #B0039 Amount cant be empty");
                                 }
                             });
 
@@ -507,6 +510,7 @@ public class PaymentScanQRActivity extends AppCompatActivity {
                             .setCancelable(false)
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
+                                    new PostApp_Error_Message_Task(PaymentScanQRActivityactivity).execute(MainActivity.LoginID,"unsuccessful payment Error #B0034 Invalid Merchant");
                                     PaymentScanQRActivity.PaymentScanQRActivityactivity.finish();
                                 }
                             });

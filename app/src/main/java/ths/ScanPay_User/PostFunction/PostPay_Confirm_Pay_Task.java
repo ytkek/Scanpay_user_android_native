@@ -24,6 +24,7 @@ import java.util.HashMap;
 
 import ths.ScanPay_User.ApiUrl;
 import ths.ScanPay_User.FindMerchantlist;
+import ths.ScanPay_User.MainActivity;
 import ths.ScanPay_User.NetworkUtil;
 import ths.ScanPay_User.PaymentScanQRActivity;
 
@@ -144,9 +145,11 @@ public class PostPay_Confirm_Pay_Task extends AsyncTask<String, Integer, String>
 
         progDailog.dismiss();
 
-        Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
         if(result.equals("payment success"))
         {
+
+            new PostApp_Success_Message_Task(context).execute(MainActivity.LoginID,"success payment "+ ((PaymentScanQRActivity.qrcode == null) ? "" : PaymentScanQRActivity.qrcode) + ((PaymentScanQRActivity.lqrcode == null) ? "" : PaymentScanQRActivity.lqrcode));
             PaymentScanQRActivity.payment_layout.setVisibility(View.GONE);
 
 

@@ -22,6 +22,7 @@ import java.util.HashMap;
 
 import ths.ScanPay_User.ApiUrl;
 import ths.ScanPay_User.FindMerchantlist;
+import ths.ScanPay_User.MainActivity;
 import ths.ScanPay_User.NetworkUtil;
 import ths.ScanPay_User.PaymentScanQRActivity;
 
@@ -117,11 +118,13 @@ public class PostPay_CheckDailyExpLimit_Task extends AsyncTask<String, Integer, 
             PaymentScanQRActivity.error_message.setText("Exceed Daily Limit");
             PaymentScanQRActivity.error_message.setVisibility(View.VISIBLE);
 
+
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setMessage("Error #B0032 Exceed Daily Limit")
                     .setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
+                            new PostApp_Error_Message_Task(context).execute(MainActivity.LoginID,"unsuccessful payment Error #B0032 Exceed Daily Limit");
                             PaymentScanQRActivity.PaymentScanQRActivityactivity.finish();
                         }
                     });

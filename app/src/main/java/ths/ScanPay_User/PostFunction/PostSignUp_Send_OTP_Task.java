@@ -105,7 +105,7 @@ public class PostSignUp_Send_OTP_Task extends AsyncTask<String, Integer, String>
         super.onPostExecute(result);
 
         progDailog.dismiss();
-        //Toast.makeText(context,result,Toast.LENGTH_SHORT).show()
+        //Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
             SignUpStep1.systemOTP=result;
             SignUpStep1.checkloginidresult.setVisibility(View.INVISIBLE);
             //SignUpStep1.verifybool=true;

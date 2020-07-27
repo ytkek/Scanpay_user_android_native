@@ -60,4 +60,6 @@ public class ApiUrl {
     public static String PostVerification_Save_OTP_Api = "PostVerification_Save_OTP.aspx";
 
 
+    public static String PostApp_Success_Message_Api = "PostApp_Success_Message.aspx";
+    public static String PostApp_Error_Message_Api = "PostApp_Error_Message.aspx";
 }

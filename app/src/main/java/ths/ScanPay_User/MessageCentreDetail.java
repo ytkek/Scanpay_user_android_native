@@ -11,6 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import ths.ScanPay_User.GetFunction.GetMessageListTask;
 
 public class MessageCentreDetail extends AppCompatActivity {
@@ -22,7 +26,7 @@ public class MessageCentreDetail extends AppCompatActivity {
     public String nob_message;
     public String nob_publishdate;
 
-    public TextView date,title,message;
+    public TextView date_title,title,message;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +38,21 @@ public class MessageCentreDetail extends AppCompatActivity {
         nob_title=intent.getStringExtra("nob_title");
         nob_message=intent.getStringExtra("nob_message");
         nob_publishdate = intent.getStringExtra("nob_publishdate");
+        date_title = (TextView)findViewById(R.id.date);
 
-        date = (TextView)findViewById(R.id.date);
-        date.setText(nob_publishdate);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SS");
+        try {
+            Date date = df.parse(nob_publishdate);
+            df.applyPattern("yyyy/MM/dd hh:mm:ss aa");
+            String result = df.format(date);
+
+            date_title.setText(result);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        //date.setText(nob_publishdate);
         title=(TextView)findViewById(R.id.title);
         title.setText(nob_title);
         message=(TextView)findViewById(R.id.message);

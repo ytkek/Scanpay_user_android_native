@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ths.ScanPay_User.Generic.Generic;
+import ths.ScanPay_User.GetFunction.GetAllDiscoveryListTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -85,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
                         img.setImageResource(R.drawable.search_click);
                         text.setTextColor(Color.parseColor("#0094FF"));
                         lol.setBackgroundColor(Color.parseColor("#ffffff"));
+
+                        DiscoveryFragment.indicator=true;
+                        new GetAllDiscoveryListTask(MainActivity.mainactivity,DiscoveryFragment.recyclerView).execute();
                     }
                     if(position == 1)
                     {

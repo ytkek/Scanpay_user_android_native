@@ -132,11 +132,13 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
             if (b>a)
 
             {
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setMessage("Error #B0035 Not Enough Credit")
                         .setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                new PostApp_Error_Message_Task(context).execute(MainActivity.LoginID,"unsuccessful payment Error #B0035 Not Enough Credit");
                                 PaymentScanQRActivity.PaymentScanQRActivityactivity.finish();
                             }
                         });
@@ -148,11 +150,13 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
             }
             else if (b > c)
             {
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setMessage("Error #B0036 Not allow to exceed daily limit")
                         .setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                new PostApp_Error_Message_Task(context).execute(MainActivity.LoginID,"unsuccessful payment Error #B0036 Not allow to exceed daily limit");
                                 PaymentScanQRActivity.PaymentScanQRActivityactivity.finish();
                             }
                         });
@@ -162,11 +166,13 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
             }
             else if (b>(200.00))
             {
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setMessage("Error #B0037 Not allow to exceed purse limit")
                         .setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                new PostApp_Error_Message_Task(context).execute(MainActivity.LoginID,"unsuccessful payment Error #B0037 Not allow to exceed purse limit");
                                 PaymentScanQRActivity.PaymentScanQRActivityactivity.finish();
                             }
                         });
@@ -176,11 +182,13 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
             }
             else if (b > d)
             {
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setMessage("Error #B0038 Not allow to exceed monthly limit")
                         .setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                new PostApp_Error_Message_Task(context).execute(MainActivity.LoginID,"unsuccessful payment Error #B0038 Not allow to exceed monthly limit");
                                 PaymentScanQRActivity.PaymentScanQRActivityactivity.finish();
                             }
                         });
@@ -212,11 +220,13 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
         }
         else if(result.equals("Invalid Pin Number"))
         {
+
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setMessage("Error #B0031 Invalid Pin Number")
                     .setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
+                            new PostApp_Error_Message_Task(context).execute(MainActivity.LoginID,"unsuccessful payment Error #B0031 Invalid Pin Number");
                             PaymentScanQRActivity.PaymentScanQRActivityactivity.finish();
                         }
                     });

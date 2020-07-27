@@ -21,6 +21,7 @@ import java.util.HashMap;
 
 import ths.ScanPay_User.ApiUrl;
 import ths.ScanPay_User.FindMerchantlist;
+import ths.ScanPay_User.MainActivity;
 import ths.ScanPay_User.NetworkUtil;
 import ths.ScanPay_User.PaymentScanQRActivity;
 import ths.ScanPay_User.TopUpScanQRActivity;
@@ -157,12 +158,14 @@ public class PostTopUp_MerchantInfo_Task extends AsyncTask<String, Integer, Stri
                 TopUpScanQRActivity.error_message.setText("INVALID MERCHANT");
                 TopUpScanQRActivity.error_message.setVisibility(View.VISIBLE);
 
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setMessage("Error #B0041 Invalid Merchant")
                         .setCancelable(false)
                         .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                dialog.dismiss();
+                                new PostApp_Error_Message_Task(context).execute(MainActivity.LoginID,"unsuccessful topup Error #B0041 Invalid Merchant");
                             }
                         });
 

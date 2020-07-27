@@ -23,6 +23,7 @@ import java.util.HashMap;
 
 import ths.ScanPay_User.ApiUrl;
 import ths.ScanPay_User.FindMerchantlist;
+import ths.ScanPay_User.MainActivity;
 import ths.ScanPay_User.NetworkUtil;
 import ths.ScanPay_User.PaymentScanQRActivity;
 import ths.ScanPay_User.TopUpScanQRActivity;
@@ -150,6 +151,7 @@ public class PostTopup_Confirm_Topup_Task extends AsyncTask<String, Integer, Str
         Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
         if(result.equals("payment success"))
         {
+            new PostApp_Success_Message_Task(context).execute(MainActivity.LoginID,"success topup "+ ((TopUpScanQRActivity.qrcode == null) ? "" : TopUpScanQRActivity.qrcode) + ((TopUpScanQRActivity.lqrcode == null) ? "" : TopUpScanQRActivity.lqrcode));
             TopUpScanQRActivity.topup_layout.setVisibility(View.GONE);
             TopUpScanQRActivity.topup_result_amount.setText("Amount: "+TopUpScanQRActivity.amount_edit.getText().toString());
             TopUpScanQRActivity.topup_result_date.setText("Date: "+java.text.DateFormat.getDateTimeInstance().format(new Date()));

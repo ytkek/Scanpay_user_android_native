@@ -49,15 +49,6 @@
         android:orientation="vertical"
         android:background="@drawable/editprofilebackground">
 
-        <ImageView
-            android:id="@+id/profile_img"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp">
-
-        </ImageView>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -7,13 +7,10 @@ package ths.ScanPay_User.PostFunction;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.provider.Settings;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,25 +19,23 @@ import java.util.HashMap;
 
 import ths.ScanPay_User.ApiUrl;
 import ths.ScanPay_User.FindMerchantlist;
-import ths.ScanPay_User.Login;
-import ths.ScanPay_User.MainActivity;
 import ths.ScanPay_User.NetworkUtil;
-import ths.ScanPay_User.PaymentScanQRActivity;
 
 /**
  * Created by Windows on 20/9/2016.
  */
-public class PostPay_CreditBalance_Task extends AsyncTask<String, Integer, String> {
+public class PostApp_Error_Message_Task extends AsyncTask<String, Integer, String> {
 
     public Activity context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
-    String params1,params2;
+
+
 
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
-    public PostPay_CreditBalance_Task(Activity context){
+    public PostApp_Error_Message_Task(Activity context){
         this.context = context;
 
 
@@ -64,18 +59,27 @@ public class PostPay_CreditBalance_Task extends AsyncTask<String, Integer, Strin
     @Override
     protected String doInBackground(String... params)
     {
-        params1= params[0];
+        String params1= params[0];
+        String params2 = params[1];
+
+
+
+
+
 
 
 
         String response="";
-        String apiUrl = ApiUrl.Domain + ApiUrl.PostPay_CreditBalance_Api ;
+        String apiUrl = ApiUrl.Domain + ApiUrl.PostApp_Error_Message_Api ;
         listMockData = new ArrayList<FindMerchantlist>();
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
 
-            hashMap.put("LoginID", params1);
+            hashMap.put("LoginID" , params1);
+            hashMap.put("Message",params2);
+
+
 
 
             response = NetworkUtil.sendPost(apiUrl,hashMap);
@@ -102,7 +106,6 @@ public class PostPay_CreditBalance_Task extends AsyncTask<String, Integer, Strin
             });
         }
 
-
         return response;
     }
 
@@ -113,33 +116,7 @@ public class PostPay_CreditBalance_Task extends AsyncTask<String, Integer, Strin
 
         progDailog.dismiss();
 
-        if(result.equals("Don Have Balance"))
-        {
-                PaymentScanQRActivity.payment_layout.setVisibility(View.GONE);
-                PaymentScanQRActivity.error_message.setText("You Don Have Enough Balance To Pay");
-                PaymentScanQRActivity.error_message.setVisibility(View.VISIBLE);
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setMessage("Error #B0033 Not Enough Balance")
-                    .setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            new PostApp_Error_Message_Task(context).execute(MainActivity.LoginID,"unsuccessful payment Error #B0033 Not Enough Balance");
-                            PaymentScanQRActivity.PaymentScanQRActivityactivity.finish();
-                        }
-                    });
-
-            AlertDialog alert = builder.create();
-            alert.show();
-        }
-        else
-        {
-            PaymentScanQRActivity.credit_balance = result;
-            PaymentScanQRActivity.amount_edit.setText(PaymentScanQRActivity.qr_amount);
-
-            new PostPay_CheckDailyExpLimit_Task(context).execute(MainActivity.LoginID);
-
-        }
 
 
 
@@ -177,6 +154,8 @@ public class PostPay_CreditBalance_Task extends AsyncTask<String, Integer, Strin
         AlertDialog alert = builder.create();
         alert.show();
     }
+
+
 
 
 

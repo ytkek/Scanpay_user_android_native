@@ -106,7 +106,7 @@ public class PostUserProfile_NewPassword_Task extends AsyncTask<String, Integer,
 
         progDailog.dismiss();
 
-
+        //Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
         if (result.equals("SAVE PROFILE PASSWORD SUCCESS"))
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
