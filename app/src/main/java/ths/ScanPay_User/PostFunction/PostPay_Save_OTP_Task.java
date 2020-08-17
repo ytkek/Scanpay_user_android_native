@@ -118,6 +118,7 @@ public class PostPay_Save_OTP_Task extends AsyncTask<String, Integer, String> {
             //Toast.makeText(context,"You Have Save New Otp",Toast.LENGTH_SHORT).show();
             PaymentScanQRActivity.set_new_Otp_layout.setVisibility(View.GONE);
             PaymentScanQRActivity.payment_layout.setVisibility(View.VISIBLE);
+            new PostApp_Success_Message_Task(context).execute(MainActivity.LoginID,"Payment key save successful");
         }
         else if(result.equals("SAVE OTP BACKEND SYSTEM FAIL"))
         {

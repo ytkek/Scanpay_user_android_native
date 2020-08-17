@@ -34,10 +34,10 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.MyViewHo
 
         Balancelist c = balanceList.get(position);
 
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SS");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         try {
             Date date = df.parse(c.la_createdt);
-            df.applyPattern("yyyy/MM/dd hh:mm:ss aa");
+            df.applyPattern("dd/MM/yyyy hh:mm:ss a");
             String result = df.format(date);
 
             holder.balance_date_time.setText(""+result);
