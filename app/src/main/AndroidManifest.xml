@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ths.ScanPay_User">
+    package="ths.ScanPay_UserV5">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -16,7 +16,7 @@
         android:hardwareAccelerated="true"
         android:largeHeap="true"
         >
-        <activity android:name=".SplashScreen">
+        <activity android:name="ths.ScanPay_UserV5.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,80 +24,80 @@
             </intent-filter>
         </activity>
         <service
-            android:name=".Service.MyFirebaseMessagingService"
+            android:name="ths.ScanPay_UserV5.Service.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <activity android:name=".MainActivity"
+        <activity android:name="ths.ScanPay_UserV5.MainActivity"
                   android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Login"
+        <activity android:name="ths.ScanPay_UserV5.Login"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".RecoveryPasswordActivity"
+        <activity android:name="ths.ScanPay_UserV5.RecoveryPasswordActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".SignUpStep1"
+        <activity android:name="ths.ScanPay_UserV5.SignUpStep1"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".SignUpStep2"
+        <activity android:name="ths.ScanPay_UserV5.SignUpStep2"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".SignUpStep3"
+        <activity android:name="ths.ScanPay_UserV5.SignUpStep3"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ViewAgreementWebview"
+        <activity android:name="ths.ScanPay_UserV5.ViewAgreementWebview"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".AboutUsActivity"
+        <activity android:name="ths.ScanPay_UserV5.AboutUsActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".LocationActivity"
+        <activity android:name="ths.ScanPay_UserV5.LocationActivity"
             android:screenOrientation="portrait">
         </activity>
 
-        <activity android:name=".MessageCentreActivity"
+        <activity android:name="ths.ScanPay_UserV5.MessageCentreActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".MessageCentreDetail"
+        <activity android:name="ths.ScanPay_UserV5.MessageCentreDetail"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".SystemInfoActivity"
+        <activity android:name="ths.ScanPay_UserV5.SystemInfoActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".EditProfileActivity"
+        <activity android:name="ths.ScanPay_UserV5.EditProfileActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".EditProfileDialog"
+        <activity android:name="ths.ScanPay_UserV5.EditProfileDialog"
             android:screenOrientation="portrait"
             android:theme="@android:style/TextAppearance.Theme.Dialog">
         </activity>
-        <activity android:name=".BalanceActivity"
+        <activity android:name="ths.ScanPay_UserV5.BalanceActivity"
             android:screenOrientation="portrait">
         </activity>
 
-        <activity android:name=".JomPayWebview"
+        <activity android:name="ths.ScanPay_UserV5.JomPayWebview"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".FindMerchantActivity"
+        <activity android:name="ths.ScanPay_UserV5.FindMerchantActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".FindMerchantDetail"
+        <activity android:name="ths.ScanPay_UserV5.FindMerchantDetail"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".PaymentScanQRActivity"
+        <activity android:name="ths.ScanPay_UserV5.PaymentScanQRActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".TopUpScanQRActivity"
+        <activity android:name="ths.ScanPay_UserV5.TopUpScanQRActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".CaptureActivityPortrait"
+        <activity android:name="ths.ScanPay_UserV5.CaptureActivityPortrait"
             android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".Verification_LoginPage"
+        <activity android:name="ths.ScanPay_UserV5.Verification_LoginPage"
             android:screenOrientation="portrait">
         </activity>
     </application>
