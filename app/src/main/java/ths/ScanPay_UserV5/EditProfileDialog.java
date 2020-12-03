@@ -45,7 +45,7 @@ public class EditProfileDialog extends Dialog implements
             dob_error_message;
     public static TextView forgetpin_error_message_textview;
     public static EditText dobedit;
-
+    public static String newpasswordString;
     EditText pin1,pin2,pin3,pin4,pin5,pin6,oldpin1,oldpin2,oldpin3,oldpin4,oldpin5,oldpin6;
     public boolean indicator_newpin,indicator_oldpin,indicator_newpayment_image_btn,indicator_oldpayment_image_btn;
     public EditProfileDialog(Activity a,String data) {
@@ -101,6 +101,7 @@ public class EditProfileDialog extends Dialog implements
                         {
                             oldpassword_error_message.setVisibility(View.INVISIBLE);
                             dismiss();
+                            newpasswordString = newpasswordedit.getText().toString();
                             new PostUserProfile_NewPassword_Task(c).execute(MainActivity.LoginID,newpasswordedit.getText().toString(),MainActivity.LoginID,MainActivity.Password);
                         }
                         else

@@ -132,6 +132,20 @@ public class PostSignUp_Update_PaymentInfo_Task extends AsyncTask<String, Intege
         {
             new PostSignUp_Update_Confirm_Task(context).execute(SignUpStep1.MobileNum,SignUpStep1.systemOTP);
         }
+        else
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage("Error #B0025 Update Payment Fail")
+                    .setCancelable(false)
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
 
 
 

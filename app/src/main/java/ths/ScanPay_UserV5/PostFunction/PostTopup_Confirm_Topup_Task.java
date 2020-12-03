@@ -30,6 +30,7 @@ import ths.ScanPay_UserV5.ApiUrl;
 import ths.ScanPay_UserV5.FindMerchantlist;
 import ths.ScanPay_UserV5.MainActivity;
 import ths.ScanPay_UserV5.NetworkUtil;
+import ths.ScanPay_UserV5.PaymentScanQRActivity;
 import ths.ScanPay_UserV5.TopUpScanQRActivity;
 
 /**
@@ -180,7 +181,7 @@ public class PostTopup_Confirm_Topup_Task extends AsyncTask<String, Integer, Str
         }
         else
         {
-
+            new PostApp_Error_Message_Task(context).execute(MainActivity.LoginID,"unsuccess topup "+ ((TopUpScanQRActivity.qrcode == null) ? "" : TopUpScanQRActivity.qrcode) + ((TopUpScanQRActivity.lqrcode == null) ? "" : TopUpScanQRActivity.lqrcode));
         }
 
 

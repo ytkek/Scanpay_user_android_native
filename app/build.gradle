@@ -8,8 +8,8 @@ android {
         applicationId "ths.ScanPay_User2"
         minSdkVersion 24
         targetSdkVersion 29
-        versionCode 37
-        versionName "3.04"
+        versionCode 38
+        versionName "3.05"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

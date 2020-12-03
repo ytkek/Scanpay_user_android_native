@@ -135,6 +135,20 @@ public class PostSignUp_Update_User_Info_Task extends AsyncTask<String, Integer,
             Intent step3 = new Intent(context, SignUpStep3.class);
             context.startActivity(step3);
         }
+        else
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage("Error #B0013 Update UserInfo Fail")
+                    .setCancelable(false)
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
 
 
 

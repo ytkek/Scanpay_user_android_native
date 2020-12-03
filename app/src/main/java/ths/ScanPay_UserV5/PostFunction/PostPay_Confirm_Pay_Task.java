@@ -178,7 +178,7 @@ public class PostPay_Confirm_Pay_Task extends AsyncTask<String, Integer, String>
         }
         else
         {
-
+            new PostApp_Error_Message_Task(context).execute(MainActivity.LoginID,"unsuccess payment "+ ((PaymentScanQRActivity.qrcode == null) ? "" : PaymentScanQRActivity.qrcode) + ((PaymentScanQRActivity.lqrcode == null) ? "" : PaymentScanQRActivity.lqrcode));
         }
 
 

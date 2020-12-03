@@ -145,7 +145,7 @@ public class PostLogin_Validate_LoginID_Task extends AsyncTask<String, Integer, 
         else if(result.equals("Not Allow Login"))
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setMessage("Error Account have been login by another device")
+            builder.setMessage("#B1000 Error Account have been login by another device")
                     .setCancelable(false)
                     .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {

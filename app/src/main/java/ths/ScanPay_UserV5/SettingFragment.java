@@ -13,7 +13,6 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.common.util.HttpUtils;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.net.URLEncoder;

@@ -142,9 +142,9 @@ public class PostPay_Save_OTP_Task extends AsyncTask<String, Integer, String> {
         }
         else if(result.equals("SAVE OTP BACKEND SYSTEM FAIL"))
         {
-
+            new PostApp_Error_Message_Task(context).execute(MainActivity.LoginID,"Payment key save unsuccessful");
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setMessage("Error Save Otp Backend System Fail")
+            builder.setMessage("#B1101 Error Save Otp Backend System Fail")
                     .setCancelable(false)
                     .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {

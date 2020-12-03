@@ -9,8 +9,6 @@ import android.os.AsyncTask;
 import android.provider.Settings;
 import android.util.Base64;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import java.util.HashMap;
 
@@ -22,7 +20,6 @@ import ths.ScanPay_UserV5.ApiUrl;
 import ths.ScanPay_UserV5.MainActivity;
 import ths.ScanPay_UserV5.NetworkUtil;
 import ths.ScanPay_UserV5.PaymentScanQRActivity;
-import ths.ScanPay_UserV5.Verification_LoginPage;
 
 public class PostPay_Duplicate_Transaction_Alert_Task extends AsyncTask<String, Integer, String> {
 
@@ -128,9 +125,11 @@ public class PostPay_Duplicate_Transaction_Alert_Task extends AsyncTask<String, 
 
         progDailog.dismiss();
 
+
         //Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
         if (result.equals("Transaction Duplicate Not Found"))
        {
+
       //      new PostVerification_Validate_Email(context).execute(Verification_LoginPage.emailedit.getText().toString());
       //      Verification_LoginPage.checkloginresult.setVisibility(View.GONE);
            new PostPay_Validate_PinNumber_Task(PaymentScanQRActivity.PaymentScanQRActivityactivity).execute(MainActivity.LoginID,PaymentScanQRActivity.pin1.getText().toString()+PaymentScanQRActivity.pin2.getText().toString()+PaymentScanQRActivity.pin3.getText().toString()+PaymentScanQRActivity.pin4.getText().toString()+PaymentScanQRActivity.pin5.getText().toString()+PaymentScanQRActivity.pin6.getText().toString(),MainActivity.LoginID,MainActivity.Password);
@@ -140,11 +139,12 @@ public class PostPay_Duplicate_Transaction_Alert_Task extends AsyncTask<String, 
 
 
            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-           builder.setMessage("Same merchant and amount detected, Are you sure to continue?")
+           builder.setMessage("#B1100 Same merchant and amount detected, Are you sure to continue?")
                     .setCancelable(false)
                     .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.dismiss();
+                            new PostApp_Success_Message_Task(context).execute(MainActivity.LoginID,"Transaction Duplicate Accepted");
                             new PostPay_Validate_PinNumber_Task(PaymentScanQRActivity.PaymentScanQRActivityactivity).execute(MainActivity.LoginID,PaymentScanQRActivity.pin1.getText().toString()+PaymentScanQRActivity.pin2.getText().toString()+PaymentScanQRActivity.pin3.getText().toString()+PaymentScanQRActivity.pin4.getText().toString()+PaymentScanQRActivity.pin5.getText().toString()+PaymentScanQRActivity.pin6.getText().toString(),MainActivity.LoginID,MainActivity.Password);
                         }
                     })
@@ -154,6 +154,7 @@ public class PostPay_Duplicate_Transaction_Alert_Task extends AsyncTask<String, 
 
                         context.finish();
                         PaymentScanQRActivity.clear();
+                        new PostApp_Error_Message_Task(context).execute(MainActivity.LoginID,"Transaction Duplicate Cancel");
                          }
                     });
 

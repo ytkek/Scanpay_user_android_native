@@ -34,7 +34,6 @@ import ths.ScanPay_UserV5.PostFunction.PostPay_Duplicate_Transaction_Alert_Task;
 import ths.ScanPay_UserV5.PostFunction.PostPay_Get_OTP_Task;
 import ths.ScanPay_UserV5.PostFunction.PostPay_MerchantInfo_Task;
 import ths.ScanPay_UserV5.PostFunction.PostPay_MonthlyExp_Task;
-import ths.ScanPay_UserV5.PostFunction.PostPay_Validate_PinNumber_Task;
 import ths.ScanPay_UserV5.PostFunction.PostPay_Validate_QRExpired_Task;
 
 public class PaymentScanQRActivity extends AppCompatActivity {
@@ -60,6 +59,8 @@ public class PaymentScanQRActivity extends AppCompatActivity {
 
     ImageView back_btn,image_btn;
     public boolean indicator;
+    public static boolean qrcodeexpired = false;
+
     Button confirm_btn;
     IntentResult result;
     public static Activity PaymentScanQRActivityactivity;
@@ -426,8 +427,20 @@ public class PaymentScanQRActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    qr_amount = PaymentScanQRActivity.amount_edit.getText().toString();
-                    new PostPay_Duplicate_Transaction_Alert_Task(PaymentScanQRActivityactivity).execute(type,qr_amount,MainActivity.LoginID,merchantid,MainActivity.LoginID,MainActivity.Password);
+                    if (qrcodeexpired == true)
+
+                    {
+
+                        qr_amount = PaymentScanQRActivity.amount_edit.getText().toString();
+                        
+                        new PostPay_Validate_QRExpired_Task(PaymentScanQRActivityactivity).execute(lqrcode,MainActivity.LoginID,MainActivity.Password);
+                    }
+                    else if (qrcodeexpired == false)
+                    {
+                        qr_amount = PaymentScanQRActivity.amount_edit.getText().toString();
+                        new PostPay_Duplicate_Transaction_Alert_Task(PaymentScanQRActivityactivity).execute(type,qr_amount,MainActivity.LoginID,merchantid,MainActivity.LoginID,MainActivity.Password);
+                    }
+
 
 
                 }
@@ -532,7 +545,8 @@ public class PaymentScanQRActivity extends AppCompatActivity {
                             qr_amount=amount;
                             lqrcode = arrayString[2];
                             new PostPay_MerchantInfo_Task(this).execute(type,merchantid,amount,lqrcode,qrcode,MainActivity.LoginID,MainActivity.Password);
-                            new PostPay_Validate_QRExpired_Task(this).execute(lqrcode,MainActivity.LoginID,MainActivity.Password);
+                            qrcodeexpired = true;
+
                             Log.d("Scanned: " , "pay"+arrayString[a] );
                         }
                         else if(arrayString.length==2)
@@ -577,6 +591,7 @@ public class PaymentScanQRActivity extends AppCompatActivity {
         merchant_name.setText("");
         amount_edit.setText("");
         qr_amount="";
+        qrcodeexpired = false;
         pin1.setText("");
         pin2.setText("");
         pin3.setText("");

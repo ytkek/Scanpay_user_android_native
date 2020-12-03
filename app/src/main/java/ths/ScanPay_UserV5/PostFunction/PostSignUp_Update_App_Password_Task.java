@@ -132,8 +132,23 @@ public class PostSignUp_Update_App_Password_Task extends AsyncTask<String, Integ
         progDailog.dismiss();
         if(result.equals("Update Password Success"))
         {
+
             Intent next = new Intent(context, SignUpStep2.class);
             context.startActivity(next);
+        }
+        else
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage("Error #B0004 Update Password Fail")
+                    .setCancelable(false)
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+
+            AlertDialog alert = builder.create();
+            alert.show();
         }
 
 

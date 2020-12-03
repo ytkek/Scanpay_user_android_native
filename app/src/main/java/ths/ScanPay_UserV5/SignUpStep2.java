@@ -1,6 +1,8 @@
 package ths.ScanPay_UserV5;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -103,19 +105,56 @@ public class SignUpStep2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                boolean emailvalidate =isEmailValid(emailedit.getText().toString());
-                if(emailvalidate==true)
-                {
 
-                    new PostSignUp_Update_User_Info_Task(SignUpStep2).execute(nameedit.getText().toString(),emailedit.getText().toString(),SignUpStep1.MobileNum,SignUpStep1.systemOTP);
+                if(!nameedit.getText().toString().equals("")&&!emailedit.getText().toString().equals(""))
+                {
+                    boolean emailvalidate =isEmailValid(emailedit.getText().toString());
+
+
+                    if(emailvalidate==true)
+                    {
+
+                        new PostSignUp_Update_User_Info_Task(SignUpStep2).execute(nameedit.getText().toString(),emailedit.getText().toString(),SignUpStep1.MobileNum,SignUpStep1.systemOTP);
+
+                    }
+                    else
+                    {
+
+                        error_message_textview.setVisibility(View.VISIBLE);
+                        error_message_textview.setText("Email Wrong Format");
+                        AlertDialog.Builder builder = new AlertDialog.Builder(SignUpStep2);
+                        builder.setMessage("Error #B0012 Invaid Email")
+                                .setCancelable(false)
+                                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    }
 
                 }
                 else
                 {
 
-                    error_message_textview.setVisibility(View.VISIBLE);
-                    error_message_textview.setText("Email Wrong Format");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SignUpStep2);
+                    builder.setMessage("Error #B0011 Name or Email is Empty")
+                            .setCancelable(false)
+                            .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.dismiss();
+                                }
+                            });
+
+                    AlertDialog alert = builder.create();
+                    alert.show();
+
+
+
                 }
+
 
             }
         });

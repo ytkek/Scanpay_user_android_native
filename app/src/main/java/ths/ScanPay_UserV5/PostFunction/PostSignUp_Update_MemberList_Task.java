@@ -134,6 +134,20 @@ public class PostSignUp_Update_MemberList_Task extends AsyncTask<String, Integer
           Intent lol = new Intent(context, Login.class);
           context.startActivity(lol);
       }
+      else
+      {
+          AlertDialog.Builder builder = new AlertDialog.Builder(context);
+          builder.setMessage("Error #B0023 User Register Fail")
+                  .setCancelable(false)
+                  .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                      public void onClick(DialogInterface dialog, int id) {
+                          dialog.dismiss();
+                      }
+                  });
+
+          AlertDialog alert = builder.create();
+          alert.show();
+      }
 
 
 

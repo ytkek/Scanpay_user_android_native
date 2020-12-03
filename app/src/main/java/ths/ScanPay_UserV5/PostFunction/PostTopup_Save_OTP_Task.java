@@ -27,6 +27,7 @@ import javax.crypto.spec.SecretKeySpec;
 import ths.ScanPay_UserV5.ApiUrl;
 import ths.ScanPay_UserV5.FindMerchantlist;
 import ths.ScanPay_UserV5.Generic.Generic;
+import ths.ScanPay_UserV5.MainActivity;
 import ths.ScanPay_UserV5.NetworkUtil;
 import ths.ScanPay_UserV5.TopUpScanQRActivity;
 
@@ -136,12 +137,14 @@ public class PostTopup_Save_OTP_Task extends AsyncTask<String, Integer, String> 
            // Toast.makeText(context,"You Have Save New Otp",Toast.LENGTH_SHORT).show();
             TopUpScanQRActivity.set_new_Otp_layout.setVisibility(View.GONE);
             TopUpScanQRActivity.topup_layout.setVisibility(View.VISIBLE);
+            new PostApp_Success_Message_Task(context).execute(MainActivity.LoginID,"TopUp key save successful");
         }
         else if(result.equals("SAVE OTP BACKEND SYSTEM FAIL"))
         {
+            new PostApp_Error_Message_Task(context).execute(MainActivity.LoginID,"TopUp key save unsuccessful");
             //Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setMessage("Error SAVE OTP BACKEND SYSTEM FAIL")
+            builder.setMessage("#B1101 Error SAVE OTP BACKEND SYSTEM FAIL")
                     .setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {

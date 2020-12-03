@@ -1,6 +1,8 @@
 package ths.ScanPay_UserV5;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -496,9 +498,28 @@ public class SignUpStep1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                MobileNum="60"+mobileedittext.getText().toString();
-                //Toast.makeText(context,result,Toast.LENGTH_SHORT).show()
-                new PostSignUp_Update_App_Password_Task(SignUpStep1).execute(passwordedit.getText().toString(),"60"+mobileedittext.getText().toString(),systemOTP);
+
+                if(confirmpasswordedit.getText().toString().equals(passwordedit.getText().toString()))
+                {
+                    MobileNum="60"+mobileedittext.getText().toString();
+                    //Toast.makeText(context,result,Toast.LENGTH_SHORT).show()
+                    new PostSignUp_Update_App_Password_Task(SignUpStep1).execute(passwordedit.getText().toString(),"60"+mobileedittext.getText().toString(),systemOTP);
+                }
+                else
+                {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SignUpStep1);
+                    builder.setMessage("Error #B0002 Password Not Match")
+                            .setCancelable(false)
+                            .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.dismiss();
+                                }
+                            });
+
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+
 
             }
         });
@@ -580,6 +601,18 @@ public class SignUpStep1 extends AppCompatActivity {
                     checkotpresult.setText("wrong");
                 }
             }, 2000);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(SignUpStep1);
+            builder.setMessage("Error #B0003 Incorrect OTP")
+                    .setCancelable(false)
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+
+            AlertDialog alert = builder.create();
+            alert.show();
 
         }
 

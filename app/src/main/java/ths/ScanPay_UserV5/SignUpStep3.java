@@ -1,6 +1,8 @@
 package ths.ScanPay_UserV5;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -90,8 +92,41 @@ public class SignUpStep3 extends AppCompatActivity {
         nextbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String totalpin=pin1.getText().toString()+pin2.getText().toString()+pin3.getText().toString()+pin4.getText().toString()+pin5.getText().toString()+pin6.getText().toString();
-                new PostSignUp_Update_PaymentInfo_Task(SignUpStep3).execute(totalpin,SignUpStep1.MobileNum,SignUpStep1.systemOTP);
+                if (!agreementcheckbox.isChecked())
+                {
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SignUpStep3);
+                    builder.setMessage("Error #B0021 Unchecked Agreement")
+                            .setCancelable(false)
+                            .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.dismiss();
+                                }
+                            });
+
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+                else if (pin1.getText().toString().equals("")&&pin2.getText().toString().equals("")&&pin3.getText().toString().equals("")&&pin4.getText().toString().equals("")&&pin5.getText().toString().equals("")&&pin6.getText().toString().equals(""))
+                {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SignUpStep3);
+                    builder.setMessage("Error #B0022 Unfill 6 Digit PIN")
+                            .setCancelable(false)
+                            .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.dismiss();
+                                }
+                            });
+
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+                else
+                {
+                    String totalpin=pin1.getText().toString()+pin2.getText().toString()+pin3.getText().toString()+pin4.getText().toString()+pin5.getText().toString()+pin6.getText().toString();
+                    new PostSignUp_Update_PaymentInfo_Task(SignUpStep3).execute(totalpin,SignUpStep1.MobileNum,SignUpStep1.systemOTP);
+                }
+
             }
         });
         agreementbtn = (TextView)findViewById(R.id.viewagreementbtn);

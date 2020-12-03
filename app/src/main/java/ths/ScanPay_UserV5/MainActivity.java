@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ths.ScanPay_UserV5.GetFunction.GetAllDiscoveryListTask;
-import ths.ScanPay_UserV5.PostFunction.PostApp_TestToken_Task;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -13,8 +13,6 @@ import android.os.AsyncTask;
 import android.provider.Settings;
 import android.util.Base64;
 import android.util.Log;
-import android.view.Window;
-import android.widget.LinearLayout;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,7 +28,6 @@ import ths.ScanPay_UserV5.FindMerchantlist;
 import ths.ScanPay_UserV5.MainActivity;
 import ths.ScanPay_UserV5.NetworkUtil;
 import ths.ScanPay_UserV5.PaymentScanQRActivity;
-import ths.ScanPay_UserV5.Payment_Confirm_Dialog;
 
 /**
  * Created by Windows on 20/9/2016.
@@ -132,17 +129,17 @@ public class PostPay_Validate_QRExpired_Task extends AsyncTask<String, Integer, 
 
         if(result.equals("Valid qr code"))
         {
-
+            new PostPay_Duplicate_Transaction_Alert_Task(PaymentScanQRActivity.PaymentScanQRActivityactivity).execute(PaymentScanQRActivity.type,PaymentScanQRActivity.qr_amount,MainActivity.LoginID,PaymentScanQRActivity.merchantid,MainActivity.LoginID,MainActivity.Password);
         }
         else if(result.equals("Invalid qr code"))
         {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setMessage("Error #B0031 QR Code Had Expired" )
+            builder.setMessage("Error #B0081 QR Code Had Expired" )
                     .setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            new PostApp_Error_Message_Task(context).execute(MainActivity.LoginID,"unsuccessful payment Error #B0031 Invalid Qr Code");
+                            new PostApp_Error_Message_Task(context).execute(MainActivity.LoginID,"unsuccessful payment Error #B0081 QR Code Had Expired");
                             PaymentScanQRActivity.PaymentScanQRActivityactivity.finish();
                         }
                     });

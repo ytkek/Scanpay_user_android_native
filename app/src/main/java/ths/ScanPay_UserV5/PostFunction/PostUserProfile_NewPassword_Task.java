@@ -24,7 +24,10 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import ths.ScanPay_UserV5.ApiUrl;
+import ths.ScanPay_UserV5.EditProfileActivity;
+import ths.ScanPay_UserV5.EditProfileDialog;
 import ths.ScanPay_UserV5.FindMerchantlist;
+import ths.ScanPay_UserV5.Generic.GenericAutologin;
 import ths.ScanPay_UserV5.NetworkUtil;
 
 /**
@@ -128,6 +131,7 @@ public class PostUserProfile_NewPassword_Task extends AsyncTask<String, Integer,
         //Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
         if (result.equals("SAVE PROFILE PASSWORD SUCCESS"))
         {
+            GenericAutologin.SaveLoginPassword(GenericAutologin.getLogin(context), EditProfileDialog.newpasswordString,context);
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setMessage("Alert Save Profile Password Success")
                     .setCancelable(false)

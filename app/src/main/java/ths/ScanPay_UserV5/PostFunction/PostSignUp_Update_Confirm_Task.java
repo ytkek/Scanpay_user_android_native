@@ -133,6 +133,20 @@ public class PostSignUp_Update_Confirm_Task extends AsyncTask<String, Integer, S
         {
             new PostSignUp_Update_MemberList_Task(context).execute(SignUpStep1.MobileNum,SignUpStep1.systemOTP);
         }
+        else
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage("Error #B0024 Update Comfirm Fail")
+                    .setCancelable(false)
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
 
 
 
