@@ -28,9 +28,6 @@ public class PostApp_TestToken_Task extends AsyncTask<String, Integer, String> {
     public Activity context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
-
-
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -82,13 +79,7 @@ public class PostApp_TestToken_Task extends AsyncTask<String, Integer, String> {
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
-
             hashMap.put("Token" , encryptedString);
-
-
-
-
-
             response = NetworkUtil.sendPost(apiUrl,hashMap);
             try{
 
@@ -122,23 +113,6 @@ public class PostApp_TestToken_Task extends AsyncTask<String, Integer, String> {
         super.onPostExecute(result);
 
         progDailog.dismiss();
-
-
-
-        Log.e("WTF2",result);
-        //Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
-
-
-
-
-
-
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-        // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

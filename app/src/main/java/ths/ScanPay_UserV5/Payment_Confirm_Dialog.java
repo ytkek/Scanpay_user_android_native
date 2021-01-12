@@ -37,7 +37,6 @@ public class Payment_Confirm_Dialog extends Dialog implements
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.payment_confirm_dialog);
-
         x_btn=(ImageView)findViewById(R.id.close);
         x_btn.setOnClickListener(new View.OnClickListener() {
             @Override

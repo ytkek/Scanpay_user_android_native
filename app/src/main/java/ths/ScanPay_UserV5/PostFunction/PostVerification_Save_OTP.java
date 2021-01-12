@@ -30,7 +30,6 @@ public class PostVerification_Save_OTP extends AsyncTask<String, Integer, String
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -118,9 +117,6 @@ public class PostVerification_Save_OTP extends AsyncTask<String, Integer, String
         super.onPostExecute(result);
 
         progDailog.dismiss();
-
-       // Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
-
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("Alert Reset Login Complete")

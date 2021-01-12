@@ -29,21 +29,14 @@ public class RecoveryPasswordActivity extends AppCompatActivity {
 
         recoverypassword=this;
         backbtn = (ImageView)findViewById(R.id.backbtn);
-
         code = (EditText)findViewById(R.id.code);
         code.setEnabled(false);
-
         loginid = (EditText)findViewById(R.id.loginid_edit);
-
         checklogin = (TextView)findViewById(R.id.checkloginresult) ;
         checklogin.setVisibility(View.INVISIBLE);
-
         email = (EditText)findViewById(R.id.emailedit);
-
-
         checkemail = (TextView)findViewById(R.id.checkemailresult);
         checkemail.setVisibility(View.INVISIBLE);
-
         password_recover_result = (TextView)findViewById(R.id.password_recover_result);
         password_recover_result.setVisibility(View.INVISIBLE);
 
@@ -82,8 +75,6 @@ public class RecoveryPasswordActivity extends AppCompatActivity {
                 boolean emailvalidate =isEmailValid(email.getText().toString());
                 if(emailvalidate==true)
                 {
-                    //Intent step3 = new Intent(getApplicationContext(),SignUpStep3.class);
-                    //startActivity(step3);
                     checkemail.setVisibility(View.INVISIBLE);
                     checkemail.setText("");
 

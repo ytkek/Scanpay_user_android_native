@@ -8,7 +8,6 @@ public class MessageNotification{
     public static final String COLUMN_MESSAGE = "message";
     public static final String COLUMN_INDICATOR = "indicator";
     public static final String COLUMN_TIMESTAMP = "timestamp";
-
     private int id;
     private String message;
     private String indicator;

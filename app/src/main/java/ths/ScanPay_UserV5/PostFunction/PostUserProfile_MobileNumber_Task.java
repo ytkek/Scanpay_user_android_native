@@ -37,7 +37,6 @@ public class PostUserProfile_MobileNumber_Task extends AsyncTask<String, Integer
     public Activity context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
     String encryptedString;
@@ -131,7 +130,6 @@ public class PostUserProfile_MobileNumber_Task extends AsyncTask<String, Integer
         if(result.equals("SAVE PROFILE MOBILE NUMBER SUCCESS"))
         {
             new GetUserProfileListTask(context).execute(MainActivity.LoginID,MainActivity.Password);
-            //Toast.makeText(context,"Save Profile Mobile Number Success",Toast.LENGTH_SHORT).show();
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setMessage("Alert Save Profile Mobile Number Success")
                     .setCancelable(false)
@@ -144,10 +142,6 @@ public class PostUserProfile_MobileNumber_Task extends AsyncTask<String, Integer
             AlertDialog alert = builder.create();
             alert.show();
         }
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

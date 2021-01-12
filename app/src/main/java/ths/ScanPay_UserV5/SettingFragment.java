@@ -52,12 +52,9 @@ public class SettingFragment extends Fragment {
         message = (ImageView)view.findViewById(R.id.message) ;
         systeminfo = (ImageView)view.findViewById(R.id.systeminfo);
         logout=(ImageView)view.findViewById(R.id.logout);
-
         username=(TextView)view.findViewById(R.id.username);
         ID=(TextView)view.findViewById(R.id.ID);
-
         new GetUserProfile_Name_ID_Task(MainActivity.mainactivity).execute(MainActivity.LoginID,MainActivity.Password);
-
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

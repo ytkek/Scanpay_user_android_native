@@ -27,7 +27,6 @@ public class BalanceActivity extends AppCompatActivity {
     public static RecyclerView recyclerView;
     public static RecyclerView.Adapter mAdapter;
     Button search_btn;
-
     public static String datefrom,dateto;
 
     @Override
@@ -39,15 +38,11 @@ public class BalanceActivity extends AppCompatActivity {
 
         totalbalance_textview=(TextView)findViewById(R.id.totalbalance_textview);
         daily_limit_textview = (TextView)findViewById(R.id.daily_limit_textview);
-       // daily_exp_textview = (TextView)findViewById(R.id.daily_exp_textview);
-
         new PostBalance_TotalCredit_Task(balanceactivity).execute(MainActivity.LoginID,MainActivity.LoginID,MainActivity.Password);
 
         search_btn = (Button)findViewById(R.id.search_btn);
         search_btn.setAlpha(0.5f);
         search_btn.setEnabled(false);
-
-
         search_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +65,6 @@ public class BalanceActivity extends AppCompatActivity {
              @Override
              public void onClick(View v) {
                  DateDialog cdd=new DateDialog(balanceactivity,"datefrom");
-
                  cdd.show();
                  Window window = cdd.getWindow();
                  window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -107,7 +101,6 @@ public class BalanceActivity extends AppCompatActivity {
                  if(hasFocus==true)
                  {
                      DateDialog cdd=new DateDialog(balanceactivity,"datefrom");
-
                      cdd.show();
                      Window window = cdd.getWindow();
                      window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -122,7 +115,6 @@ public class BalanceActivity extends AppCompatActivity {
              @Override
              public void onClick(View v) {
                  DateDialog cdd=new DateDialog(balanceactivity,"dateto");
-
                  cdd.show();
                  Window window = cdd.getWindow();
                  window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -158,7 +150,6 @@ public class BalanceActivity extends AppCompatActivity {
                  if(hasFocus==true)
                  {
                      DateDialog cdd=new DateDialog(balanceactivity,"dateto");
-
                      cdd.show();
                      Window window = cdd.getWindow();
                      window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);

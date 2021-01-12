@@ -81,13 +81,9 @@ public class DiscoveryFragment extends Fragment {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.discovery_menu_listview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-
         recyclerView.setLayoutManager(layoutManager);
 
         new GetAllDiscoveryListTask(MainActivity.mainactivity,recyclerView).execute(MainActivity.LoginID,MainActivity.Password);
-       // List<Discoverylist> discoverylist = new ArrayList<>();
-      //  discoverylist.add(new Discoverylist("https://f0.pngfuel.com/png/408/791/sticker-sales-hot-price-fire-sticker-white-hot-price-text-with-red-flame-background-illustration-png-clip-art-thumbnail.png","SCANPAY","SCANPAY ON SALES"));
-      //  discoverylist.add(new Discoverylist("https://f0.pngfuel.com/png/408/791/sticker-sales-hot-price-fire-sticker-white-hot-price-text-with-red-flame-background-illustration-png-clip-art-thumbnail.png","SCANPAY","SCANPAY ON SALES"));
 
 
         return view;

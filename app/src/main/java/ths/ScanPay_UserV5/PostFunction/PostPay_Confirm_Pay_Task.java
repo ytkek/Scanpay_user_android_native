@@ -40,8 +40,6 @@ public class PostPay_Confirm_Pay_Task extends AsyncTask<String, Integer, String>
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
     String encryptedString;
-
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -114,7 +112,6 @@ public class PostPay_Confirm_Pay_Task extends AsyncTask<String, Integer, String>
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
-
             hashMap.put("LoginID" , params1);
             hashMap.put("MerchantID",params2);
             hashMap.put("MerchantName",params3);
@@ -123,11 +120,6 @@ public class PostPay_Confirm_Pay_Task extends AsyncTask<String, Integer, String>
             hashMap.put("qrcode",params6);
             hashMap.put("dyqrcode",params7);
             hashMap.put("Token",encryptedString);
-
-
-
-
-
 
             response = NetworkUtil.sendPost(apiUrl,hashMap);
             try{
@@ -162,15 +154,11 @@ public class PostPay_Confirm_Pay_Task extends AsyncTask<String, Integer, String>
         super.onPostExecute(result);
 
         progDailog.dismiss();
-
-        //Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
         if(result.equals("payment success"))
         {
 
             new PostApp_Success_Message_Task(context).execute(MainActivity.LoginID,"success payment "+ ((PaymentScanQRActivity.qrcode == null) ? "" : PaymentScanQRActivity.qrcode) + ((PaymentScanQRActivity.lqrcode == null) ? "" : PaymentScanQRActivity.lqrcode));
             PaymentScanQRActivity.payment_layout.setVisibility(View.GONE);
-
-
             PaymentScanQRActivity.payment_result_amount.setText("Amount: "+PaymentScanQRActivity.amount_edit.getText().toString());
             PaymentScanQRActivity.payment_result_date.setText("Date: "+java.text.DateFormat.getDateTimeInstance().format(new Date()));
             PaymentScanQRActivity.payment_result_merchant.setText(PaymentScanQRActivity.merchantname);
@@ -182,16 +170,6 @@ public class PostPay_Confirm_Pay_Task extends AsyncTask<String, Integer, String>
         }
 
 
-
-
-
-
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
     private void showDialog()

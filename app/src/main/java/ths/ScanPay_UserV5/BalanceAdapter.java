@@ -31,19 +31,16 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.MyViewHo
     public void onBindViewHolder(BalanceAdapter.MyViewHolder holder, int position) {
 
         Balancelist c = balanceList.get(position);
-
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         try {
             Date date = df.parse(c.la_createdt);
             df.applyPattern("dd/MM/yyyy hh:mm:ss a");
             String result = df.format(date);
-
             holder.balance_date_time.setText(""+result);
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
 
         if (c.la_type.equals("pay"))
         {
@@ -62,13 +59,11 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.MyViewHo
             holder.balance_type.setText("Reversal Top Up");
         }
 
-        //holder.balance_type.setText(c.la_type);
         holder.balance_reference.setText(c.la_ref);
 
         if(c.la_amount.contains("-"))
         {
             holder.balance_amount.setTextColor(Color.parseColor("#FF0000"));
-
             String text=c.la_amount.replace("-","");
             Double lol ;
             lol=Double.parseDouble(text);
@@ -77,7 +72,6 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.MyViewHo
         else
         {
             holder.balance_amount.setTextColor(Color.parseColor("#1F45FC"));
-          //  DecimalFormat form = new DecimalFormat("0.00");
             Double lol ;
             lol=Double.parseDouble(c.la_amount);
             holder.balance_amount.setText(String.format("%.2f",lol));
@@ -110,17 +104,11 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.MyViewHo
         public MyViewHolder(View view) {
             super(view);
 
-
             balance_date_time = (TextView) view.findViewById(R.id.date);
             balance_type = (TextView) view.findViewById(R.id.type);
             balance_reference = (TextView) view.findViewById(R.id.reference);
             balance_amount = (TextView) view.findViewById(R.id.amount);
-           // view.setOnClickListener(new View.OnClickListener() {
-            //    @Override
-            //    public void onClick(View view) {
-            //        Toast.makeText(context, String.valueOf(getLayoutPosition()),Toast.LENGTH_SHORT).show();
-            //    }
-            //});
+
         }
     }
 

@@ -39,9 +39,6 @@ public class PostTopUp_MerchantInfo_Task extends AsyncTask<String, Integer, Stri
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
     String encryptedString;
-
-
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -116,9 +113,6 @@ public class PostTopUp_MerchantInfo_Task extends AsyncTask<String, Integer, Stri
             e.printStackTrace();
         }
 
-
-
-
         String response="";
         String apiUrl = ApiUrl.Domain + ApiUrl.PostTopUp_MerchantInfo_Api ;
         listMockData = new ArrayList<FindMerchantlist>();
@@ -132,9 +126,6 @@ public class PostTopUp_MerchantInfo_Task extends AsyncTask<String, Integer, Stri
             hashMap.put("dynamicqrcode",params4);
             hashMap.put("qrcode", params5);
             hashMap.put("Token",encryptedString);
-
-
-
             response = NetworkUtil.sendPost(apiUrl,hashMap);
             try{
 
@@ -177,8 +168,6 @@ public class PostTopUp_MerchantInfo_Task extends AsyncTask<String, Integer, Stri
                 TopUpScanQRActivity.topup_layout.setVisibility(View.GONE);
                 TopUpScanQRActivity.error_message.setText("INVALID MERCHANT");
                 TopUpScanQRActivity.error_message.setVisibility(View.VISIBLE);
-
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setMessage("Error #B0041 Invalid Merchant")
                         .setCancelable(false)
@@ -200,19 +189,6 @@ public class PostTopUp_MerchantInfo_Task extends AsyncTask<String, Integer, Stri
                 TopUpScanQRActivity.amount_edit.setText(TopUpScanQRActivity.qr_amount);
 
             }
-
-
-
-
-
-
-
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
     private void showDialog()

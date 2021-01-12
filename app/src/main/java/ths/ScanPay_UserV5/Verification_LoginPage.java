@@ -18,12 +18,11 @@ import ths.ScanPay_UserV5.PostFunction.PostVerification_Validate_LoginID;
 public class Verification_LoginPage extends AppCompatActivity {
 
     ImageView backbtn;
-public static TextView checkloginresult,checkemailresult,otp_result;
-public static EditText loginidedit,emailedit,otpedit;
-public static Button sendotpbtn,loginbtn;
-public static Activity verificationpage;
-
-public static String systemOTP;
+    public static TextView checkloginresult,checkemailresult,otp_result;
+    public static EditText loginidedit,emailedit,otpedit;
+    public static Button sendotpbtn,loginbtn;
+    public static Activity verificationpage;
+    public static String systemOTP;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

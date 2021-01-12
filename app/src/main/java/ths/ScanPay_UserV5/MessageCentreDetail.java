@@ -17,12 +17,10 @@ import ths.ScanPay_UserV5.GetFunction.GetMessageListTask;
 public class MessageCentreDetail extends AppCompatActivity {
 
     ImageView back;
-
     public String nob_id;
     public String nob_title;
     public String nob_message;
     public String nob_publishdate;
-
     public TextView date_title,title,message;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,15 +47,10 @@ public class MessageCentreDetail extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        //date.setText(nob_publishdate);
         title=(TextView)findViewById(R.id.title);
         title.setText(nob_title);
         message=(TextView)findViewById(R.id.message);
         message.setText(nob_message);
-
-
-
-
 
         back = (ImageView) findViewById(R.id.backbtn);
         back.setOnClickListener(new View.OnClickListener() {

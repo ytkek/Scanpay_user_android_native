@@ -30,9 +30,7 @@ import ths.ScanPay_UserV5.SplashScreen;
 public class GetAndroid_VersionTask extends AsyncTask<Void, Integer, String> {
 
     public Activity context = null;
-
     RecyclerView list;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -101,12 +99,9 @@ public class GetAndroid_VersionTask extends AsyncTask<Void, Integer, String> {
 
         progDailog.dismiss();
 
-        Log.d("wtf",result);
-        //SplashScreen.versionresult = result;
         try {
             PackageInfo pInfo = context.getApplication().getPackageManager().getPackageInfo(context.getPackageName(), 0);
             String version = pInfo.versionName;
-
             Double a;
             Double b;
             a=Double.parseDouble(result);
@@ -134,7 +129,6 @@ public class GetAndroid_VersionTask extends AsyncTask<Void, Integer, String> {
                                         }
                                         else
                                         {
-                                            // new PostLogin_Validate_AutoLoginID_Task(splashscreen).execute(login,password);
                                             Intent mainactivity = new Intent(context,MainActivity.class);
                                             mainactivity.putExtra("LoginID",SplashScreen.login);
                                             mainactivity.putExtra("Password",SplashScreen.password);
@@ -167,7 +161,6 @@ public class GetAndroid_VersionTask extends AsyncTask<Void, Integer, String> {
                         }
                         else
                         {
-                            // new PostLogin_Validate_AutoLoginID_Task(splashscreen).execute(login,password);
                             Intent mainactivity = new Intent(context,MainActivity.class);
                             mainactivity.putExtra("LoginID",SplashScreen.login);
                             mainactivity.putExtra("Password",SplashScreen.password);

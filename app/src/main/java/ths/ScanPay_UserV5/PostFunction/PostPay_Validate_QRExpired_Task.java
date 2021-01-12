@@ -39,7 +39,6 @@ public class PostPay_Validate_QRExpired_Task extends AsyncTask<String, Integer, 
     RecyclerView list;
     String params1,params2;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -147,21 +146,6 @@ public class PostPay_Validate_QRExpired_Task extends AsyncTask<String, Integer, 
             AlertDialog alert = builder.create();
             alert.show();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
     private void showDialog()

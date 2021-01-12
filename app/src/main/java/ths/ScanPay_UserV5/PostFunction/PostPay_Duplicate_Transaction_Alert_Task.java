@@ -24,12 +24,9 @@ import ths.ScanPay_UserV5.PaymentScanQRActivity;
 public class PostPay_Duplicate_Transaction_Alert_Task extends AsyncTask<String, Integer, String> {
 
     public Activity context = null;
-
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
     String encryptedString;
-
 
     public PostPay_Duplicate_Transaction_Alert_Task(Activity context){
         this.context = context;
@@ -82,8 +79,6 @@ public class PostPay_Duplicate_Transaction_Alert_Task extends AsyncTask<String, 
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
-
-
             hashMap.put("Token",encryptedString);
             hashMap.put("Type", param1);
             hashMap.put("Amount", param2);
@@ -126,12 +121,9 @@ public class PostPay_Duplicate_Transaction_Alert_Task extends AsyncTask<String, 
         progDailog.dismiss();
 
 
-        //Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
-        if (result.equals("Transaction Duplicate Not Found"))
-       {
 
-      //      new PostVerification_Validate_Email(context).execute(Verification_LoginPage.emailedit.getText().toString());
-      //      Verification_LoginPage.checkloginresult.setVisibility(View.GONE);
+        if (result.equals("Transaction Duplicate Not Found"))
+        {
            new PostPay_Validate_PinNumber_Task(PaymentScanQRActivity.PaymentScanQRActivityactivity).execute(MainActivity.LoginID,PaymentScanQRActivity.pin1.getText().toString()+PaymentScanQRActivity.pin2.getText().toString()+PaymentScanQRActivity.pin3.getText().toString()+PaymentScanQRActivity.pin4.getText().toString()+PaymentScanQRActivity.pin5.getText().toString()+PaymentScanQRActivity.pin6.getText().toString(),MainActivity.LoginID,MainActivity.Password);
         }
         else if (result.equals("Transaction Duplicate Found"))

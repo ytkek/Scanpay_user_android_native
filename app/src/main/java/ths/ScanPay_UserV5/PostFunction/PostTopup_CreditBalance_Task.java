@@ -38,7 +38,6 @@ public class PostTopup_CreditBalance_Task extends AsyncTask<String, Integer, Str
     RecyclerView list;
     String params1,params2;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -89,11 +88,8 @@ public class PostTopup_CreditBalance_Task extends AsyncTask<String, Integer, Str
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
-
             hashMap.put("LoginID", params1);
             hashMap.put("Token",encryptedString);
-
-
             response = NetworkUtil.sendPost(apiUrl,hashMap);
             try{
 
@@ -128,7 +124,6 @@ public class PostTopup_CreditBalance_Task extends AsyncTask<String, Integer, Str
         super.onPostExecute(result);
 
         progDailog.dismiss();
-
         if(result.equals("Don Have Balance"))
         {
 
@@ -137,26 +132,7 @@ public class PostTopup_CreditBalance_Task extends AsyncTask<String, Integer, Str
         else
         {
             TopUpScanQRActivity.credit_balance.setText("RM "+result);
-
-
-
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
     private void showDialog()

@@ -23,11 +23,9 @@ public class JomPayWebview extends AppCompatActivity {
         setContentView(R.layout.jompay_webview);
 
         backbtn = (ImageView)findViewById(R.id.backbtn);
-
         webView = (WebView) findViewById(R.id.webview);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-
         if(NetworkUtil.isNetworkAvailable(this))
         {
             webView.loadUrl("https://www.myscanpay.com/v4/mobile_native_api/myjompay.aspx?LoginID="+MainActivity.LoginID);

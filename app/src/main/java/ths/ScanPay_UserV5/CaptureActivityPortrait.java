@@ -12,7 +12,7 @@ public class CaptureActivityPortrait extends CaptureActivity {
         super.onBackPressed();
        finish();
        quitQR_indicator=true;
-        Log.d("wtf","WTFWTF");
+
 
 
     }

@@ -37,7 +37,6 @@ public class PostSignUp_Update_Confirm_Task extends AsyncTask<String, Integer, S
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -88,8 +87,6 @@ public class PostSignUp_Update_Confirm_Task extends AsyncTask<String, Integer, S
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
-
-
             hashMap.put("LoginID", param1);
             hashMap.put("Otp", param2);
             hashMap.put("Token",encryptedString);
@@ -147,15 +144,6 @@ public class PostSignUp_Update_Confirm_Task extends AsyncTask<String, Integer, S
             AlertDialog alert = builder.create();
             alert.show();
         }
-
-
-
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

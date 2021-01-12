@@ -34,12 +34,6 @@ public class MessageCentreAdapter extends RecyclerView.Adapter<MessageCentreAdap
 
         final MessageCentrelist c = messagecentreList.get(position);
 
-
-
-
-            // MessageCentreActivity.db.deleteNote(MessageCentreActivity.db.getAllMessage().get(i));
-
-
         holder.messagecentre_title.setText(c.getTitle());
         holder.messagecentre_message.setText(c.getMessage());
 
@@ -48,8 +42,6 @@ public class MessageCentreAdapter extends RecyclerView.Adapter<MessageCentreAdap
             public void onClick(View v) {
 
                 MessageCentreActivity.db.updateNote("true",holder.getAdapterPosition()+1);
-                //MessageCentreActivity.arraylist_messagedb.get(position).setIndicator("true");
-                Log.d("wtf2",""+holder.getAdapterPosition()+1);
 
                 Intent a = new Intent(v.getContext(),MessageCentreDetail.class);
                 a.putExtra("nob_id",c.getId());

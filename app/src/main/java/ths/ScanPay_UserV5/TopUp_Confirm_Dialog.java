@@ -47,10 +47,8 @@ public class TopUp_Confirm_Dialog extends Dialog implements
         });
         payment_textview=(TextView)findViewById(R.id.payment_merchant);
         payment_textview.setText("TopUp From Merchant "+merchantname);
-
         payment_amount=(EditText)findViewById(R.id.payment_amount);
         payment_amount.setText("Amount : RM "+amount);
-
         confirmbtn=(Button)findViewById(R.id.confirmbtn);
         confirmbtn.setOnClickListener(new View.OnClickListener() {
             @Override

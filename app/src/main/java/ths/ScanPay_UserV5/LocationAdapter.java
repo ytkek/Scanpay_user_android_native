@@ -66,9 +66,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
                 a.putExtra("m_photofilename1",ApiUrl.PicDomain+c.getM_profileimagepath()+c.getM_photofilename1());
                 a.putExtra("m_photofilename2",ApiUrl.PicDomain+c.getM_profileimagepath()+c.getM_photofilename2());
                 a.putExtra("m_photofilename3",ApiUrl.PicDomain+c.getM_profileimagepath()+c.getM_photofilename3());
-                // a.putExtra("wtf2","wtf2");
                 v.getContext().startActivity(a);
-                //Toast.makeText(context,""+position,Toast.LENGTH_SHORT).show();
             }
         });
     }

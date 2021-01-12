@@ -39,7 +39,6 @@ public class PostLogout_Update_LoginID_Task extends AsyncTask<String, Integer, S
     RecyclerView list;
     String params1,params2;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -137,14 +136,6 @@ public class PostLogout_Update_LoginID_Task extends AsyncTask<String, Integer, S
                 context.startActivity(lol);
             }
 
-
-
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

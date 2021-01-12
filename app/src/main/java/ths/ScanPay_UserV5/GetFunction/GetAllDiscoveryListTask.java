@@ -40,7 +40,6 @@ public class GetAllDiscoveryListTask extends AsyncTask<String, Integer, ArrayLis
     public Activity context = null;
     public static ArrayList<Discoverylist> listMockData;
     RecyclerView list;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
     String encryptedString;
@@ -109,7 +108,6 @@ public class GetAllDiscoveryListTask extends AsyncTask<String, Integer, ArrayLis
                     if (tmp.has("lop_id"))
                     {
                         newsData.setDiscovery_id(tmp.getString("lop_id"));
-                       // Log.d("wtf",newsData.getM_id());
                     }
 
                     if(tmp.has("lop_merchantid"))
@@ -192,7 +190,6 @@ public class GetAllDiscoveryListTask extends AsyncTask<String, Integer, ArrayLis
         if(DiscoveryFragment.indicator==true)
         {
             DiscoveryFragment.mAdapter = new DiscoveryAdapter(context,result);
-
             DiscoveryFragment.recyclerView.setAdapter(DiscoveryFragment.mAdapter);
             DiscoveryFragment.indicator=false;
         }
@@ -349,17 +346,6 @@ public class GetAllDiscoveryListTask extends AsyncTask<String, Integer, ArrayLis
 
         }
 
-
-
-
-
-
-      // DiscoveryFragment.mAdapter = new DiscoveryAdapter(context,result);
-
-       // DiscoveryFragment.recyclerView.setAdapter(DiscoveryFragment.mAdapter);
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

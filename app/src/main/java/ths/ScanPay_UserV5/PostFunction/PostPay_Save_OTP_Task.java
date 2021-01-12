@@ -41,7 +41,6 @@ public class PostPay_Save_OTP_Task extends AsyncTask<String, Integer, String> {
     RecyclerView list;
     String param1,param2;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -135,7 +134,6 @@ public class PostPay_Save_OTP_Task extends AsyncTask<String, Integer, String> {
         if(result.equals("SAVE OTP BACKEND SYSTEM SUCCESS"))
         {
             Generic.SaveOtp(param2,context);
-            //Toast.makeText(context,"You Have Save New Otp",Toast.LENGTH_SHORT).show();
             PaymentScanQRActivity.set_new_Otp_layout.setVisibility(View.GONE);
             PaymentScanQRActivity.payment_layout.setVisibility(View.VISIBLE);
             new PostApp_Success_Message_Task(context).execute(MainActivity.LoginID,"Payment key save successful");

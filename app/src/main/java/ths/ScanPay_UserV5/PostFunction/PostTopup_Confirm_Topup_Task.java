@@ -42,8 +42,6 @@ public class PostTopup_Confirm_Topup_Task extends AsyncTask<String, Integer, Str
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
     String encryptedString;
-
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -125,13 +123,6 @@ public class PostTopup_Confirm_Topup_Task extends AsyncTask<String, Integer, Str
             hashMap.put("qrcode",params6);
             hashMap.put("dyqrcode",params7);
             hashMap.put("Token",encryptedString);
-
-
-
-
-
-
-
             response = NetworkUtil.sendPost(apiUrl,hashMap);
             try{
 
@@ -183,18 +174,6 @@ public class PostTopup_Confirm_Topup_Task extends AsyncTask<String, Integer, Str
         {
             new PostApp_Error_Message_Task(context).execute(MainActivity.LoginID,"unsuccess topup "+ ((TopUpScanQRActivity.qrcode == null) ? "" : TopUpScanQRActivity.qrcode) + ((TopUpScanQRActivity.lqrcode == null) ? "" : TopUpScanQRActivity.lqrcode));
         }
-
-
-
-
-
-
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

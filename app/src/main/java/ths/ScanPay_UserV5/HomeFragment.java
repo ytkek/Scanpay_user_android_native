@@ -27,7 +27,6 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.home_fragment, container, false);
-        // Inflate the layout for this fragment
 
         topupbtn = (ImageView)view.findViewById(R.id.topupbtn);
         topupbtn.setOnClickListener(new View.OnClickListener() {

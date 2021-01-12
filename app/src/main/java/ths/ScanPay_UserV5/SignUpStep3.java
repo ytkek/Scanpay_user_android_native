@@ -38,7 +38,6 @@ public class SignUpStep3 extends AppCompatActivity {
 
         SignUpStep3=this;
         backbtn = (ImageView)findViewById(R.id.backbtn);
-
         pin1 = (EditText) findViewById(R.id.pin1);
         pin2 = (EditText) findViewById(R.id.pin2);
         pin3 = (EditText) findViewById(R.id.pin3);
@@ -46,7 +45,6 @@ public class SignUpStep3 extends AppCompatActivity {
         pin5 = (EditText) findViewById(R.id.pin5);
         pin6 = (EditText) findViewById(R.id.pin6);
         image_btn=(ImageView)findViewById(R.id.image_btn);
-
         image_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

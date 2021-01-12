@@ -40,7 +40,6 @@ public class PostTopup_Save_OTP_Task extends AsyncTask<String, Integer, String> 
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
     String param1,param2;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
     String encryptedString;
@@ -134,7 +133,6 @@ public class PostTopup_Save_OTP_Task extends AsyncTask<String, Integer, String> 
         if(result.equals("SAVE OTP BACKEND SYSTEM SUCCESS"))
         {
             Generic.SaveOtp(param2,context);
-           // Toast.makeText(context,"You Have Save New Otp",Toast.LENGTH_SHORT).show();
             TopUpScanQRActivity.set_new_Otp_layout.setVisibility(View.GONE);
             TopUpScanQRActivity.topup_layout.setVisibility(View.VISIBLE);
             new PostApp_Success_Message_Task(context).execute(MainActivity.LoginID,"TopUp key save successful");
@@ -142,7 +140,6 @@ public class PostTopup_Save_OTP_Task extends AsyncTask<String, Integer, String> 
         else if(result.equals("SAVE OTP BACKEND SYSTEM FAIL"))
         {
             new PostApp_Error_Message_Task(context).execute(MainActivity.LoginID,"TopUp key save unsuccessful");
-            //Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setMessage("#B1101 Error SAVE OTP BACKEND SYSTEM FAIL")
                     .setCancelable(false)

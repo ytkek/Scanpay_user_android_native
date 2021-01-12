@@ -29,9 +29,6 @@ public class PostApp_Success_Message_Task extends AsyncTask<String, Integer, Str
     public Activity context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
-
-
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -61,27 +58,14 @@ public class PostApp_Success_Message_Task extends AsyncTask<String, Integer, Str
     {
         String params1= params[0];
         String params2 = params[1];
-
-
-
-
-
-
-
-
         String response="";
         String apiUrl = ApiUrl.Domain + ApiUrl.PostApp_Success_Message_Api ;
         listMockData = new ArrayList<FindMerchantlist>();
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
-
             hashMap.put("LoginID" , params1);
             hashMap.put("Message",params2);
-
-
-
-
             response = NetworkUtil.sendPost(apiUrl,hashMap);
             try{
 
@@ -116,22 +100,6 @@ public class PostApp_Success_Message_Task extends AsyncTask<String, Integer, Str
 
         progDailog.dismiss();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

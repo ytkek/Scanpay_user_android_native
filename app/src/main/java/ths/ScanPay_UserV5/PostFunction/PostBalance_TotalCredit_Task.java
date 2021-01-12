@@ -39,7 +39,6 @@ public class PostBalance_TotalCredit_Task extends AsyncTask<String, Integer, Str
     RecyclerView list;
     String params1,params2;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -90,11 +89,8 @@ public class PostBalance_TotalCredit_Task extends AsyncTask<String, Integer, Str
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
-
             hashMap.put("LoginID", params1);
             hashMap.put("Token",encryptedString);
-
-
             response = NetworkUtil.sendPost(apiUrl,hashMap);
 
             try{

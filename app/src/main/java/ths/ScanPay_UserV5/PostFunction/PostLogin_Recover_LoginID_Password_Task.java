@@ -38,7 +38,6 @@ public class PostLogin_Recover_LoginID_Password_Task extends AsyncTask<String, I
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -87,7 +86,6 @@ public class PostLogin_Recover_LoginID_Password_Task extends AsyncTask<String, I
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
-
             hashMap.put("LoginID", param1);
             hashMap.put("Email",param2);
             hashMap.put("Token",encryptedString);
@@ -127,12 +125,6 @@ public class PostLogin_Recover_LoginID_Password_Task extends AsyncTask<String, I
 
         RecoveryPasswordActivity.password_recover_result.setVisibility(View.VISIBLE);
         RecoveryPasswordActivity.password_recover_result.setText(result);
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

@@ -38,7 +38,6 @@ public class NetworkUtil {
     private static final char PARAMETER_DELIMITER = '&';
     private static final char PARAMETER_EQUALS_CHAR = '=';
     private static final String TAG = "NetworkUtil";
-
     public static String Cookie = null;
 
     public static boolean isNetworkAvailable(Context context) {

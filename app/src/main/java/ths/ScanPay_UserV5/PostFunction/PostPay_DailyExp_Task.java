@@ -38,7 +38,6 @@ public class PostPay_DailyExp_Task extends AsyncTask<String, Integer, String> {
     RecyclerView list;
     String params1,params2;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -129,22 +128,8 @@ public class PostPay_DailyExp_Task extends AsyncTask<String, Integer, String> {
         super.onPostExecute(result);
 
         progDailog.dismiss();
-
-
-        //Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
         PaymentScanQRActivity.dailyexp= result;
 
-
-
-
-
-
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

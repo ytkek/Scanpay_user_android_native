@@ -27,12 +27,10 @@ public class EditProfileActivity extends AppCompatActivity {
              changeemailbtn,changemobilebtn,changegenderbtn,
              changenicknamebtn,changeremarkbtn,changedobbtn,
              changepinbtn;
-   public static  EditText changefullname,changeid,changepassword,changeemail,
+    public static  EditText changefullname,changeid,changepassword,changeemail,
              changemobile,changegender,changenickname,changeremark,
              changedob,changepin;
-
     TextView password_error_message,email_error_message,mobile_error_message,gender_error_message,pin_error_message;
-
     Button savebtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,22 +38,16 @@ public class EditProfileActivity extends AppCompatActivity {
         setContentView(R.layout.editprofile);
 
         editactivity=this;
-
         new GetUserProfileListTask(this).execute(MainActivity.LoginID,MainActivity.Password);
-
-
 
         changefullname = (EditText)findViewById(R.id.fullnameedit);
         changefullname.setEnabled(false);
-
         changefullname.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
                 {
                     changefullname.setEnabled(false);
-                   // Toast.makeText(getApplicationContext(),"save full name",Toast.LENGTH_SHORT).show();
-
                 }
             }
         });
@@ -64,15 +56,9 @@ public class EditProfileActivity extends AppCompatActivity {
         changefullnamebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //changefullname.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-                //changefullname.setEnabled(true);
-               // changefullname.requestFocus();
+
                 changefullname.setFocusable(true);
-               // InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-               // imm.showSoftInput(changefullname, InputMethodManager.SHOW_IMPLICIT);
-
                 EditProfileDialog cdd=new EditProfileDialog(editactivity,"fullname");
-
                 cdd.show();
                 Window window = cdd.getWindow();
                 window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -97,7 +83,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 if(!hasFocus)
                 {
                     changepassword.setEnabled(false);
-                //    Toast.makeText(getApplicationContext(),"save password",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -155,15 +140,9 @@ public class EditProfileActivity extends AppCompatActivity {
         changepasswordbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //changefullname.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
                 changepassword.setEnabled(false);
-               // changepassword.requestFocus();
-              //  changepassword.setFocusable(true);
-               // InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-               // imm.showSoftInput(changepassword, InputMethodManager.SHOW_IMPLICIT);
                 new PostUserProfile_OldPassword_Task(editactivity).execute(MainActivity.LoginID,MainActivity.LoginID,MainActivity.Password);
                 EditProfileDialog cdd=new EditProfileDialog(editactivity,"password");
-
                 cdd.show();
                 Window window = cdd.getWindow();
                 window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -180,7 +159,6 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 EditProfileDialog cdd=new EditProfileDialog(editactivity,"email");
-
                 cdd.show();
                 Window window = cdd.getWindow();
                 window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -204,8 +182,6 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.toString().startsWith("0"))
                 {
-
-
                     changemobile.setText("");
                 }
 
@@ -242,14 +218,8 @@ public class EditProfileActivity extends AppCompatActivity {
         changemobilebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //changefullname.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-               // changemobile.setEnabled(true);
-                //changemobile.requestFocus();
-               // changemobile.setFocusable(true);
-               // InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-               // imm.showSoftInput(changemobile, InputMethodManager.SHOW_IMPLICIT);
-                EditProfileDialog cdd=new EditProfileDialog(editactivity,"mobile");
 
+                EditProfileDialog cdd=new EditProfileDialog(editactivity,"mobile");
                 cdd.show();
                 Window window = cdd.getWindow();
                 window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -267,9 +237,8 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
-                    {
+                {
                     changegender.setEnabled(false);
-                   // Toast.makeText(getApplicationContext(),"save password",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -281,14 +250,8 @@ public class EditProfileActivity extends AppCompatActivity {
         changegenderbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //changefullname.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-               // changegender.setEnabled(true);
-               // changegender.requestFocus();
-               // changegender.setFocusable(true);
-               // InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-               // imm.showSoftInput(changegender, InputMethodManager.SHOW_IMPLICIT);
-                EditProfileDialog cdd=new EditProfileDialog(editactivity,"gender");
 
+                EditProfileDialog cdd=new EditProfileDialog(editactivity,"gender");
                 cdd.show();
                 Window window = cdd.getWindow();
                 window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -308,7 +271,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 if(!hasFocus)
                 {
                     changenickname.setEnabled(false);
-                 //   Toast.makeText(getApplicationContext(),"save password",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -317,14 +279,8 @@ public class EditProfileActivity extends AppCompatActivity {
         changenicknamebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //changefullname.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-               // changenickname.setEnabled(true);
-               // changenickname.requestFocus();
-               // changenickname.setFocusable(true);
-               // InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-               // imm.showSoftInput(changenickname, InputMethodManager.SHOW_IMPLICIT);
-                EditProfileDialog cdd=new EditProfileDialog(editactivity,"nickname");
 
+                EditProfileDialog cdd=new EditProfileDialog(editactivity,"nickname");
                 cdd.show();
                 Window window = cdd.getWindow();
                 window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -342,7 +298,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 if(!hasFocus)
                 {
                     changeremark.setEnabled(false);
-                  //  Toast.makeText(getApplicationContext(),"save password",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -351,14 +306,8 @@ public class EditProfileActivity extends AppCompatActivity {
         changeremarkbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //changefullname.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-               // changeremark.setEnabled(true);
-               // changeremark.requestFocus();
-               // changeremark.setFocusable(true);
-               // InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-               // imm.showSoftInput(changeremark, InputMethodManager.SHOW_IMPLICIT);
-                EditProfileDialog cdd=new EditProfileDialog(editactivity,"remarks");
 
+                EditProfileDialog cdd=new EditProfileDialog(editactivity,"remarks");
                 cdd.show();
                 Window window = cdd.getWindow();
                 window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -375,7 +324,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 if(!hasFocus)
                 {
                     changedob.setEnabled(false);
-                 //   Toast.makeText(getApplicationContext(),"save password",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -384,14 +332,8 @@ public class EditProfileActivity extends AppCompatActivity {
         changedobbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //changefullname.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-               // changedob.setEnabled(true);
-               // changedob.requestFocus();
-              //  changedob.setFocusable(true);
-               // InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-               // imm.showSoftInput(changedob, InputMethodManager.SHOW_IMPLICIT);
-                EditProfileDialog cdd=new EditProfileDialog(editactivity,"dob");
 
+                EditProfileDialog cdd=new EditProfileDialog(editactivity,"dob");
                 cdd.show();
                 Window window = cdd.getWindow();
                 window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -412,7 +354,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 if(!hasFocus)
                 {
                     changepin.setEnabled(false);
-                  //  Toast.makeText(getApplicationContext(),"save password",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -448,15 +389,10 @@ public class EditProfileActivity extends AppCompatActivity {
         changepinbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //changefullname.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
                 changepin.setEnabled(false);
                 changepin.requestFocus();
                 changepin.setFocusable(true);
-                //InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-               // imm.showSoftInput(changepin, InputMethodManager.SHOW_IMPLICIT);
-
                 EditProfileDialog cdd=new EditProfileDialog(editactivity,"pin");
-
                 cdd.show();
                 Window window = cdd.getWindow();
                 window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);

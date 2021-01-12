@@ -37,7 +37,6 @@ public class PostUserProfile_Name_Task extends AsyncTask<String, Integer, String
     public Activity context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
     String encryptedString;
@@ -144,10 +143,6 @@ public class PostUserProfile_Name_Task extends AsyncTask<String, Integer, String
             AlertDialog alert = builder.create();
             alert.show();
         }
-       // Toast.makeText(context,"Save Success",Toast.LENGTH_SHORT).show();
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
     private void showDialog()

@@ -38,7 +38,6 @@ public class PostPay_MonthlyExp_Task extends AsyncTask<String, Integer, String> 
     RecyclerView list;
     String params1,params2;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -89,11 +88,8 @@ public class PostPay_MonthlyExp_Task extends AsyncTask<String, Integer, String> 
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
-
             hashMap.put("LoginID", params1);
             hashMap.put("Token",encryptedString);
-
-
             response = NetworkUtil.sendPost(apiUrl,hashMap);
             try{
 
@@ -128,7 +124,6 @@ public class PostPay_MonthlyExp_Task extends AsyncTask<String, Integer, String> 
         super.onPostExecute(result);
 
         progDailog.dismiss();
-       // Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
         PaymentScanQRActivity.monthlyexp = result;
 
     }

@@ -40,7 +40,6 @@ public class GetUserProfile_Name_ID_Task extends AsyncTask<String, Integer, Arra
     public Activity context = null;
     public static ArrayList<EditProfilelist> listMockData;
     RecyclerView list;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
     String encryptedString;
@@ -48,9 +47,6 @@ public class GetUserProfile_Name_ID_Task extends AsyncTask<String, Integer, Arra
     public GetUserProfile_Name_ID_Task(Activity context)
     {
         this.context = context;
-
-
-
     }
 
     @Override
@@ -111,69 +107,57 @@ public class GetUserProfile_Name_ID_Task extends AsyncTask<String, Integer, Arra
                     if (tmp.has("ml_id"))
                     {
                         newsData.setMl_id(tmp.getString("ml_id"));
-                       // Log.d("wtf",newsData.getM_id());
                     }
                     if (tmp.has("ml_login"))
                     {
                         newsData.setMl_login(tmp.getString("ml_login"));
-                        // Log.d("wtf",newsData.getM_id());
                     }
                     if (tmp.has("ml_Name"))
                     {
                         newsData.setMl_name(tmp.getString("ml_Name"));
-                        // Log.d("wtf",newsData.getM_id());
                     }
                     if (tmp.has("ml_valid"))
                     {
                         newsData.setMl_valid(tmp.getString("ml_valid"));
-                        // Log.d("wtf",newsData.getM_id());
                     }
                     if (tmp.has("ml_password"))
                     {
                         newsData.setMl_password(tmp.getString("ml_password"));
-                        // Log.d("wtf",newsData.getM_id());
                     }
                     if (tmp.has("ml_updatedate"))
                     {
                         newsData.setMl_updatedate(tmp.getString("ml_updatedate"));
-                    // Log.d("wtf",newsData.getM_id());
                     }
                     if (tmp.has("ml_updateby"))
                     {
                         newsData.setMl_updateby(tmp.getString("ml_updateby"));
-                        // Log.d("wtf",newsData.getM_id());
                     }
 
                     if (tmp.has("ml_hpno"))
                     {
                         newsData.setMl_hpno(tmp.getString("ml_hpno"));
-                        // Log.d("wtf",newsData.getM_id());
                     }
                     if (tmp.has("ml_hpcc"))
                     {
                         newsData.setMl_hpcc(tmp.getString("ml_hpcc"));
-                        // Log.d("wtf",newsData.getM_id());
                     }
 
                     if (tmp.has("ml_gender"))
                     {
                         newsData.setMl_gender(tmp.getString("ml_gender"));
-                        // Log.d("wtf",newsData.getM_id());
                     }
                     if (tmp.has("ml_email"))
                     {
                         newsData.setMl_email(tmp.getString("ml_email"));
-                        // Log.d("wtf",newsData.getM_id());
                     }
                     if (tmp.has("ml_remarks"))
                     {
                         newsData.setMl_remarks(tmp.getString("ml_remarks"));
-                        // Log.d("wtf",newsData.getM_id());
+
                     }
                     if (tmp.has("ml_nickname"))
                     {
                         newsData.setMl_nickname(tmp.getString("ml_nickname"));
-                        // Log.d("wtf",newsData.getM_id());
                     }
                     if(tmp.has("ml_dob"))
                     {
@@ -182,7 +166,6 @@ public class GetUserProfile_Name_ID_Task extends AsyncTask<String, Integer, Arra
                     if (tmp.has("ml_paymentpin"))
                     {
                         newsData.setMl_paymentpin(tmp.getString("ml_paymentpin"));
-                        // Log.d("wtf",newsData.getM_id());
                     }
 
 

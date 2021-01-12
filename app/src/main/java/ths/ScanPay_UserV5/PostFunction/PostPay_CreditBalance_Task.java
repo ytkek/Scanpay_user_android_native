@@ -40,7 +40,6 @@ public class PostPay_CreditBalance_Task extends AsyncTask<String, Integer, Strin
     RecyclerView list;
     String params1,params2;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -90,10 +89,8 @@ public class PostPay_CreditBalance_Task extends AsyncTask<String, Integer, Strin
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
-
             hashMap.put("LoginID", params1);
             hashMap.put("Token",encryptedString);
-
             response = NetworkUtil.sendPost(apiUrl,hashMap);
             try{
 
@@ -156,21 +153,6 @@ public class PostPay_CreditBalance_Task extends AsyncTask<String, Integer, Strin
             new PostPay_CheckDailyExpLimit_Task(context).execute(MainActivity.LoginID,MainActivity.LoginID,MainActivity.Password);
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

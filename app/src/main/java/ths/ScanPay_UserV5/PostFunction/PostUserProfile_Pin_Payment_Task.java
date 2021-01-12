@@ -37,7 +37,6 @@ public class PostUserProfile_Pin_Payment_Task extends AsyncTask<String, Integer,
     public Activity context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
     String encryptedString;
@@ -89,7 +88,6 @@ public class PostUserProfile_Pin_Payment_Task extends AsyncTask<String, Integer,
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
-
             hashMap.put("LoginID", param1);
             hashMap.put("PIN",param2);
             hashMap.put("Token",encryptedString);
@@ -142,12 +140,8 @@ public class PostUserProfile_Pin_Payment_Task extends AsyncTask<String, Integer,
 
             AlertDialog alert = builder.create();
             alert.show();
-           // Toast.makeText(context,"Save Success",Toast.LENGTH_SHORT).show();
+
         }
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

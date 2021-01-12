@@ -25,8 +25,6 @@ import ths.ScanPay_UserV5.Verification_LoginPage;
 public class PostVerification_Validate_LoginID extends AsyncTask<String, Integer, String> {
 
     public Activity context = null;
-
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
     String encryptedString;
@@ -77,7 +75,6 @@ public class PostVerification_Validate_LoginID extends AsyncTask<String, Integer
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
-
             hashMap.put("LoginID", param1);
             hashMap.put("Token",encryptedString);
             response = NetworkUtil.sendPost(apiUrl,hashMap);
@@ -126,7 +123,6 @@ public class PostVerification_Validate_LoginID extends AsyncTask<String, Integer
         {
             Verification_LoginPage.checkloginresult.setVisibility(View.VISIBLE);
             Verification_LoginPage.checkloginresult.setText("This Login ID not available");
-
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setMessage("Error #B0052 This Login ID not available")
                     .setCancelable(false)

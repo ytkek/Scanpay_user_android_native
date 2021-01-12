@@ -29,39 +29,11 @@ public class MessageCentreActivity extends AppCompatActivity {
         db =new MessageDatabaseHelper(this);
         backupdb = new MessageDatabaseHelper(this);
 
-
         recyclerView = (RecyclerView) findViewById(R.id.messagecentre_listview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-
         recyclerView.setLayoutManager(layoutManager);
 
         new GetMessageListTask(this, recyclerView).execute(MainActivity.LoginID,MainActivity.Password);
-
-
-
-
-       // List<MessageNotification> lol2 = new ArrayList<>();
-
-       // lol2.addAll(db.getAllMessage());
-
-
-
-
-
-
-
-        //lol=db.getAllMessage();
-
-
-
-
-       // List<MessageCentrelist> messagecentreist = new ArrayList<>();
-       // messagecentreist.add(new MessageCentrelist("aaa","aaa","aaaa"));
-        //messagecentreist.add(new MessageCentrelist("bbb","bbb","bbb"));
-       // mAdapter = new MessageCentreAdapter(this,messagecentreist);
-
-        //recyclerView.setAdapter(mAdapter);
-
 
         back = (ImageView) findViewById(R.id.backbtn);
         back.setOnClickListener(new View.OnClickListener() {

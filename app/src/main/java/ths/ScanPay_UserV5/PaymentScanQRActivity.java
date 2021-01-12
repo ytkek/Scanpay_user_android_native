@@ -41,7 +41,6 @@ public class PaymentScanQRActivity extends AppCompatActivity {
     public final int CUSTOMIZED_REQUEST_CODE = 0x0000ffff;
     public static String type,merchantid,amount,lqrcode,qrcode,merchantname;
     public static boolean creditbalance_indicator,merchantinfo_indicator,dailyexplimit_indicator;
-
     public static String qr_amount;
     public static String credit_balance;
     public static String dailyexp;
@@ -49,18 +48,14 @@ public class PaymentScanQRActivity extends AppCompatActivity {
     public static EditText pin1,pin2,pin3,pin4,pin5,pin6;
     public static TextView checkdailylimit,merchant_name;
     public static EditText amount_edit,new_otp_edit;
-
     public static LinearLayout payment_layout,OTPlayout,set_new_Otp_layout,payment_result_layout;
     public static TextView otp_empty,otp_different;
     public static TextView payment_result_amount,payment_result_date,payment_result_merchant;
-
     public static Button getnewotpbtn,resendotpbtn,saveotpbtn,payment_close_btn;
     public static TextView error_message,user_number;
-
     ImageView back_btn,image_btn;
     public boolean indicator;
     public static boolean qrcodeexpired = false;
-
     Button confirm_btn;
     IntentResult result;
     public static Activity PaymentScanQRActivityactivity;
@@ -77,12 +72,6 @@ public class PaymentScanQRActivity extends AppCompatActivity {
         integrator.setBeepEnabled(true);
         integrator.setCaptureActivity(CaptureActivityPortrait.class);
         integrator.initiateScan();
-
-
-
-
-
-
 
         back_btn=(ImageView) findViewById(R.id.backbtn);
         back_btn.setOnClickListener(new View.OnClickListener() {
@@ -104,8 +93,6 @@ public class PaymentScanQRActivity extends AppCompatActivity {
         otp_different.setVisibility(View.GONE);
 
         getnewotpbtn=(Button)findViewById(R.id.getnewotpbtn);
-
-
 
         set_new_Otp_layout=(LinearLayout)findViewById(R.id.set_new_otp_layout);
         set_new_Otp_layout.setVisibility(View.GONE);
@@ -454,27 +441,6 @@ public class PaymentScanQRActivity extends AppCompatActivity {
         payment_result_amount = (TextView)findViewById(R.id.amount_success);
         payment_result_date = (TextView)findViewById(R.id.date_success);
         payment_result_merchant = (TextView)findViewById(R.id.merchant_success);
-
-
-
-      //  final Handler handler = new Handler();
-      //  handler.postDelayed(new Runnable() {
-       //     @Override
-      //      public void run() {
-                // Do something after 5s = 5000ms
-       //         if ( otp_empty.getVisibility() == View.GONE && result.getContents() == nullresult.getContents() == null)
-         //             {
-       //              finish();
-        //         }
-
-
-      //      }
-     //   }, 1000);
-
-
-
-
-
 
 
 

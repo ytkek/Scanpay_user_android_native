@@ -32,17 +32,11 @@ public class FindMerchantAdapter extends RecyclerView.Adapter<FindMerchantAdapte
     @Override
     public void onBindViewHolder(FindMerchantAdapter.MyViewHolder holder, final int position) {
 
-
-
         final FindMerchantlist c = findmerchantlist.get(position);
-
-
-
-            Glide.with(context)  //2
-                    .load(c.getM_topup()) //3
-                    .fitCenter()
-                    .into(holder.topup);
-
+        Glide.with(context)  //2
+                .load(c.getM_topup()) //3
+                .fitCenter()
+                .into(holder.topup);
 
         Glide.with(context)  //2
                 .load(ApiUrl.PicDomain+c.getM_profileimagepath()+c.getM_profilefilename()) //3
@@ -70,9 +64,7 @@ public class FindMerchantAdapter extends RecyclerView.Adapter<FindMerchantAdapte
                 a.putExtra("m_photofilename1",ApiUrl.PicDomain+c.getM_profileimagepath()+c.getM_photofilename1());
                 a.putExtra("m_photofilename2",ApiUrl.PicDomain+c.getM_profileimagepath()+c.getM_photofilename2());
                 a.putExtra("m_photofilename3",ApiUrl.PicDomain+c.getM_profileimagepath()+c.getM_photofilename3());
-               // a.putExtra("wtf2","wtf2");
                 v.getContext().startActivity(a);
-                //Toast.makeText(context,""+position,Toast.LENGTH_SHORT).show();
             }
         });
     }

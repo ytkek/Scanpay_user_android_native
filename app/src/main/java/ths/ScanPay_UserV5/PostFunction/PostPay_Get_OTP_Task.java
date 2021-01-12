@@ -40,7 +40,6 @@ public class PostPay_Get_OTP_Task extends AsyncTask<String, Integer, String> {
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -157,16 +156,9 @@ public class PostPay_Get_OTP_Task extends AsyncTask<String, Integer, String> {
         }
         else if (result.equals(otp))
         {
-            //Toast.makeText(context,"correct OTP",Toast.LENGTH_SHORT).show();
             PaymentScanQRActivity.payment_layout.setVisibility(View.VISIBLE);
         }
 
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

@@ -32,7 +32,6 @@ public class PostVerification_Validate_Email extends AsyncTask<String, Integer, 
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 

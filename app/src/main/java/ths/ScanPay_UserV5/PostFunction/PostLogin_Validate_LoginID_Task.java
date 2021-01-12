@@ -40,14 +40,11 @@ public class PostLogin_Validate_LoginID_Task extends AsyncTask<String, Integer, 
     RecyclerView list;
     String params1,params2;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
     public PostLogin_Validate_LoginID_Task(Activity context){
         this.context = context;
-
-
 
     }
 
@@ -135,8 +132,6 @@ public class PostLogin_Validate_LoginID_Task extends AsyncTask<String, Integer, 
         if(result.equals("Allow Login"))
         {
             GenericAutologin.SaveLoginPassword(params1,params2,context);
-
-
             Intent mainactivity = new Intent(context, MainActivity.class);
             mainactivity.putExtra("LoginID",params1);
             mainactivity.putExtra("Password",params2);
@@ -164,14 +159,6 @@ public class PostLogin_Validate_LoginID_Task extends AsyncTask<String, Integer, 
 
         }
 
-
-
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

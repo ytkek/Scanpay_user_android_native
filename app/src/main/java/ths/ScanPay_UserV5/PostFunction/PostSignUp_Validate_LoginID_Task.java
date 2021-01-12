@@ -39,7 +39,6 @@ public class PostSignUp_Validate_LoginID_Task extends AsyncTask<String, Integer,
     RecyclerView list;
     String loginid;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -149,13 +148,6 @@ public class PostSignUp_Validate_LoginID_Task extends AsyncTask<String, Integer,
                 new PostSignUp_Send_OTP_Task(context).execute(loginid);
 
             }
-
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

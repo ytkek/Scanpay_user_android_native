@@ -258,11 +258,6 @@ public class EditProfileDialog extends Dialog implements
                 @Override
                 public void onClick(View v) {
 
-                  //  EditProfileGenderDialog cdd=new EditProfileGenderDialog(c);
-
-                   // cdd.show();
-                  //  Window window = cdd.getWindow();
-                  //  window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
                     builder1.setMessage("Please choose your gender");
                     builder1.setCancelable(true);
@@ -286,11 +281,6 @@ public class EditProfileDialog extends Dialog implements
             });
             genderedit.addTextChangedListener(new TextWatcher() {{
 
-               // EditProfileDialog cdd=new EditProfileDialog(c,"gender");
-
-               // cdd.show();
-             //   Window window = cdd.getWindow();
-              //  window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             }
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -388,9 +378,6 @@ public class EditProfileDialog extends Dialog implements
         if(data.equals("remarks"))
         {
             setContentView(R.layout.editprofile_remarks_dialog);
-
-
-
             remarkedit = (EditText)findViewById(R.id.remarksedit);
             remarkedit.setText(GlobalVariable.OldRemarks);
             remarkedit.addTextChangedListener(new TextWatcher() {
@@ -452,7 +439,6 @@ public class EditProfileDialog extends Dialog implements
                     if(hasFocus==true)
                     {
                         DateDialog cdd=new DateDialog(c,"dob");
-
                         cdd.show();
                         Window window = cdd.getWindow();
                         window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -485,9 +471,7 @@ public class EditProfileDialog extends Dialog implements
         if(data.equals("pin"))
         {
             setContentView(R.layout.editprofile_pin_dialog);
-
             Toast.makeText(c,GlobalVariable.OldPin,Toast.LENGTH_SHORT).show();
-
             forgetpin_error_message_textview=(TextView)findViewById(R.id.forgetpin_error_message_textview);
             forgetpin_error_message_textview.setVisibility(View.INVISIBLE);
 
@@ -1055,12 +1039,9 @@ public class EditProfileDialog extends Dialog implements
                     if(!pin1.getText().toString().equals("")&&!pin2.getText().toString().equals("")&&!pin3.getText().toString().equals("")&&!pin4.getText().toString().equals("")&&!pin5.getText().toString().equals("")&&!pin6.getText().toString().equals(""))
                     {
                         payment_error_message.setVisibility(View.INVISIBLE);
-                       // dismiss();
-                       // new PostUserProfile_Dob_Task(c).execute(dobedit.getText().toString(),"601121829875");
                         indicator_newpin=true;
                         if(indicator_newpin==true&&indicator_oldpin==true)
                         {
-                            //Toast.makeText(c,"save success",Toast.LENGTH_SHORT).show();
                             new PostUserProfile_Pin_Payment_Task(c).execute(MainActivity.LoginID,pin1.getText().toString()+pin2.getText().toString()+pin3.getText().toString()+ pin4.getText().toString()+pin5.getText().toString()+pin6.getText().toString(),MainActivity.LoginID,MainActivity.Password);
                             indicator_oldpin=false;
                             indicator_newpin=false;
@@ -1082,7 +1063,6 @@ public class EditProfileDialog extends Dialog implements
                             if(indicator_newpin==true&&indicator_oldpin==true)
                             {
                                 new PostUserProfile_Pin_Payment_Task(c).execute(MainActivity.LoginID,pin1.getText().toString()+pin2.getText().toString()+pin3.getText().toString()+ pin4.getText().toString()+pin5.getText().toString()+pin6.getText().toString(),MainActivity.LoginID,MainActivity.Password);
-                                //Toast.makeText(c,"save success",Toast.LENGTH_SHORT).show();
                                 indicator_oldpin=false;
                                 indicator_newpin=false;
                             }
@@ -1112,10 +1092,7 @@ public class EditProfileDialog extends Dialog implements
                 dismiss();
             }
         });
-       // yes = (Button) findViewById(R.id.btn_yes);
-       // no = (Button) findViewById(R.id.btn_no);
-       // yes.setOnClickListener(this);
-       // no.setOnClickListener(this);
+
 
     }
 

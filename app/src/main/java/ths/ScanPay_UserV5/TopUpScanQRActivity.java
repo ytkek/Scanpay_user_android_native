@@ -34,17 +34,12 @@ public class TopUpScanQRActivity extends AppCompatActivity {
     public static String type,merchantid,amount,lqrcode,qrcode,merchantname,qr_amount;
     public static EditText amount_edit,new_otp_edit;
     public static TextView checkdailylimit,merchant_name,credit_balance;
-
     public static LinearLayout topup_layout,OTPlayout,set_new_Otp_layout,topup_result_layout;
     public static TextView otp_empty,otp_different;
     public static TextView topup_result_amount,topup_result_date,topup_result_merchant;
-
     public static Button getnewotpbtn,resendotpbtn,saveotpbtn,topup_close_btn;
-
     public static TextView error_message,user_number;
-
     ImageView back_btn;
-
     Button confirm_btn;
     Activity TopUpScanQR;
     @Override
@@ -82,8 +77,6 @@ public class TopUpScanQRActivity extends AppCompatActivity {
         otp_different.setVisibility(View.GONE);
 
         getnewotpbtn=(Button)findViewById(R.id.getnewotpbtn);
-
-
 
         set_new_Otp_layout=(LinearLayout)findViewById(R.id.set_new_otp_layout);
         set_new_Otp_layout.setVisibility(View.GONE);

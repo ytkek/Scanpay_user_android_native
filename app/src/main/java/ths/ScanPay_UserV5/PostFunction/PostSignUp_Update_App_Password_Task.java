@@ -37,7 +37,6 @@ public class PostSignUp_Update_App_Password_Task extends AsyncTask<String, Integ
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -87,7 +86,6 @@ public class PostSignUp_Update_App_Password_Task extends AsyncTask<String, Integ
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
-
             hashMap.put("AppPassword", param1);
             hashMap.put("LoginID", param2);
             hashMap.put("Otp", param3);
@@ -102,13 +100,9 @@ public class PostSignUp_Update_App_Password_Task extends AsyncTask<String, Integ
             }
 
 
-
-
-
         }
         else
         {
-
 
                 context.runOnUiThread(new Runnable() {
                     @Override
@@ -116,8 +110,6 @@ public class PostSignUp_Update_App_Password_Task extends AsyncTask<String, Integ
                         showDialog();
                     }
                 });
-
-
 
         }
 

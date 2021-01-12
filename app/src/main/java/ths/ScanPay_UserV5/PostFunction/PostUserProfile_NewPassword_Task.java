@@ -38,7 +38,6 @@ public class PostUserProfile_NewPassword_Task extends AsyncTask<String, Integer,
     public Activity context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
     String encryptedString;
@@ -128,7 +127,6 @@ public class PostUserProfile_NewPassword_Task extends AsyncTask<String, Integer,
 
         progDailog.dismiss();
 
-        //Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
         if (result.equals("SAVE PROFILE PASSWORD SUCCESS"))
         {
             GenericAutologin.SaveLoginPassword(GenericAutologin.getLogin(context), EditProfileDialog.newpasswordString,context);
@@ -144,10 +142,6 @@ public class PostUserProfile_NewPassword_Task extends AsyncTask<String, Integer,
             AlertDialog alert = builder.create();
             alert.show();
         }
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
     private void showDialog()

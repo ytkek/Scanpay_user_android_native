@@ -31,16 +31,12 @@ public class SignUpStep2 extends AppCompatActivity {
         SignUpStep2=this;
         backbtn = (ImageView)findViewById(R.id.backbtn);
         nameedit = (EditText)findViewById(R.id.name_edit);
-
         emailedit = (EditText) findViewById(R.id.email_edit);
-
         nextbtn = (Button) findViewById(R.id.nextbtn);
         nextbtn.setEnabled(false);
         nextbtn.setAlpha(.1f);
-
         error_message_textview = (TextView)findViewById(R.id.error_message_textview);
         error_message_textview.setVisibility(View.INVISIBLE);
-
         nameedit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

@@ -40,7 +40,6 @@ public class GetScanPayMerchantListTask extends AsyncTask<String, Integer, Array
     public Activity context = null;
     public static ArrayList<Locationlist> listMockData;
     RecyclerView list;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
     String encryptedString;
@@ -109,7 +108,6 @@ public class GetScanPayMerchantListTask extends AsyncTask<String, Integer, Array
                     if (tmp.has("m_id"))
                     {
                         newsData.setM_id(tmp.getString("m_id"));
-                       // Log.d("wtf",newsData.getM_id());
                     }
                     if (tmp.has("m_companyname"))
                     {
@@ -307,13 +305,6 @@ public class GetScanPayMerchantListTask extends AsyncTask<String, Integer, Array
 
                 }
             }
-
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

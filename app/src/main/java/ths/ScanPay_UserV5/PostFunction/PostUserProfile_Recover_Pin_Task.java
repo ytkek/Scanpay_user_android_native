@@ -38,7 +38,6 @@ public class PostUserProfile_Recover_Pin_Task extends AsyncTask<String, Integer,
     public Activity context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
     String encryptedString;
@@ -136,10 +135,6 @@ public class PostUserProfile_Recover_Pin_Task extends AsyncTask<String, Integer,
             EditProfileDialog.forgetpin_error_message_textview.setVisibility(View.VISIBLE);
             EditProfileDialog.forgetpin_error_message_textview.setText("Recovery email had sent , please check your email");
         }
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

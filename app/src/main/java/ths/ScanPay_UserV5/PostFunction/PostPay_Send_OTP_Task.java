@@ -41,7 +41,6 @@ public class PostPay_Send_OTP_Task extends AsyncTask<String, Integer, String> {
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -91,7 +90,6 @@ public class PostPay_Send_OTP_Task extends AsyncTask<String, Integer, String> {
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
-
             hashMap.put("LoginID", param1);
             hashMap.put("Token",encryptedString);
             response = NetworkUtil.sendPost(apiUrl,hashMap);
@@ -131,12 +129,10 @@ public class PostPay_Send_OTP_Task extends AsyncTask<String, Integer, String> {
         progDailog.dismiss();
 
         PaymentScanQRActivity.set_new_Otp_layout.setVisibility(View.VISIBLE);
-
         String last = MainActivity.LoginID.substring(MainActivity.LoginID.length()-4,MainActivity.LoginID.length());
         String first = MainActivity.LoginID.replaceAll("[0-9]","*");
         String firstremove = first.substring(0,first.length() - 4);
         PaymentScanQRActivity.user_number.setText(firstremove+""+last);
-
         PaymentScanQRActivity.countresend();
         PaymentScanQRActivity.resendotpbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,18 +171,6 @@ public class PostPay_Send_OTP_Task extends AsyncTask<String, Integer, String> {
 
             }
         });
-
-
-
-
-
-
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

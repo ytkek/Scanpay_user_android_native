@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
             Password =  intent.getExtras().getString("Password");
             Page = intent.getExtras().getString("Page");
 
-           // new PostApp_TestToken_Task(MainActivity.mainactivity).execute(LoginID,Password);
             if(!TextUtils.isEmpty(Page))
             {
                 Intent lol = new Intent(this,MessageCentreActivity.class);
@@ -57,9 +56,6 @@ public class MainActivity extends AppCompatActivity {
 
             FirebaseMessaging.getInstance().subscribeToTopic(MainActivity.LoginID);
             FirebaseMessaging.getInstance().subscribeToTopic("all");
-            //testing
-           // Generic.SaveOtp("145546",this);
-            //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
             viewPager = (ViewPager) findViewById(R.id.viewpager);
             setupViewPager(viewPager);

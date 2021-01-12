@@ -40,7 +40,6 @@ public class GetFindMerchantListTask extends AsyncTask<String, Integer, ArrayLis
     public Activity context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
     String encryptedString;
@@ -111,7 +110,6 @@ public class GetFindMerchantListTask extends AsyncTask<String, Integer, ArrayLis
                     if (tmp.has("m_id"))
                     {
                         newsData.setM_id(tmp.getString("m_id"));
-                       // Log.d("wtf",newsData.getM_id());
                     }
                     if (tmp.has("m_companyname"))
                     {
@@ -440,12 +438,6 @@ public class GetFindMerchantListTask extends AsyncTask<String, Integer, ArrayLis
                 }
             }
         }
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

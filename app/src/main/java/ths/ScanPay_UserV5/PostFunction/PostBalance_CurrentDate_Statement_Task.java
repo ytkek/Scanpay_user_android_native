@@ -43,7 +43,6 @@ public class PostBalance_CurrentDate_Statement_Task extends AsyncTask<Void, Inte
     RecyclerView list;
     String params1,params2;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -106,57 +105,57 @@ public class PostBalance_CurrentDate_Statement_Task extends AsyncTask<Void, Inte
                     if (tmp.has("la_id"))
                     {
                         newsData.setLa_id(tmp.getString("la_id"));
-                        // Log.d("wtf",newsData.getM_id());
+
                     }
                     if (tmp.has("la_type"))
                     {
                         newsData.setLa_type(tmp.getString("la_type"));
-                        // Log.d("wtf",newsData.getM_id());
+
                     }
                     if (tmp.has("la_ref"))
                     {
                         newsData.setLa_ref(tmp.getString("la_ref"));
-                        // Log.d("wtf",newsData.getM_id());
+
                     }
                     if (tmp.has("la_createdt"))
                     {
                         newsData.setLa_createdt(tmp.getString("la_createdt"));
-                        // Log.d("wtf",newsData.getM_id());
+
                     }
                     if (tmp.has("la_createby"))
                     {
                         newsData.setLa_createby(tmp.getString("la_createby"));
-                        // Log.d("wtf",newsData.getM_id());
+
                     }
                     if (tmp.has("la_amount"))
                     {
                         newsData.setLa_amount(tmp.getString("la_amount"));
-                        // Log.d("wtf",newsData.getM_id());
+
                     }
                     if (tmp.has("la_merchantid"))
                     {
                         newsData.setLa_merchantid(tmp.getString("la_merchantid"));
-                        // Log.d("wtf",newsData.getM_id());
+
                     }
                     if (tmp.has("la_memberid"))
                     {
                         newsData.setLa_memberid(tmp.getString("la_memberid"));
-                        // Log.d("wtf",newsData.getM_id());
+
                     }
                     if (tmp.has("la_points"))
                     {
                         newsData.setLa_points(tmp.getString("la_points"));
-                        // Log.d("wtf",newsData.getM_id());
+
                     }
                     if (tmp.has("la_ref2"))
                     {
                         newsData.setLa_ref2(tmp.getString("la_ref2"));
-                        // Log.d("wtf",newsData.getM_id());
+
                     }
                     if (tmp.has("la_revid"))
                     {
                         newsData.setLa_revid(tmp.getString("la_revid"));
-                        // Log.d("wtf",newsData.getM_id());
+
                     }
                     listMockData.add(newsData);
                 }

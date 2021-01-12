@@ -39,9 +39,6 @@ public class PostPay_MerchantInfo_Task extends AsyncTask<String, Integer, String
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
     String encryptedString;
-
-
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -176,8 +173,6 @@ public class PostPay_MerchantInfo_Task extends AsyncTask<String, Integer, String
                 PaymentScanQRActivity.payment_layout.setVisibility(View.GONE);
                 PaymentScanQRActivity.error_message.setText("INVALID MERCHANT");
                 PaymentScanQRActivity.error_message.setVisibility(View.VISIBLE);
-
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setMessage("Error #B0034 Invalid Merchant")
                         .setCancelable(false)
@@ -200,8 +195,6 @@ public class PostPay_MerchantInfo_Task extends AsyncTask<String, Integer, String
 
 
                     String[] arrayString = result.split(",");
-
-
                     PaymentScanQRActivity.merchant_name.setText("Transaction with merchant " + arrayString[0]);
                     PaymentScanQRActivity.merchantname = arrayString[0];
                     if (arrayString[1].equals("cashier")) {
@@ -215,18 +208,6 @@ public class PostPay_MerchantInfo_Task extends AsyncTask<String, Integer, String
 
             }
 
-
-
-
-
-
-
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

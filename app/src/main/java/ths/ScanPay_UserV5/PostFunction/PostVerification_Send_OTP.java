@@ -33,7 +33,6 @@ public class PostVerification_Send_OTP extends AsyncTask<String, Integer, String
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -82,7 +81,6 @@ public class PostVerification_Send_OTP extends AsyncTask<String, Integer, String
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
-
             hashMap.put("LoginID", param1);
             hashMap.put("Token",encryptedString);
             response = NetworkUtil.sendPost(apiUrl,hashMap);
@@ -122,7 +120,7 @@ public class PostVerification_Send_OTP extends AsyncTask<String, Integer, String
         progDailog.dismiss();
 
 
-        Verification_LoginPage.countresend();
+           Verification_LoginPage.countresend();
            Verification_LoginPage.systemOTP = result;
            Verification_LoginPage.otpedit.addTextChangedListener(new TextWatcher() {
                @Override

@@ -40,7 +40,6 @@ public class PostTopup_Get_OTP_Task extends AsyncTask<String, Integer, String> {
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -91,7 +90,6 @@ public class PostTopup_Get_OTP_Task extends AsyncTask<String, Integer, String> {
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
-
             hashMap.put("LoginID", param1);
             hashMap.put("Token",encryptedString);
             response = NetworkUtil.sendPost(apiUrl,hashMap);
@@ -158,16 +156,9 @@ public class PostTopup_Get_OTP_Task extends AsyncTask<String, Integer, String> {
         }
         else if (result.equals(otp))
         {
-           // Toast.makeText(context,"correct OTP",Toast.LENGTH_SHORT).show();
             TopUpScanQRActivity.topup_layout.setVisibility(View.VISIBLE);
         }
 
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

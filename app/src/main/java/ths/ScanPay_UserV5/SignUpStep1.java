@@ -43,16 +43,13 @@ public class SignUpStep1 extends AppCompatActivity {
 
         SignUpStep1=this;
         backbtn = (ImageView)findViewById(R.id.backbtn);
-
         mobileedittext = (EditText)findViewById(R.id.mobile_edit);
         checkloginidresult = (TextView)findViewById(R.id.checkloginidresult);
         checkloginidresult.setVisibility(View.INVISIBLE);
         otplayout = (LinearLayout)findViewById(R.id.OTPlayout);
         otplayout.setVisibility(View.GONE);
-
         verifybtn = (Button)findViewById(R.id.verifyotp);
         verifybtn.setVisibility(View.INVISIBLE);
-
         resendbtn = (Button)findViewById(R.id.resend);
 
 
@@ -128,12 +125,6 @@ public class SignUpStep1 extends AppCompatActivity {
             public void onClick(View v) {
 
                 new PostSignUp_Validate_LoginID_Task(SignUpStep1).execute("60"+mobileedittext.getText().toString());
-                //SignUpStep1.verifybool=true;
-
-                //SignUpStep1.otplayout.setVisibility(View.VISIBLE);
-               // SignUpStep1.verifybtn.setVisibility(View.GONE);
-               // countresend();
-               // sendOTP();
 
 
             }
@@ -141,8 +132,7 @@ public class SignUpStep1 extends AppCompatActivity {
         resendbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  countresend();
-               // sendOTP();
+
                 new PostSignUp_Send_OTP_Task(SignUpStep1).execute("60"+mobileedittext.getText().toString());
 
             }
@@ -502,7 +492,6 @@ public class SignUpStep1 extends AppCompatActivity {
                 if(confirmpasswordedit.getText().toString().equals(passwordedit.getText().toString()))
                 {
                     MobileNum="60"+mobileedittext.getText().toString();
-                    //Toast.makeText(context,result,Toast.LENGTH_SHORT).show()
                     new PostSignUp_Update_App_Password_Task(SignUpStep1).execute(passwordedit.getText().toString(),"60"+mobileedittext.getText().toString(),systemOTP);
                 }
                 else

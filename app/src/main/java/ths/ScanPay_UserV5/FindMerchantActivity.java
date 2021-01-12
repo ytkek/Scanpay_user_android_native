@@ -19,7 +19,6 @@ import ths.ScanPay_UserV5.GetFunction.GetFindMerchantListTask;
 
 public class FindMerchantActivity  extends AppCompatActivity {
     Activity findmerchantactivity;
-
     public static Spinner spinner;
     ImageView backbtn;
     public static RecyclerView recyclerView;
@@ -29,9 +28,7 @@ public class FindMerchantActivity  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.findmerchant);
-
         findmerchantactivity = this;
-
         backbtn = (ImageView) findViewById(R.id.backbtn);
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +36,6 @@ public class FindMerchantActivity  extends AppCompatActivity {
                 finish();
             }
         });
-
         spinner = (Spinner) findViewById(R.id.findmerchant_menu_list);
         List<String> list = new ArrayList<String>();
         list.add("Food And Beverage");
@@ -57,11 +53,8 @@ public class FindMerchantActivity  extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.findmerchant_listview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-
         recyclerView.setLayoutManager(layoutManager);
-
         new GetFindMerchantListTask(this, recyclerView).execute(MainActivity.LoginID,MainActivity.Password);
-
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -73,14 +66,7 @@ public class FindMerchantActivity  extends AppCompatActivity {
 
             }
         });
-      //  List<FindMerchantlist> findmerchantlist = new ArrayList<>();
-       // findmerchantlist.add(new FindMerchantlist("https://insideretail.hk/wp-content/uploads/2019/08/Monocle-HKIA-1.jpg", "Monocle", "911,jalan teratai"));
-       // findmerchantlist.add(new FindMerchantlist("https://insideretail.hk/wp-content/uploads/2019/08/Monocle-HKIA-1.jpg", "Monocle", "911,jalan teratai"));
-       // findmerchantlist.add(new FindMerchantlist("https://insideretail.hk/wp-content/uploads/2019/08/Monocle-HKIA-1.jpg", "Monocle", "911,jalan teratai"));
-       // findmerchantlist.add(new FindMerchantlist("https://insideretail.hk/wp-content/uploads/2019/08/Monocle-HKIA-1.jpg", "Monocle", "911,jalan teratai"));
-      //  mAdapter = new FindMerchantAdapter(this, findmerchantlist);
 
-       // recyclerView.setAdapter(mAdapter);
 
 
     }

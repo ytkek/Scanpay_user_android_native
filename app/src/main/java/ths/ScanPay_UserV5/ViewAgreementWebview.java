@@ -23,7 +23,6 @@ public class ViewAgreementWebview extends AppCompatActivity {
         setContentView(R.layout.viewagreement_webview);
         
         backbtn = (ImageView)findViewById(R.id.backbtn);
-
         webView = (WebView) findViewById(R.id.webview);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);

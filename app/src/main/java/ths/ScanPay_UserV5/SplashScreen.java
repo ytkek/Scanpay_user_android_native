@@ -30,9 +30,8 @@ public class SplashScreen  extends AppCompatActivity {
         setContentView(R.layout.splashscreen);
 
         splashscreen=this;
-       login= GenericAutologin.getLogin(this);
+        login= GenericAutologin.getLogin(this);
         password= GenericAutologin.getPassword(this);
-
 
         if (RootUtil.isDeviceRooted() ==true)
         {

@@ -40,7 +40,6 @@ public class PostTopup_Send_OTP_Task extends AsyncTask<String, Integer, String> 
     public Activity context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
     String encryptedString;
@@ -134,7 +133,6 @@ public class PostTopup_Send_OTP_Task extends AsyncTask<String, Integer, String> 
         String last = MainActivity.LoginID.substring(MainActivity.LoginID.length()-4,MainActivity.LoginID.length());
         String first = MainActivity.LoginID.replaceAll("[0-9]","*");
         String firstremove = first.substring(0,first.length() - 4);
-
         TopUpScanQRActivity.user_number.setText(firstremove+""+last);
         TopUpScanQRActivity.countresend();
         TopUpScanQRActivity.resendotpbtn.setOnClickListener(new View.OnClickListener() {
@@ -174,17 +172,6 @@ public class PostTopup_Send_OTP_Task extends AsyncTask<String, Integer, String> 
             }
         });
 
-
-
-
-
-
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

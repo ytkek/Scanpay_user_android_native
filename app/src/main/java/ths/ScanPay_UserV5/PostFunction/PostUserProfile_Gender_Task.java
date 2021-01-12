@@ -37,7 +37,6 @@ public class PostUserProfile_Gender_Task extends AsyncTask<String, Integer, Stri
     public Activity context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
     String encryptedString;
@@ -151,10 +150,6 @@ public class PostUserProfile_Gender_Task extends AsyncTask<String, Integer, Stri
             AlertDialog alert = builder.create();
             alert.show();
         }
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

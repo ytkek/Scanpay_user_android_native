@@ -39,7 +39,6 @@ public class PostBalance_DailyLimit_Task extends AsyncTask<String, Integer, Stri
     RecyclerView list;
     String params1,params2;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -89,11 +88,8 @@ public class PostBalance_DailyLimit_Task extends AsyncTask<String, Integer, Stri
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
-
             hashMap.put("LoginID", params1);
             hashMap.put("Token",encryptedString);
-
-
             response = NetworkUtil.sendPost(apiUrl,hashMap);
             try{
 

@@ -38,7 +38,6 @@ public class PostSignUp_Send_OTP_Task extends AsyncTask<String, Integer, String>
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -123,24 +122,15 @@ public class PostSignUp_Send_OTP_Task extends AsyncTask<String, Integer, String>
         super.onPostExecute(result);
 
         progDailog.dismiss();
-        //Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
+
             SignUpStep1.systemOTP=result;
             SignUpStep1.checkloginidresult.setVisibility(View.INVISIBLE);
             SignUpStep1.mobileedittext.setEnabled(false);
-            //SignUpStep1.verifybool=true;
-
             SignUpStep1.otplayout.setVisibility(View.VISIBLE);
             SignUpStep1.verifybtn.setVisibility(View.GONE);
             SignUpStep1.countresend();
             SignUpStep1.sendOTP();
 
-
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

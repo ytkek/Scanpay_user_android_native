@@ -42,7 +42,6 @@ public class FindMerchantDetail extends AppCompatActivity {
 
         findmerchantdetail=this;
         Intent intent = getIntent();
-
         m_companyname = intent.getStringExtra("m_companyname");
         m_address=intent.getStringExtra("m_address");
         m_tel=intent.getStringExtra("m_tel");
@@ -66,17 +65,7 @@ public class FindMerchantDetail extends AppCompatActivity {
             }
         });
 
-       // topup=(ImageView)findViewById(R.id.topup);
-      //  topup.setVisibility(View.GONE);
-      //  if(m_topup!="")
-       // {
-       //     topup.setVisibility(View.VISIBLE);
-       //     Glide.with(this)  //2
-       //             .load(m_topup) //3
-       //             .fitCenter()
-       //             .into(topup);
 
-      //  }
 
         profilepic = (ImageView)findViewById(R.id.profilepic);
         Glide.with(this)  //2
@@ -178,8 +167,6 @@ public class FindMerchantDetail extends AppCompatActivity {
 
         time= (TextView)findViewById(R.id.time);
         time.setText(m_businesshour);
-
-
 
         information = (TextView)findViewById(R.id.information);
         information.setText(m_remarks);

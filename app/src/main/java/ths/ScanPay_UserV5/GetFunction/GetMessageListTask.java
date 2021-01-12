@@ -42,7 +42,6 @@ public class GetMessageListTask extends AsyncTask<String, Integer, ArrayList<Mes
     public Activity context = null;
     public static ArrayList<MessageCentrelist> listMockData;
     RecyclerView list;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
     String encryptedString;
@@ -112,27 +111,19 @@ public class GetMessageListTask extends AsyncTask<String, Integer, ArrayList<Mes
                     if (tmp.has("nob_id"))
                     {
                         newsData.setId(tmp.getString("nob_id"));
-                       // Log.d("wtf",newsData.getM_id());
                     }
                     if (tmp.has("nob_title"))
                     {
                         newsData.setTitle(tmp.getString("nob_title"));
-                        // Log.d("wtf",newsData.getM_id());
                     }
                     if (tmp.has("nob_message"))
                     {
                         newsData.setMessage(tmp.getString("nob_message"));
-                        // Log.d("wtf",newsData.getM_id());
                     }
                     if (tmp.has("nob_publishdate"))
                     {
                         newsData.setDate(tmp.getString("nob_publishdate"));
-                        // Log.d("wtf",newsData.getM_id());
                     }
-
-
-
-
 
                     listMockData.add(newsData);
                 }
@@ -169,7 +160,6 @@ public class GetMessageListTask extends AsyncTask<String, Integer, ArrayList<Mes
 
         progDailog.dismiss();
 
-       // Collections.sort(result, Collections.reverseOrder());
         Collections.sort(result, new Comparator<MessageCentrelist>() {
             @Override
             public int compare(MessageCentrelist lhs, MessageCentrelist rhs) {
@@ -177,81 +167,8 @@ public class GetMessageListTask extends AsyncTask<String, Integer, ArrayList<Mes
             }
         });
 
-
-        //List<Integer> num = new ArrayList<>();
-       // Log.d("wtf2",""+result.size() + "" + MessageCentreActivity.db.getAllMessage().size());
-       // if(result.size()==MessageCentreActivity.db.getAllMessage().size())
-       // {
-             //refreshdatabase(result);
-            MessageCentreActivity.mAdapter = new MessageCentreAdapter(context,result);
-
-            MessageCentreActivity.recyclerView.setAdapter(MessageCentreActivity.mAdapter);
-
-        //}
-        //else if (MessageCentreActivity.db.getAllMessage().size()==0)
-       // {
-        //    for (int j=0;j<result.size();j++)
-         //   {
-         //       MessageCentreActivity.db.insertIndicator("false",result.get(j).getId());
-
-          //      if(j+1==result.size())
-         //       {
-          //          MessageCentreActivity.mAdapter = new MessageCentreAdapter(context,result);
-//
-          //          MessageCentreActivity.recyclerView.setAdapter(MessageCentreActivity.mAdapter);
-          //     }
-          //  }
-
-        //}
-       // else if(result.size()>MessageCentreActivity.db.getAllMessage().size()&&MessageCentreActivity.db.getAllMessage().size()!=0)
-       // {
-
-        //    for (int a = 0; a<result.size(); a++)
-        //   {
-        //        for(int b=0; b<MessageCentreActivity.db.getAllMessage().size(); b++)
-        //        {
-         //           if(result.get(a).getId().equals(MessageCentreActivity.db.getAllMessage().get(b).getNob_id()))
-          //          {
-          //              num.add(a);
-           //         }
-           //         else
-            //        {
-//
-            //        }
-
-            //    }
-
-          //      if(a+1==result.size())
-          //      {
-
-
-                   // MessageCentreActivity.arraylist_messagedb.clear();
-                   // MessageCentreActivity.arraylist_messagedb.addAll(MessageCentreActivity.db.getAllMessage());
-            //        for (int i = 0; i < result.size(); i++){
-
-
-             //           if (!num.contains(i)) {
-             //               MessageCentreActivity.db.insertIndicator("false", result.get(i).getId());
-             //           }
-
-
-               //                if(i+1==MessageCentreActivity.db.getAllMessage().size())
-               //                 {
-                //                    MessageCentreActivity.mAdapter = new MessageCentreAdapter(context,result);
-
-                //                    MessageCentreActivity.recyclerView.setAdapter(MessageCentreActivity.mAdapter);
-                //                }
-                //            }
-
-                 //       }
-                 //   }
-      // }
-
-
-
-
-
-
+        MessageCentreActivity.mAdapter = new MessageCentreAdapter(context,result);
+        MessageCentreActivity.recyclerView.setAdapter(MessageCentreActivity.mAdapter);
 
 
 
@@ -266,8 +183,6 @@ public class GetMessageListTask extends AsyncTask<String, Integer, ArrayList<Mes
         for (int i =0; i<result.size(); i ++)
         {
             MessageCentreActivity.arraylist_messagedb.addAll(MessageCentreActivity.db.getAllMessage());
-           // MessageCentreActivity.db.insertIndicator("false",result.get(i).getId());
-            Log.d("wtf2",""+MessageCentreActivity.arraylist_messagedb.get(i).getIndicator());
             if(i+1==result.size())
             {
                 MessageCentreActivity.db.deleteall();

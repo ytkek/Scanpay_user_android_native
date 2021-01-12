@@ -40,15 +40,11 @@ public class PostPay_CheckDailyExpLimit_Task extends AsyncTask<String, Integer, 
     RecyclerView list;
     String params1,params2;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
     public PostPay_CheckDailyExpLimit_Task(Activity context){
         this.context = context;
-
-
-
     }
 
     @Override
@@ -134,8 +130,6 @@ public class PostPay_CheckDailyExpLimit_Task extends AsyncTask<String, Integer, 
             PaymentScanQRActivity.payment_layout.setVisibility(View.GONE);
             PaymentScanQRActivity.error_message.setText("Exceed Daily Limit");
             PaymentScanQRActivity.error_message.setVisibility(View.VISIBLE);
-
-
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setMessage("Error #B0032 Exceed Daily Limit")
                     .setCancelable(false)
@@ -155,18 +149,6 @@ public class PostPay_CheckDailyExpLimit_Task extends AsyncTask<String, Integer, 
             PaymentScanQRActivity.checkdailylimit.setText(result);
         }
 
-
-
-
-
-
-
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
 

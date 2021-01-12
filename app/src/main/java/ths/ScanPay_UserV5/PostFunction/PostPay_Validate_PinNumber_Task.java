@@ -42,7 +42,6 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
     RecyclerView list;
     String params1,params2;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -139,8 +138,6 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
             double b;
             double c;
             double d;
-
-
             a = Double.parseDouble(PaymentScanQRActivity.credit_balance);
             b= Double.parseDouble(PaymentScanQRActivity.qr_amount);
             c = Double.parseDouble(PaymentScanQRActivity.dailyexp);
@@ -225,14 +222,6 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
 
 
             }
-
-
-
-
-
-
-
-           // new PostPay_Confirm_Pay_Task(context).execute(MainActivity.LoginID,PaymentScanQRActivity.merchantid,PaymentScanQRActivity.merchantname,PaymentScanQRActivity.type,PaymentScanQRActivity.amount_edit.getText().toString(),PaymentScanQRActivity.qrcode,PaymentScanQRActivity.lqrcode);
         }
         else if(result.equals("Invalid Pin Number"))
         {
@@ -251,20 +240,6 @@ public class PostPay_Validate_PinNumber_Task extends AsyncTask<String, Integer, 
             alert.show();
         }
 
-
-
-
-
-
-
-
-
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
     private void showDialog()

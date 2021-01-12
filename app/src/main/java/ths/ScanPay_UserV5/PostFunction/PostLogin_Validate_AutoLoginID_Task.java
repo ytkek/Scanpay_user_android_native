@@ -38,7 +38,6 @@ public class PostLogin_Validate_AutoLoginID_Task extends AsyncTask<String, Integ
     RecyclerView list;
     String params1,params2;
     String encryptedString;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
@@ -87,7 +86,6 @@ public class PostLogin_Validate_AutoLoginID_Task extends AsyncTask<String, Integ
         if (NetworkUtil.isNetworkAvailable(context))
         {
             HashMap<String, String> hashMap = new HashMap<String, String>();
-
             hashMap.put("LoginID", params1);
             hashMap.put("Password", params2);
             hashMap.put("Token",encryptedString);
@@ -121,8 +119,6 @@ public class PostLogin_Validate_AutoLoginID_Task extends AsyncTask<String, Integ
         if(result.equals("Allow Login"))
         {
             GenericAutologin.SaveLoginPassword(params1,params2,context);
-
-
             Intent mainactivity = new Intent(context, MainActivity.class);
             mainactivity.putExtra("LoginID",params1);
              context.startActivity(mainactivity);
@@ -142,14 +138,6 @@ public class PostLogin_Validate_AutoLoginID_Task extends AsyncTask<String, Integ
 
         }
 
-
-
-
-
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
     public static String Encrypt(String text,String key)

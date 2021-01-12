@@ -37,7 +37,6 @@ public class PostUserProfile_Dob_Task extends AsyncTask<String, Integer, String>
     public Activity context = null;
     public static ArrayList<FindMerchantlist> listMockData;
     RecyclerView list;
-
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
     String encryptedString;
@@ -133,7 +132,6 @@ public class PostUserProfile_Dob_Task extends AsyncTask<String, Integer, String>
         if(result.equals("SAVE PROFILE DOB SUCCESS"))
         {
             new GetUserProfileListTask(context).execute(MainActivity.LoginID,MainActivity.Password);
-            //Toast.makeText(context,"Save Success",Toast.LENGTH_SHORT).show();
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setMessage("Alert Save Profile Dob Success")
                     .setCancelable(false)
@@ -146,10 +144,6 @@ public class PostUserProfile_Dob_Task extends AsyncTask<String, Integer, String>
             AlertDialog alert = builder.create();
             alert.show();
         }
-
-        // FindMerchantActivity.mAdapter = new FindMerchantAdapter(context, result);
-
-       // FindMerchantActivity.recyclerView.setAdapter(FindMerchantActivity.mAdapter);
 
     }
     private void showDialog()

@@ -24,18 +24,11 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-
-
-
         loginactivity=this;
         idbox=(EditText)findViewById(R.id.idbox);
-
         passwordbox = (EditText)findViewById(R.id.passwordbox);
-
         postalcode = (EditText)findViewById(R.id.postalcode);
         postalcode.setEnabled(false);
-
-
         signup = (Button)findViewById(R.id.signup);
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,8 +43,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 new PostLogin_Validate_LoginID_Task(loginactivity).execute("60"+idbox.getText().toString(),passwordbox.getText().toString());
-               // Intent mainactivity = new Intent(getApplicationContext(),MainActivity.class);
-               // startActivity(mainactivity);
+
             }
         });
 

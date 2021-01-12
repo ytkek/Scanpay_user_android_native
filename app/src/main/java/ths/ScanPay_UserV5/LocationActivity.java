@@ -21,15 +21,10 @@ public class LocationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location);
 
-
         recyclerView = (RecyclerView) findViewById(R.id.location_listview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-
         recyclerView.setLayoutManager(layoutManager);
-
         new GetScanPayMerchantListTask(this,recyclerView).execute(MainActivity.LoginID,MainActivity.Password);
-
-
         back = (ImageView) findViewById(R.id.backbtn);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
