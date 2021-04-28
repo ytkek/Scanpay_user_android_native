@@ -3,9 +3,12 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2f1dcf01680ad8b758694a9bf8ddc17f/jetified-firebase-messaging-20.1.2/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2f1dcf01680ad8b758694a9bf8ddc17f/jetified-firebase-messaging-20.1.2/res" />
+      <root url="jar://$PROJECT_DIR$/../../Scanpay_user_android_native-master (2)/Scanpay_user_android_native-master/gradle/caches/transforms-2/files-2.1/a5312d3f0aed8de690686e5b1fcab8c6/jetified-firebase-messaging-20.1.2/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../Scanpay_user_android_native-master (2)/Scanpay_user_android_native-master/gradle/caches/transforms-2/files-2.1/a5312d3f0aed8de690686e5b1fcab8c6/jetified-firebase-messaging-20.1.2/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../../Scanpay_user_android_native-master (2)/Scanpay_user_android_native-master/gradle/caches/transforms-2/files-2.1/a5312d3f0aed8de690686e5b1fcab8c6/jetified-firebase-messaging-20.1.2/res" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-messaging/20.1.2/db7a6c1d99584b08cf2fbda1f4818e895638545a/firebase-messaging-20.1.2-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Scanpay_user_android_native-master (2)/Scanpay_user_android_native-master/gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-messaging/20.1.2/db7a6c1d99584b08cf2fbda1f4818e895638545a/firebase-messaging-20.1.2-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES />
   </library>
