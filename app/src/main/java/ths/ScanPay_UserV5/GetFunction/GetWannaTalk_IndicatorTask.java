@@ -12,7 +12,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.provider.Settings;
-import android.util.Log;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,14 +24,14 @@ import ths.ScanPay_UserV5.SplashScreen;
 /**
  * Created by Windows on 20/9/2016.
  */
-public class GetAndroid_IndicatorTask extends AsyncTask<Void, Integer, String> {
+public class GetWannaTalk_IndicatorTask extends AsyncTask<Void, Integer, String> {
 
     public Activity context = null;
     RecyclerView list;
     private ProgressDialog loadingDialog;
     ProgressDialog progDailog;
 
-    public GetAndroid_IndicatorTask(Activity context)
+    public GetWannaTalk_IndicatorTask(Activity context)
     {
         this.context = context;
 
@@ -132,7 +131,7 @@ public class GetAndroid_IndicatorTask extends AsyncTask<Void, Integer, String> {
             else if (result.contains("2"))
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setMessage("Please Uninstall MyScanPay,The App have been moved to Wannatalk")
+                builder.setMessage("Please update MyScanPay before proceed.")
                         .setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
